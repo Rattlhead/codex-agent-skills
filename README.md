@@ -25,6 +25,34 @@ cp -R skills/task-model-router skills/subagent-manager "$HOME/.codex/skills/"
 
 После установки начните новый ход в Codex. По умолчанию навыки могут применяться автоматически; явные вызовы приведены ниже.
 
+## Обновление
+
+В каталоге клонированного репозитория выполните команды ниже. Они загрузят новую версию, сохранят резервную копию установленных навыков и обновят оба вместе. Локальные правки заменяются версией из репозитория; копия остаётся в `~/.codex/skill-backups/`.
+
+```sh
+(
+set -eu
+git pull --ff-only
+skill_root="${CODEX_HOME:-$HOME/.codex}/skills"
+backup_dir="${CODEX_HOME:-$HOME/.codex}/skill-backups/$(date +%Y%m%d-%H%M%S)-$$"
+for name in task-model-router subagent-manager; do
+  test -f "skills/$name/SKILL.md"
+  test -d "$skill_root/$name"
+  test ! -L "$skill_root/$name"
+done
+mkdir -p "$backup_dir"
+for name in task-model-router subagent-manager; do
+  cp -R "$skill_root/$name" "$backup_dir/$name"
+done
+for name in task-model-router subagent-manager; do
+  rsync -a --delete "skills/$name/" "$skill_root/$name/"
+done
+echo "Обновлено. Резервная копия: $backup_dir"
+)
+```
+
+Начните новый ход в Codex, чтобы использовать обновлённые навыки. Если потребуется восстановление, скопируйте содержимое нужной резервной версии обратно в соответствующие каталоги навыков.
+
 ## Примеры
 
 - `$task-model-router Оцени задачу и порекомендуй модель и уровень усилия.`
