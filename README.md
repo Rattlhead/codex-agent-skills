@@ -45,7 +45,7 @@ for name in task-model-router subagent-manager; do
   cp -R "$skill_root/$name" "$backup_dir/$name"
 done
 for name in task-model-router subagent-manager; do
-  rsync -a --delete "skills/$name/" "$skill_root/$name/"
+  rsync -a --checksum --delete "skills/$name/" "$skill_root/$name/"
 done
 echo "Обновлено. Резервная копия: $backup_dir"
 )
