@@ -1,0 +1,6 @@
+interface:
+  display_name: "Выбор модели по задаче и бюджету"
+  short_description: "Сложность, цена и выбор достаточной модели и усилия"
+  default_prompt: "Используй $task-model-router: оцени сложность задачи, доступные модели, ставки и общий расход до приёмки, затем выбери модель и усилие в рамках бюджета."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Менеджер субагентов"
+  short_description: "Поручения, координация ресурсов и приёмка результатов"
+  default_prompt: "Используй $subagent-manager: выдели проверяемые срезы, примени $task-model-router перед назначениями, координируй исполнителей и прими результаты."
+policy:
+  allow_implicit_invocation: true
