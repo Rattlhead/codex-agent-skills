@@ -15,6 +15,7 @@ Choose independently acceptable slices, not an agent per command or a mandatory 
 
 Send a compact, self-contained assignment:
 
+- Stable slice ID recorded in the existing brief/plan; keep it unchanged for the lifetime of that slice.
 - Outcome/purpose, working directory, owner.
 - Exact writable paths or read-only scope, exclusions, applicable rules/contracts, essential evidence.
 - Dependencies/shared resource ownership, process handles and artifact paths when needed.
@@ -25,7 +26,11 @@ Workers do not inherit the manager role. Nested delegation requires an explicitl
 
 Assign file ownership in shared checkouts; databases, browser state, servers, builds, lockfiles, and report directories also need ownership or serialized access. Distinct source files alone do not establish independence. Resolve overlapping edits first; never revert others' work. Do not create a worktree or user chat per slice. For user flows specify initial state → action → expected state; confirm fixtures and readiness before execution.
 
-Use native agent tools. Reuse workers while their context remains useful. Follow-ups normally retain configuration; if changes are unsupported, create a new worker with a compact handoff. Wait through native mechanisms without polling unchanged state. Continue independent work and communicate meaningful changes; require no empty periodic reports.
+## Reuse within the original slice
+
+Use native agent tools. A worker may continue only its original slice in the same context. Before any follow-up or task-bearing message, confirm the stable slice ID and that the original result/acceptance contract, scope, project/checkout, role, permissions and ownership, and source artifacts/fixtures are still current and match. If any item differs or is uncertain, start a fresh worker with a compact, verified handoff; never use follow-up or send_message to change an assignment to another domain or outcome. Diagnose → implement → verify may be phases of one slice only when all phases were included in its original scope and authorized by its permissions.
+
+Follow-up is appropriate for completing or refining the worker's own result, clarifying missing facts, or checking the original acceptance criteria. A new independent result, another subsystem, or an independent review of the worker's own work requires a fresh worker, even in the same repository or file. Ordinary changes made within the slice do not by themselves invalidate reuse; a material change to its contract, branch, or context does. Idleness or completion does not make a worker available for other work. Apply task-model-router to fresh workers and pass only the short, verified handoff, not another worker's full history. If required model/effort changes are unsupported on follow-up, create a fresh worker for the same slice. Wait through native mechanisms without polling unchanged state. Continue independent work and communicate meaningful changes; require no empty periodic reports.
 
 ## Communication budget
 
@@ -35,7 +40,7 @@ Apply this rule to manager and workers; include it in each worker's brief. Send 
 
 Require done/partial/blocked, owned paths or read-only findings, exact checks/results (command and exit code when applicable), skipped checks, up to three evidence references, and remaining risk. Report available counters accurately: `unknown` or `lower-bound` where appropriate.
 
-Compare against acceptance; inspect relevant diff/artifact and evidence gaps. Self-report alone is insufficient. Request missing facts from the same worker first. Repeat checks only for a named gap or contradiction. Independent review suits material risk, disputed decisions, or explicit requests; provide criteria/artifacts without steering conclusions. Avoid duplicate review without new changes or evidence gaps.
+Compare against acceptance; inspect relevant diff/artifact and evidence gaps. Self-report alone is insufficient. Request missing facts from the same worker first when the request still satisfies the reuse policy above. Repeat checks only for a named gap or contradiction. Independent review suits material risk, disputed decisions, or explicit requests; provide criteria/artifacts without steering conclusions. Avoid duplicate review without new changes or evidence gaps.
 
 After two unsuccessful corrections of the same gate, stop blind retries. Distinguish result defect, unclear contract, harness failure, and environment blocker; preserve failure artifacts and hand off contract, expected/actual, case, artifact, attempts. Apply the router before material escalation. Recheck the relevant gate after a demonstrated fix.
 
