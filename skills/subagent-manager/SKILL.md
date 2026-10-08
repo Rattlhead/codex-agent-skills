@@ -1,47 +1,162 @@
 ---
 name: subagent-manager
-description: Coordinate delegated work through scoped assignments, resource ownership, evidence-based acceptance, and integration. Use for large or multi-stage work, roadmap execution, or explicit delegation requests; short standalone tasks and roadmap prose edits may stay inline.
+description: Use defined assignments, resource ownership, acceptance evidence, and integration for delegated work. Use for large tasks, tasks with multiple steps, roadmap execution, or explicit delegation requests. Short independent tasks and roadmap text changes can stay with the primary agent.
 ---
 
 # Subagent Manager
 
-Enter manager mode before full implementation research. The manager owns scope, dependencies, assignments, blockers, acceptance, integration, and existing status. Workers research, produce, and verify their slices; do not repeat their research. Respect project rules, authorization, and environment limits. If delegation is unavailable, disclose it and continue feasible work. Do not import another project's paths or tools.
+Before full implementation research, use manager mode.
+The manager has responsibility for scope, dependencies, assignments, blockers, acceptance, integration, and the existing status.
+Workers examine their slices and make their results. Workers do the necessary checks.
+Without a specified gap, do not do their research again.
+Keep project rules, authorization, and environment limits.
+If delegation is unavailable, record the limitation. Continue the work that is possible.
+Do not use another project's paths or tools.
 
-Before **every new assignment and material reassessment**, apply [$task-model-router](../task-model-router/SKILL.md). It owns classification, model/effort selection, pricing, and budget gates; do not duplicate its algorithm. Install both skills in sibling directories. If the router is missing, report the dependency; do not invent a replacement selection procedure.
+## Technical nouns
 
-## Assign and execute
+- **Slice**: a defined part of a task with its own result and acceptance criteria.
+- **Acceptance criteria**: the conditions for acceptance of a result.
+- **Owner**: the agent with responsibility for a specified resource, interface, or check.
+- **Shared interface**: a contract or result structure that producers and consumers use together.
+- **Revision**: an identified version of an input, interface, or result.
+- **Evidence**: an observation, artifact, or command result that gives a basis for an acceptance decision.
+- **Handoff**: the verified information that a new worker needs to continue a slice.
 
-Choose independently acceptable slices, not an agent per command or a mandatory research/development/review chain. Explicit delegation requests require a worker even for sequential work. Otherwise a short known task may stay inline when delegation costs more than execution. Begin with one worker; parallelize only useful independent slices within actual concurrency and total-budget limits, including descendants.
+Model IDs, tool parameters, file paths, and native agent tool names are technical names.
 
-Send a compact, self-contained assignment:
+## Select the configuration
 
-- Stable slice ID recorded in the existing brief/plan; keep it unchanged for the lifetime of that slice.
-- Outcome/purpose, working directory, owner.
-- Exact writable paths or read-only scope, exclusions, applicable rules/contracts, essential evidence.
-- Dependencies/shared resource ownership, process handles and artifact paths when needed.
-- Router decision, observable acceptance gate and appropriate verification.
-- Return: verdict, owned changes, verification/results, evidence, risk/blocker.
+Before every new assignment or material change to the assessment, use [$task-model-router](../task-model-router/SKILL.md).
+Before every repeated worker start, use its forecast and selection procedure again.
+The router controls classification, model and effort selection, prices, and budget conditions.
+Do not copy its algorithm here. The router also operates without this manager.
+Install both skills in adjacent directories.
+If the router is missing, record the missing dependency. Do not invent a replacement selection procedure.
 
-Workers do not inherit the manager role. Nested delegation requires an explicitly assigned independent slice, shared budget, and no further recursive delegation.
+## Give assignments
 
-Assign file ownership in shared checkouts; databases, browser state, servers, builds, lockfiles, and report directories also need ownership or serialized access. Distinct source files alone do not establish independence. Resolve overlapping edits first; never revert others' work. Do not create a worktree or user chat per slice. For user flows specify initial state → action → expected state; confirm fixtures and readiness before execution.
+Select slices with independent acceptance criteria.
+Do not create an agent for each command or a mandatory research, production, and review chain.
+For an explicit delegation request, give work to a worker, including sequential work.
+Otherwise, a short known task can stay with the primary agent when delegation costs more than execution.
+Start with one worker.
+For useful independent slices, use parallel workers within the available concurrency and total-budget limits.
+Include descendants in these limits.
+
+Give each worker a short, independent assignment with these items:
+
+- A stable slice ID in the existing brief or plan. Keep that ID for the slice's lifetime.
+- The outcome, purpose, directory, and owner.
+- Exact writable paths or read-only scope, exclusions, applicable rules, contracts, and essential evidence.
+- Dependencies and owners of shared resources. Include process handles and artifact paths when necessary.
+- The router decision, observable acceptance criteria, and appropriate checks.
+- The communication rules below.
+- The required result: verdict, owned changes, checks, evidence, and remaining risk or blocker.
+
+Workers do not automatically receive the manager role.
+For nested delegation, explicitly give the worker an independent slice and a shared budget.
+Do not give authorization for further recursive delegation.
+
+## Control shared work
+
+Give each file one owner in a shared checkout.
+Give shared resources an owner or use sequential access.
+These resources include databases, browser state, servers, builds, lockfiles, and report directories.
+Different source files alone do not show independence.
+Before changes, make sure that edit scopes do not overlap. Do not remove another worker's changes.
+Do not create a worktree or user chat for each slice.
+
+Give each shared interface one owner.
+Give each check one owner, including checks for integration and user flows.
+Keep the result fields and acceptance criteria stable during acceptance.
+Before a necessary interface change, give the producer and consumers the owner's instructions for that change.
+Record the affected dependencies and the new revision.
+While an interface changes, workers can prepare work within their assigned scope.
+Before acceptance, wait for a stable, identified interface revision and input revision.
+Do not accept evidence from mixed revisions.
+After an interface change, accept unchanged evidence only where the change has no effect on its inputs or conclusions.
+
+For a user flow, specify the initial state, action, and expected state.
+Before execution, make sure that fixtures and necessary resources are available.
+For visual work, specify necessary cases, views, and resolution before workers pass images.
 
 ## Reuse within the original slice
 
-Use native agent tools. A worker may continue only its original slice in the same context. Before any follow-up or task-bearing message, confirm the stable slice ID and that the original result/acceptance contract, scope, project/checkout, role, permissions and ownership, and source artifacts/fixtures are still current and match. If any item differs or is uncertain, start a fresh worker with a compact, verified handoff; never use follow-up or send_message to change an assignment to another domain or outcome. Diagnose → implement → verify may be phases of one slice only when all phases were included in its original scope and authorized by its permissions.
+Use native agent tools.
+A worker can continue only its original slice in the same context.
+Before a follow-up or task-bearing message, make sure that these items still match the original assignment:
 
-Follow-up is appropriate for completing or refining the worker's own result, clarifying missing facts, or checking the original acceptance criteria. A new independent result, another subsystem, or an independent review of the worker's own work requires a fresh worker, even in the same repository or file. Ordinary changes made within the slice do not by themselves invalidate reuse; a material change to its contract, branch, or context does. Idleness or completion does not make a worker available for other work. Apply task-model-router to fresh workers and pass only the short, verified handoff, not another worker's full history. If required model/effort changes are unsupported on follow-up, create a fresh worker for the same slice. Wait through native mechanisms without polling unchanged state. Continue independent work and communicate meaningful changes; require no empty periodic reports.
+- Stable slice ID, result contract, and acceptance criteria.
+- Scope, project, checkout, and role.
+- Permissions and ownership.
+- Source artifacts and fixtures.
 
-## Communication budget
+If an item differs or is uncertain, start a new worker with a short, verified handoff.
+Do not use a follow-up or `send_message` to change the assignment's domain or outcome.
+Diagnosis, implementation, and verification can be phases of one slice only if its original scope and permissions include them.
 
-Apply this rule to manager and workers; include it in each worker's brief. Send only the context needed for the owned slice; prefer compact handoffs when they preserve required facts. Reference file/line, diff, or saved log rather than copying whole files, histories, or successful tool output. Inter-agent updates are event-driven: blocker, decision needed, scope change, or consequential finding. Avoid acknowledgments, repeated instructions, and duplicate summaries; return one concise acceptance report. User-facing updates follow required cadence and convey useful progress. Preserve contracts, essential evidence, failures, and material uncertainty when shortening messages.
+Use a follow-up to complete or correct the worker's result.
+Also use it to get missing facts or examine the original acceptance criteria.
+For a new independent result, another subsystem, or independent review of that worker's work, use a new worker.
+This rule also applies in the same repository or file.
+Ordinary changes within the slice do not themselves prevent reuse.
+A material change to its contract, branch, or context prevents reuse.
+An idle or completed worker does not become available for other work.
+
+For a new worker, use the router. Give only the short, verified handoff, not another worker's full history.
+If the tool cannot change a follow-up configuration, use a new worker when a model or effort change is necessary.
+Keep the same slice for that worker.
+Use native waits. Do not get unchanged status again and again.
+Continue independent work. Give updates for meaningful changes without empty periodic reports.
+
+## Limit communication
+
+Apply these rules to the manager and workers. Include them in each worker's assignment.
+Give only the context necessary for the owned slice.
+Use short handoffs that keep required facts.
+Use file and line references, a diff, or a saved log instead of complete files, histories, or successful tool output.
+Send inter-agent updates for blockers, necessary decisions, scope changes, or material findings.
+Do not send acknowledgments, repeated instructions, or duplicate summaries.
+Give one short acceptance report.
+For user updates, keep the required cadence. Give useful progress information.
+When messages become shorter, keep contracts, essential evidence, failures, and material uncertainty.
 
 ## Accept and integrate
 
-Require done/partial/blocked, owned paths or read-only findings, exact checks/results (command and exit code when applicable), skipped checks, up to three evidence references, and remaining risk. Report available counters accurately: `unknown` or `lower-bound` where appropriate.
+For each result, get these items:
 
-Compare against acceptance; inspect relevant diff/artifact and evidence gaps. Self-report alone is insufficient. Request missing facts from the same worker first when the request still satisfies the reuse policy above. Repeat checks only for a named gap or contradiction. Independent review suits material risk, disputed decisions, or explicit requests; provide criteria/artifacts without steering conclusions. Avoid duplicate review without new changes or evidence gaps.
+- `done`, `partial`, or `blocked`.
+- Owned paths or read-only findings.
+- Exact checks and results, including the command and exit code where applicable.
+- The input and interface revisions for each check.
+- Checks not done, up to three evidence references, and remaining risk.
+- Available counters, with `unknown` or `lower-bound` where applicable.
 
-After two unsuccessful corrections of the same gate, stop blind retries. Distinguish result defect, unclear contract, harness failure, and environment blocker; preserve failure artifacts and hand off contract, expected/actual, case, artifact, attempts. Apply the router before material escalation. Recheck the relevant gate after a demonstrated fix.
+Compare the result with the acceptance criteria.
+Examine the applicable diff or artifact and evidence gaps. A worker's statement alone is insufficient.
+If the reuse conditions are still true, first tell that worker to give the missing facts.
+Accept command and result evidence only for the stable, identified revision under review.
+Do not duplicate a worker's check for the same revision without a named gap or contradiction.
+Before you do a check again, record the changed input, failure, or evidence gap that makes it necessary.
+Start with the smallest failed or affected area.
+After integration, do the necessary overall check through its assigned owner.
+After a local change, do it again only for an affected dependency or a specified gap.
 
-Maintain one accepted result per slice in existing plan/status; avoid redundant logs/dashboards. Complete the overall user goal after integration. Resume from the last handoff; never reconstruct missing counters or close others' tasks. Report outcome, verification, and material limitations without claiming unmeasured savings.
+For material risk, disputed decisions, or explicit review requests, use independent review.
+Give the reviewer the criteria and artifacts. Do not tell the reviewer which conclusions to give.
+Without new changes or evidence gaps, do not duplicate review.
+
+After two unsuccessful corrections of the same criterion, stop blind retries.
+Find the cause: result defect, unclear contract, test-system failure, or environment blocker.
+Keep the failure artifacts.
+Give the next worker the contract, expected and actual results, case, artifact, and previous attempts.
+Before a material increase in effort or model capability, use the router.
+After acceptance failure or cost beyond the forecast, recheck remaining work and slice configurations before further starts.
+After a demonstrated correction, do the affected acceptance check again.
+
+Keep one accepted result per slice in the existing plan or status.
+Do not create duplicate logs or dashboards.
+After integration, complete the overall user goal.
+Continue from the last handoff. Do not invent missing counters or close another agent's tasks.
+Give the outcome, verification, and material limitations. Do not claim savings without measurements.
