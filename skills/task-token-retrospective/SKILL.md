@@ -109,9 +109,14 @@ If that version is unknown, state this limit.
 If a rule is missing, propose a short rule only when it can prevent the demonstrated cause.
 If a rule already exists, cite it. Do not add a duplicate.
 Find why it did not apply or did not change the action.
-Check discovery, scope, trigger clarity, instruction conflicts, and the worker's received context.
+A statement that a rule was partly followed describes the failure. It does not explain the cause.
+Check whether the executing agent could find the rule and whether evidence shows that it received the rule.
+Check scope, trigger clarity, instruction conflicts, and the worker's received context.
+Do not assume that an agent received a rule because the rule exists in a file.
 Distinguish a justified exception from a failure to follow the rule.
 If the cause is unknown, state the missing evidence instead of asserting a cause.
+Keep that cause marked as unresolved.
+Do not use a rule's existence alone to conclude that no correction is necessary.
 
 Correct the demonstrated cause, such as an unclear trigger or a missing instruction reference.
 Prefer one local correction to a new general rule.
@@ -130,6 +135,8 @@ Give a short report in the user's language:
 - If an edit is useful, the exact project path and proposed diff or replacement text.
 - Reusable environment fixes, with their saved location or a proposed entry awaiting approval.
 
+If no edit is proposed, state the supported reason or the unresolved evidence gap.
+Do not present an unresolved cause as proof that the instructions need no correction.
 For decomposition, show source and target paths, content to move, and links to update.
 Do not create a separate report file unless requested.
 Keep the task result visible. Do not replace it with the review.
