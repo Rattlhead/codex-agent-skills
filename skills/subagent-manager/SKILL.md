@@ -1,6 +1,6 @@
 ---
 name: subagent-manager
-description: Use defined assignments, resource ownership, acceptance evidence, and integration for delegated work. Use for large tasks, tasks with multiple steps, roadmap execution, or explicit delegation requests. Short independent tasks and roadmap text changes can stay with the primary agent.
+description: Decide whether to delegate large or multi-step work, then coordinate scoped assignments, resource ownership, acceptance evidence, and integration. Use for explicit delegation requests and independent review. Short tasks can stay with the primary agent.
 ---
 
 # Subagent Manager
@@ -34,13 +34,22 @@ Do not copy its algorithm here. The router also operates without this manager.
 Install both skills in adjacent directories.
 If the router is missing, record the missing dependency. Do not invent a replacement selection procedure.
 
+## Choose the execution mode
+
+Use the router's decision for the whole task.
+If it records `primary_only`, keep the work with the primary agent and do not assign workers.
+If it records `delegate`, keep the primary agent responsible for shared contracts, integration, and final acceptance.
+Do not treat task length, multiple steps, or a complex score alone as a reason to delegate.
+For an explicit delegation request, use `delegate` unless tool access, permissions, or budget limits prevent it.
+
 ## Give assignments
 
 Select slices with independent acceptance criteria.
 Do not create an agent for each command or a mandatory research, production, and review chain.
-For an explicit delegation request, give work to a worker, including sequential work.
-Otherwise, a short known task can stay with the primary agent when delegation costs more than execution.
+Give work to a worker only when the router selects `delegate`.
 Start with one worker.
+Add workers for independent slices that justify parallel work.
+Honor an explicit request for sequential workers unless tool access, permissions, or budget limits prevent it.
 For useful independent slices, use parallel workers within the available concurrency and total-budget limits.
 Include descendants in these limits.
 

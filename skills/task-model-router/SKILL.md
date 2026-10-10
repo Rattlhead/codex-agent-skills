@@ -1,6 +1,6 @@
 ---
 name: task-model-router
-description: Select a model and reasoning effort for a task or slice. Compare capability, workload, rates, and total cost through acceptance. Use for model recommendations, budget decisions, or assignments. This skill operates independently of a manager. Do not start agents for classification.
+description: Select a model and reasoning effort for a task or slice. Decide whether the primary agent should work alone or delegate. Compare capability, workload, rates, and total cost through acceptance. Use for model, budget, or delegation decisions. Do not start agents for classification.
 ---
 
 # Task Model Router
@@ -21,6 +21,7 @@ These subject terms have the same meaning throughout this skill:
 - **Token**: the unit that the applicable service uses to measure model input or output.
 - **Billed output**: output tokens that the service charges, including reasoning tokens where applicable.
 - **Forecast**: an estimate of total cost through acceptance.
+- **Effective rate reference**: saved rates that are current, or rates checked during this assessment.
 - **Subagent**: an agent that receives a slice from another agent. A descendant is a subagent of a subagent.
 - **Tool schema**: the tool's current specification of parameters and permitted values.
 
@@ -28,34 +29,21 @@ Exact model IDs, parameter names, payment units, and API names are technical nam
 
 ## Verified prices
 
-Verification date: **2026-10-11**.
-Payment unit: Codex **Standard purchased credits per 1M tokens**.
-Source: [official token rates](https://learn.chatgpt.com/docs/pricing#token-rates).
-
-Use this table as the saved rate reference. Do not check rates online for every task.
-Refresh it when it is more than 30 days old, when the user reports a rate change, or when an official notice or a new billing mode can change the estimate.
-If the needed model or billing mode is not in this table, check its official rate before estimating.
-
-| Model ID | Input | Cached input | Output |
-| --- | ---: | ---: | ---: |
-| gpt-6-luna | 2.5 | 0.25 | 12.5 |
-| gpt-6.1-sol | 50 | 2.5 | 250 |
-| gpt-6-sol | 50 | 5 | 250 |
-| gpt-6-astra | 250 | 25 | 1250 |
-
-[Official speed information](https://learn.chatgpt.com/docs/agent-configuration/speed) gives these multipliers:
-
-| Speed | Purchased credits | Included subscription allowance |
-| --- | ---: | ---: |
-| Standard | ×1 | ×1 |
-| Fast | ×2 | ×2.5 |
-| Ultrafast | ×6 | ×8 |
-
-Ultrafast is available for 6.1 Sol and Astra where the environment has this option.
-Make sure that the selected model and speed are available in the applicable environment.
-The purchased-credit table cannot calculate included subscription allowance.
+Read the saved [rate reference](references/rates.md) before a cost estimate.
+It gives the rates, speed multipliers, payment unit, sources, and check date.
+Use it without an online lookup while it is no more than 30 days old.
+Check rates when the reference is more than 30 days old.
+Also check when the user reports a change.
+Check rates when an official source shows a rate change.
+Check rates when the payment mode changes.
+Check only missing rates when the reference does not include a model or payment mode.
+After a check, update `references/rates.md` with the rates and the new date.
+Use the updated reference for all assignments in this assessment.
+Do not check the same rates again for each subagent.
+If the skill directory is read-only, save one dated rate record for this assessment.
+Report that you could not update the saved reference.
 For API USD, use the applicable [official API rates](https://developers.openai.com/api/docs/pricing).
-Without a verified account rate, do not calculate a USD value from credits.
+Do not calculate API USD from credits.
 
 ## Subagent availability
 
@@ -100,13 +88,37 @@ A score alone cannot show that the exceptional class is necessary.
 Do not use file count, reviewer role, or roadmap length to select the class.
 Missing facts, access, or verification are blockers or limitations. They do not make the most expensive model necessary.
 
+## Select who does the work
+
+For the whole task, record `execution_mode=primary_only` or `execution_mode=delegate`.
+The primary agent must make this decision once for the whole task.
+Use task complexity to select a model and effort. Do not use it to select the number of agents.
+Choose `delegate` if one or more of these conditions apply:
+
+- Separate slices can run in parallel.
+- A worker can do a required task that the primary cannot do.
+- A separate review is required.
+- The user requests agents.
+
+For optional delegation, compare the total cost with primary-only work.
+If both modes meet the task requirements, choose the lower-cost mode.
+Choose `primary_only` when no delegation condition or explicit request applies and the primary agent can complete the task.
+Keep the shared contract, integration, and final acceptance with the primary agent.
+Honor an explicit request to delegate unless tool access, permissions, or budget limits prevent it.
+Do not start an agent to classify the task or select models.
+If an unknown fact can change this decision, find it before an agent starts.
+Record the mode and its reason.
+For `primary_only`, record the primary model and its effort.
+For `delegate`, name each slice. Select a model and an effort level for each worker.
+Forecast the total cost through acceptance.
+Do not let a worker start another agent unless the primary agent assigns the role and slice.
+
 ## Find permitted configurations
 
 Compare capability requirements with the actual tool's model IDs, supported efforts, and current-generation candidates above.
 Keep explicit whitelists.
 Before selection of a model, make sure that capability and tool availability are supported.
-Use the saved rate table while it is within its 30-day review period and it covers the model and billing mode.
-Check the official rate only when the saved table is expired or a change trigger applies.
+Use the effective rate reference defined in `Calculate the forecast`.
 Do not automatically include older generations that user policy excludes.
 
 Luna is an initial candidate for light work and limited ordinary work with direct acceptance.
@@ -134,11 +146,15 @@ Make sure that the tool has the parameters necessary for a proposed change to a 
 
 ## Calculate the forecast
 
-Before the first assignment or recommendation, use the saved rate table if it is within its 30-day review period and covers the billing mode.
-Do not repeat a rate lookup for each subagent while the table remains valid and the billing mode stays the same.
-Refresh rates when the table is more than 30 days old, the user reports a change, an official notice signals a change, or the model or billing mode is not covered.
+At the start of an assessment, read the saved rate reference.
+If it is current and covers the model and payment mode, use it.
+Otherwise, check only rates that are old or missing.
+Update the saved reference after you check rates.
+Use the updated reference for all model comparisons and assignments in this assessment.
+Do not check the same rates again for each subagent.
+For a long assessment, update the reference if its rates become more than 30 days old.
+Also update it if a change trigger applies.
 Use the environment's documentation rules for official sources.
-Keep the checked date with any refreshed rate data. Update the saved table only when maintaining the skill or an agreed shared reference.
 
 Record the date, payment unit, account, payment mode, speed, and rates for permitted candidates.
 Do not mix API USD, purchased credits, and included subscription allowance.
@@ -184,7 +200,10 @@ If you cannot show mandatory cap compliance, stop dependent paid starts until th
 
 ## Accept and reselect
 
-Record the class and decisive axes, model and effort, cost basis and reserve, and acceptance criteria.
+Record the class, its decisive axes, the execution mode, and its reason.
+Record the primary model and effort.
+For delegation, record each worker model and effort.
+Record the cost basis, reserve, and acceptance criteria.
 Use comparable accepted work as evidence. Do not treat it as a universal ranking.
 Do not start a classification agent or make a benchmark for each choice.
 
