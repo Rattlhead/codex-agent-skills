@@ -1,0 +1,6 @@
+interface:
+  display_name: "Разбор потерь токенов"
+  short_description: "Причины потерь токенов и предложения для правил"
+  default_prompt: "Используй $task-token-retrospective. Кратко разбери потери токенов в завершённой задаче. Проверь правила проекта. Покажи правки и запроси моё явное одобрение."
+policy:
+  allow_implicit_invocation: true
