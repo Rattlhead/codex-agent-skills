@@ -28,9 +28,13 @@ Exact model IDs, parameter names, payment units, and API names are technical nam
 
 ## Verified prices
 
-Verification date: **2026-10-08**.
+Verification date: **2026-10-11**.
 Payment unit: Codex **Standard purchased credits per 1M tokens**.
 Source: [official token rates](https://learn.chatgpt.com/docs/pricing#token-rates).
+
+Use this table as the saved rate reference. Do not check rates online for every task.
+Refresh it when it is more than 30 days old, when the user reports a rate change, or when an official notice or a new billing mode can change the estimate.
+If the needed model or billing mode is not in this table, check its official rate before estimating.
 
 | Model ID | Input | Cached input | Output |
 | --- | ---: | ---: | ---: |
@@ -100,7 +104,9 @@ Missing facts, access, or verification are blockers or limitations. They do not 
 
 Compare capability requirements with the actual tool's model IDs, supported efforts, and current-generation candidates above.
 Keep explicit whitelists.
-Before selection of a new generation, make sure that capability, rates, and tool availability have verified sources.
+Before selection of a model, make sure that capability and tool availability are supported.
+Use the saved rate table while it is within its 30-day review period and it covers the model and billing mode.
+Check the official rate only when the saved table is expired or a change trigger applies.
 Do not automatically include older generations that user policy excludes.
 
 Luna is an initial candidate for light work and limited ordinary work with direct acceptance.
@@ -128,10 +134,11 @@ Make sure that the tool has the parameters necessary for a proposed change to a 
 
 ## Calculate the forecast
 
-Before the first assignment or recommendation, use the verified price information.
-After one day, get current official rates. Also get current rates after an account, tariff, model, or speed change.
+Before the first assignment or recommendation, use the saved rate table if it is within its 30-day review period and covers the billing mode.
+Do not repeat a rate lookup for each subagent while the table remains valid and the billing mode stays the same.
+Refresh rates when the table is more than 30 days old, the user reports a change, an official notice signals a change, or the model or billing mode is not covered.
 Use the environment's documentation rules for official sources.
-Keep current data in memory or agreed task files. Do not automatically change global files.
+Keep the checked date with any refreshed rate data. Update the saved table only when maintaining the skill or an agreed shared reference.
 
 Record the date, payment unit, account, payment mode, speed, and rates for permitted candidates.
 Do not mix API USD, purchased credits, and included subscription allowance.
