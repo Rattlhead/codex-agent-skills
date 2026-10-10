@@ -1,6 +1,6 @@
 ---
 name: task-token-retrospective
-description: After a completed substantial task, briefly review avoidable token use, overloaded agent context, and document discovery. Check project rules, explain why applicable rules failed, and propose corrections or document decomposition. Change project agent instructions only after explicit user approval of the proposed edit. Also use for a requested token-waste review.
+description: After a completed substantial task, briefly review avoidable token use, overloaded agent context, and document discovery. Preserve verified environment fixes for reuse. Check project rules, explain why applicable rules failed, and propose corrections or document decomposition. Change project agent instructions only after explicit user approval of the proposed edit. Also use for a requested token-waste review.
 ---
 
 # Task Token Retrospective
@@ -71,6 +71,34 @@ Show the search evidence, the needed document, and the entry point that lacked a
 Propose a verified link and a clear read condition when they can prevent the demonstrated search cost.
 Do not propose more agent roles or files unless they address the observed cause.
 
+## Preserve reusable environment fixes
+
+Check whether the task resolved a startup, port, dependency, configuration, or similar environment problem.
+Preserve useful verified solutions even when the original diagnosis was necessary and was not waste.
+Record only a solution whose result was checked. Label a verified workaround as a workaround.
+Do not present failed attempts or untested guesses as reusable solutions.
+
+Make a short record with these items:
+
+- The symptom and known cause, or `cause=unknown`.
+- The project scope, relevant environment versions, prerequisites, and date of the successful check.
+- The working steps, commands, directory, and necessary configuration.
+- The verification command and observed result.
+- Conditions for reuse and conditions that require a new check.
+
+For a port problem, record the selection method and affected configuration.
+Do not treat a temporarily free port as a permanent project setting.
+The record must require a check of current port availability before reuse.
+Keep secret values and temporary process identifiers out of the record.
+
+Prefer the project's existing setup or troubleshooting document. Do not make duplicate records.
+Present the exact entry and target path. Save it only with authorization that covers that document.
+If authorization is absent, include the ready-to-save entry in the report and request approval.
+Propose a link from the relevant project entry point and a condition to read the record before related setup.
+Changes to project agent instructions still require explicit approval of the proposed edit.
+Make the record require a check of its applicability before reuse.
+Repeat diagnosis only when conditions differ, the saved procedure fails, or a specific evidence gap remains.
+
 ## Check the project rules
 
 For each supported finding, check the instructions that applied to its paths and role.
@@ -100,6 +128,7 @@ Give a short report in the user's language:
 - Up to three supported findings, with evidence, cause, and correction.
 - Rule status: missing, present but ineffective, justified exception, or unknown.
 - If an edit is useful, the exact project path and proposed diff or replacement text.
+- Reusable environment fixes, with their saved location or a proposed entry awaiting approval.
 
 For decomposition, show source and target paths, content to move, and links to update.
 Do not create a separate report file unless requested.
