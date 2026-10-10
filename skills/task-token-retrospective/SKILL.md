@@ -1,6 +1,6 @@
 ---
 name: task-token-retrospective
-description: After a completed substantial task, briefly review avoidable token use and its causes. Check project rules, explain why applicable rules failed, and propose specific corrections. Change project agent instructions only after explicit user approval of the proposed edit. Also use for a requested token-waste review.
+description: After a completed substantial task, briefly review avoidable token use, overloaded agent context, and document discovery. Check project rules, explain why applicable rules failed, and propose corrections or document decomposition. Change project agent instructions only after explicit user approval of the proposed edit. Also use for a requested token-waste review.
 ---
 
 # Task Token Retrospective
@@ -52,6 +52,25 @@ Do not label such work as waste without a supported reason.
 Distinguish an observed cause from an unconfirmed explanation.
 If no avoidable work is supported, say so and propose no new rule.
 
+## Check context load and document discovery
+
+For the primary agent and workers, compare loaded material with the information needed for their assigned work.
+Check whether assignments, instructions, or contracts combined unrelated areas and forced unnecessary reading.
+Look for irrelevant sections, repeated context transfers, lost decisions, and repeated reconstruction of the same facts.
+Document length alone does not prove overload. Required reading is not waste because it is long.
+Identify the unnecessary material and its observed effect before you propose decomposition.
+
+If decomposition can prevent the cause, propose focused documents with clear responsibilities.
+Keep shared requirements and acceptance criteria intact.
+Keep the entry document short, with links and conditions for reading each document.
+Do not make every linked document mandatory for every task.
+
+Trace unnecessary document searches to the instruction or contract that should have guided discovery.
+Check for absent, broken, or outdated links, unclear document names, and missing read conditions.
+Show the search evidence, the needed document, and the entry point that lacked a usable reference.
+Propose a verified link and a clear read condition when they can prevent the demonstrated search cost.
+Do not propose more agent roles or files unless they address the observed cause.
+
 ## Check the project rules
 
 For each supported finding, check the instructions that applied to its paths and role.
@@ -82,11 +101,13 @@ Give a short report in the user's language:
 - Rule status: missing, present but ineffective, justified exception, or unknown.
 - If an edit is useful, the exact project path and proposed diff or replacement text.
 
+For decomposition, show source and target paths, content to move, and links to update.
 Do not create a separate report file unless requested.
 Keep the task result visible. Do not replace it with the review.
 If a rule edit is proposed, ask for explicit approval of that edit.
 Until approval arrives, do not create, change, or delete project agent instruction files.
 This includes `AGENTS.md`, referenced rule files, and project agent configuration.
+Do not split, move, or rewrite instruction or contract documents before approval of the proposed restructuring.
 Approval of the original task or this review does not authorize these edits.
 Do not add automatic approval or automatic rule-writing behavior.
 
