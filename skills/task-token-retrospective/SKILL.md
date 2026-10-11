@@ -1,10 +1,11 @@
 ---
 name: task-token-retrospective
-description: After a completed substantial task, briefly review avoidable token use, overloaded agent context, and document discovery. Preserve verified environment fixes for reuse. Check project rules, explain why applicable rules failed, and propose corrections or document decomposition. Change project agent instructions only after explicit user approval of the proposed edit. Also use for a requested token-waste review.
+description: After a completed substantial task, briefly review avoidable token use and prevent repeated project mistakes. Check context load, document discovery, and ineffective rules. Preserve verified solutions with conditions for future reuse. Change project agent instructions only after explicit user approval of the proposed edit. Also use for a requested token-waste review.
 ---
 
 # Task Token Retrospective
 
+Use the findings to help later tasks reuse verified project knowledge and avoid repeated work.
 Review the completed task once, after its result and required checks are available.
 Use this skill after work with several phases, delegated slices, or substantial rework.
 Do not repeat the review after each command or minor step.
@@ -37,6 +38,14 @@ Use measured cache information where available.
 
 Identify the few findings with the greatest observed effect.
 For each finding, give the action, evidence reference, cause, and a practical correction.
+For each proposed improvement, specify a prevention plan:
+
+- The condition that makes the improvement relevant to a future task.
+- Its storage path, discovery entry point, and condition for reading it.
+- The action the executing agent must take and the unnecessary work it replaces.
+- A short check of the expected result.
+
+General advice without these details is not a complete prevention plan.
 Consider these patterns only when the task evidence supports them:
 
 - Repeated reads or checks with unchanged inputs and no identified gap.
@@ -50,7 +59,8 @@ A failed attempt can provide necessary evidence.
 Changed inputs, unreliable checks, and explicit user requests can justify repeated work.
 Do not label such work as waste without a supported reason.
 Distinguish an observed cause from an unconfirmed explanation.
-If no avoidable work is supported, say so and propose no new rule.
+If no avoidable work is supported, say so.
+Propose a prevention change only for a supported finding or verified reusable solution.
 
 ## Check context load and document discovery
 
@@ -71,30 +81,32 @@ Show the search evidence, the needed document, and the entry point that lacked a
 Propose a verified link and a clear read condition when they can prevent the demonstrated search cost.
 Do not propose more agent roles or files unless they address the observed cause.
 
-## Preserve reusable environment fixes
+## Preserve reusable solutions
 
-Check whether the task resolved a startup, port, dependency, configuration, or similar environment problem.
+Select verified solutions that can remove similar work from a future task.
+Include environment fixes, document locations, reliable checks, contract dependencies, and confirmed tool limitations when relevant.
 Preserve useful verified solutions even when the original diagnosis was necessary and was not waste.
 Record only a solution whose result was checked. Label a verified workaround as a workaround.
 Do not present failed attempts or untested guesses as reusable solutions.
 
 Make a short record with these items:
 
-- The symptom and known cause, or `cause=unknown`.
-- The project scope, relevant environment versions, prerequisites, and date of the successful check.
-- The working steps, commands, directory, and necessary configuration.
-- The verification command and observed result.
-- Conditions for reuse and conditions that require a new check.
+- The problem and known cause, or `cause=unknown`.
+- The project scope, relevant input or environment versions, prerequisites, and date of the successful check.
+- The working steps or reference, with necessary commands, directory, and configuration where applicable.
+- The verification evidence and observed result.
+- The prevention plan and conditions that require a new check.
 
 For a port problem, record the selection method and affected configuration.
 Do not treat a temporarily free port as a permanent project setting.
 The record must require a check of current port availability before reuse.
 Keep secret values and temporary process identifiers out of the record.
 
-Prefer the project's existing setup or troubleshooting document. Do not make duplicate records.
+Prefer the existing project document for that subject. Keep one maintained source instead of duplicate records or task journals.
+Update the existing entry when new verified evidence changes the solution.
+Remove obsolete instructions only within the authorized edit.
 Present the exact entry and target path. Save it only with authorization that covers that document.
 If authorization is absent, include the ready-to-save entry in the report and request approval.
-Propose a link from the relevant project entry point and a condition to read the record before related setup.
 Changes to project agent instructions still require explicit approval of the proposed edit.
 Make the record require a check of its applicability before reuse.
 Repeat diagnosis only when conditions differ, the saved procedure fails, or a specific evidence gap remains.
@@ -106,7 +118,7 @@ Inspect the relevant project `AGENTS.md` and referenced instructions only as nec
 Use the version in force during the task when available.
 If that version is unknown, state this limit.
 
-If a rule is missing, propose a short rule only when it can prevent the demonstrated cause.
+If a rule is missing, propose one only when a supported finding or verified solution justifies it.
 If a rule already exists, cite it. Do not add a duplicate.
 Find why it did not apply or did not change the action.
 A statement that a rule was partly followed describes the failure. It does not explain the cause.
@@ -114,7 +126,9 @@ Check whether the executing agent could find the rule and whether evidence shows
 Check scope, trigger clarity, instruction conflicts, and the worker's received context.
 Do not assume that an agent received a rule because the rule exists in a file.
 Distinguish a justified exception from a failure to follow the rule.
-If the cause is unknown, state the missing evidence instead of asserting a cause.
+If the cause is unknown, use the smallest relevant existing artifact that can resolve it.
+If available evidence cannot resolve it, state the missing evidence and the smallest next check.
+Do not repeat the whole task to investigate it or assert an unconfirmed cause.
 Keep that cause marked as unresolved.
 Do not use a rule's existence alone to conclude that no correction is necessary.
 
@@ -133,7 +147,7 @@ Give a short report in the user's language:
 - Up to three supported findings, with evidence, cause, and correction.
 - Rule status: missing, present but ineffective, justified exception, or unknown.
 - If an edit is useful, the exact project path and proposed diff or replacement text.
-- Reusable environment fixes, with their saved location or a proposed entry awaiting approval.
+- Reusable solutions, their prevention plans, and status: `proposed`, `saved`, or `ready_for_reuse`.
 
 If no edit is proposed, state the supported reason or the unresolved evidence gap.
 Do not present an unresolved cause as proof that the instructions need no correction.
@@ -150,5 +164,13 @@ Do not add automatic approval or automatic rule-writing behavior.
 After approval, read the current target and apply only the approved change.
 If the target changed materially, show the revised edit and get approval again.
 Preserve unrelated instructions. Check the diff for duplicates, conflicts, and scope changes.
-Report the applied path and the check result.
+After an authorized save, check the relevant links and read conditions.
+Trace one matching scenario from the agent's entry point to the solution and required action.
+If workers need the solution, check the saved instructions that require its inclusion in relevant assignments.
+Use existing artifacts or a small isolated check. Do not repeat the original task for this check.
+Keep required verification and acceptance criteria intact.
+Use `ready_for_reuse` only when storage, discovery, applicability, and the required action have been checked.
+An entry awaiting approval remains `proposed`.
+Report the applied path, prevention status, and check result.
+Report actual savings only after evidence from subsequent comparable work supports them.
 Do not extend project approval to global rules or another project.
