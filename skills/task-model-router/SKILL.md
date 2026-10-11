@@ -91,7 +91,8 @@ Missing facts, access, or verification are blockers or limitations. They do not 
 ## Select who does the work
 
 For the whole task, record `execution_mode=primary_only` or `execution_mode=delegate`.
-The primary agent must make this decision once for the whole task.
+The primary agent must make one decision for the whole task in the current assessment.
+After a material change or a new requirement for independent review, reconsider this decision.
 Use task complexity to select a model and effort. Do not use it to select the number of agents.
 Choose `delegate` if one or more of these conditions apply:
 
