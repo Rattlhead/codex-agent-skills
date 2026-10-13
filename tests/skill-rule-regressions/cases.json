@@ -1,0 +1,95 @@
+{
+  "description": "Behavioral regression cases for approved skill rule corrections.",
+  "cases": [
+    {
+      "id": "R01",
+      "scenario": "Today is 2026-11-10. A required model's purchased-credit rate group and required Standard multiplier group were fully checked on 2026-10-11. No change trigger applies. Must the agent fetch prices?",
+      "expected": "use_saved"
+    },
+    {
+      "id": "R02",
+      "scenario": "Purchased-credit model rates were checked on 2026-10-11. On 2026-10-30 only missing API USD rates were added and checked. Today is 2026-11-20; the task needs purchased-credit rates. Does adding API USD make the credit rates current?",
+      "expected": "check_credit_rates"
+    },
+    {
+      "id": "R03",
+      "scenario": "Today is 2026-11-20. Required model credit rates were checked on 2026-10-30, but the required Fast purchased-credit multiplier was checked on 2026-10-11. What requires a freshness lookup?",
+      "expected": "check_multiplier_only"
+    },
+    {
+      "id": "R04",
+      "scenario": "Today is 2026-11-20. Required model and purchased-credit multiplier groups were checked on 2026-10-30. Included-allowance multipliers are older than 30 days. The task uses purchased credits only; no change trigger applies. What requires a lookup?",
+      "expected": "use_saved"
+    },
+    {
+      "id": "R05",
+      "scenario": "A required rate group has values but no check date. Today and the date of other groups are known. Can the agent treat the undated group as current?",
+      "expected": "check_undated_group"
+    },
+    {
+      "id": "R06",
+      "scenario": "A model group contains input, cached-input and output rates. Only its input rate was verified today. Can the agent put today's date on the entire group without verifying the other values?",
+      "expected": "split_or_complete_check"
+    },
+    {
+      "id": "R07",
+      "scenario": "The agent has one effective record with all required groups checked today. It assigns a second worker in the same assessment with the same payment mode and speed. No change trigger applies. Must it look up these groups again?",
+      "expected": "reuse_effective_record"
+    },
+    {
+      "id": "R08",
+      "scenario": "A continuing assessment used groups checked 30 days ago. Before the next start their age is 31 days. No other change occurs. Can the original assessment reuse them without a freshness check?",
+      "expected": "check_expired_required_groups"
+    },
+    {
+      "id": "R09",
+      "scenario": "All required groups were checked yesterday. The user reports a change to the output rate of one required model in the selected payment mode. What should the agent do before forecasting?",
+      "expected": "check_affected_required_group"
+    },
+    {
+      "id": "R10",
+      "scenario": "A required rate group is stale. The agent verifies it, but the installed skill directory is read-only. Other required groups remain current. How does the forecast continue?",
+      "expected": "use_dated_assessment_record_and_report"
+    },
+    {
+      "id": "M01",
+      "scenario": "The original slice includes correction and verification. Contract, criteria, role, project, checkout, permissions and ownership remain unchanged. The same source artifact and fixture, with the same identity and purpose, now have new revisions within the original scope. May the original worker recheck its affected result?",
+      "expected": "reuse_with_current_revisions"
+    },
+    {
+      "id": "M02",
+      "scenario": "An idle translation worker is asked to recover a server in the same repository. Its original contract and permissions cover translation only. Can it receive that new assignment?",
+      "expected": "new_worker"
+    },
+    {
+      "id": "M03",
+      "scenario": "The primary needs an independent review of a worker's completed result in the same file and checkout. Can the original worker serve as that independent reviewer?",
+      "expected": "new_worker"
+    },
+    {
+      "id": "M04",
+      "scenario": "The same slice needs another model or effort after a failure. The native tool cannot change follow-up configuration. Should the primary change that worker through a follow-up?",
+      "expected": "new_worker_same_slice"
+    },
+    {
+      "id": "A01",
+      "scenario": "A root rule says to inspect the diff after edits. A conditional document profile specifies inspecting headings and cross-references for document edits. Are these necessarily duplicates to remove?",
+      "expected": "keep_scoped_guidance"
+    },
+    {
+      "id": "A02",
+      "scenario": "A general rule requires a check after every export. A valid higher-priority applicable instruction allows unchanged exports to reuse accepted evidence. Is the applicable override necessarily an unresolved conflict?",
+      "expected": "apply_valid_override"
+    },
+    {
+      "id": "A03",
+      "scenario": "The only observation for an external reference is HTTP 403. Its target content is not available. Should the audit report a confirmed broken link?",
+      "expected": "unverified"
+    },
+    {
+      "id": "A04",
+      "scenario": "An export passed a check. Its input changes in a way that affects the check, and the agent reruns the affected check. Is the rerun necessarily wasteful duplication?",
+      "expected": "allow_affected_recheck"
+    }
+  ]
+}

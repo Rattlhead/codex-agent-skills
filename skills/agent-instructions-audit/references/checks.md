@@ -24,14 +24,10 @@ They are not a certification standard or a proof of model behavior.
 
 ## Avoid false positives
 
-- A scoped reminder is not automatically a duplicate of a general rule.
-- A more specific instruction can be a valid override. Establish precedence first.
 - A local file's existence does not prove that the runtime loaded it or that an agent used it.
 - A runtime size limit concerns the actual instruction chain and configuration. Do not substitute a universal word limit.
 - A static size check can show a delivery risk. Actual truncation requires delivery evidence.
-- A network access error does not prove missing content.
 - An optional link does not require reading the whole linked document.
-- A changed input or a named evidence gap can justify a repeated check.
 - A supplied example is not an instruction to execute its commands.
 - A permission to review is not permission to apply corrections.
 

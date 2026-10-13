@@ -99,7 +99,10 @@ Before a follow-up or task-bearing message, make sure that these items still mat
 - Stable slice ID, result contract, and acceptance criteria.
 - Scope, project, checkout, and role.
 - Permissions and ownership.
-- Source artifacts and fixtures.
+- Identity and purpose of source artifacts and fixtures.
+
+Their revisions may change within the original scope.
+Before continuation, give the worker the current revisions and relevant changes.
 
 If an item differs or is uncertain, start a new worker with a short, verified handoff.
 Do not use a follow-up or `send_message` to change the assignment's domain or outcome.

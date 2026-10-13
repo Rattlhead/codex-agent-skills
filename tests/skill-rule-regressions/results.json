@@ -1,0 +1,192 @@
+{
+  "method": "independent static trace; expected decisions withheld",
+  "cases": [
+    {
+      "id": "R01",
+      "decision": "use_saved",
+      "reason": "Both required groups are exactly 30 days old. The inclusive freshness boundary permits saved values when no change trigger applies.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:35",
+        "skills/task-model-router/SKILL.md:36"
+      ]
+    },
+    {
+      "id": "R02",
+      "decision": "check_credit_rates",
+      "reason": "The required purchased-credit groups are 40 days old. Checking API USD groups does not update dates for the unchecked credit groups.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:34",
+        "skills/task-model-router/SKILL.md:36",
+        "skills/task-model-router/SKILL.md:43",
+        "skills/task-model-router/references/rates.md:5"
+      ]
+    },
+    {
+      "id": "R03",
+      "decision": "check_multiplier_only",
+      "reason": "The required model groups are current at 21 days. The Fast purchased-credit multiplier is a separate required group and is stale at 40 days.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:34",
+        "skills/task-model-router/SKILL.md:35",
+        "skills/task-model-router/SKILL.md:36",
+        "skills/task-model-router/references/rates.md:16"
+      ]
+    },
+    {
+      "id": "R04",
+      "decision": "use_saved",
+      "reason": "The model and multiplier groups required for purchased credits are current. Older included-allowance groups are not required by this assessment.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:35",
+        "skills/task-model-router/SKILL.md:36",
+        "skills/task-model-router/SKILL.md:157"
+      ]
+    },
+    {
+      "id": "R05",
+      "decision": "check_undated_group",
+      "reason": "A required group without its own check date requires verification. Dates from other groups cannot establish its freshness.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:35",
+        "skills/task-model-router/SKILL.md:36",
+        "skills/task-model-router/references/rates.md:5"
+      ]
+    },
+    {
+      "id": "R06",
+      "decision": "split_or_complete_check",
+      "reason": "A group can receive today's date only after all of its values are checked. An input-only check requires a split, or verification of the remaining values before dating the original group.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:42",
+        "skills/task-model-router/SKILL.md:43"
+      ]
+    },
+    {
+      "id": "R07",
+      "decision": "reuse_effective_record",
+      "reason": "The same assessment uses one effective reference. A second assignment with unchanged current groups and no change trigger does not require another lookup.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:44",
+        "skills/task-model-router/SKILL.md:45"
+      ]
+    },
+    {
+      "id": "R08",
+      "decision": "check_expired_required_groups",
+      "reason": "Freshness applies throughout the assessment. Once required groups become 31 days old, the next forecast or assignment must use checked values.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:35",
+        "skills/task-model-router/SKILL.md:36",
+        "skills/task-model-router/SKILL.md:45"
+      ]
+    },
+    {
+      "id": "R09",
+      "decision": "check_affected_required_group",
+      "reason": "The user's reported output-rate change triggers verification of the affected required model/payment-mode group even though it was checked yesterday. Unaffected groups remain reusable.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:37",
+        "skills/task-model-router/SKILL.md:40",
+        "skills/task-model-router/SKILL.md:42",
+        "skills/task-model-router/SKILL.md:43"
+      ]
+    },
+    {
+      "id": "R10",
+      "decision": "use_dated_assessment_record_and_report",
+      "reason": "Save the verified group in one dated assessment record, retain current unaffected groups in the effective reference, and report that the installed reference could not be updated.",
+      "evidence": [
+        "skills/task-model-router/SKILL.md:43",
+        "skills/task-model-router/SKILL.md:44",
+        "skills/task-model-router/SKILL.md:46",
+        "skills/task-model-router/SKILL.md:47"
+      ]
+    },
+    {
+      "id": "M01",
+      "decision": "reuse_with_current_revisions",
+      "reason": "The original worker can correct and verify this slice because its contract, context, permissions, ownership, and artifact identities remain stable. Give it the current revisions and relevant changes before continuation.",
+      "evidence": [
+        "skills/subagent-manager/SKILL.md:97",
+        "skills/subagent-manager/SKILL.md:102",
+        "skills/subagent-manager/SKILL.md:104",
+        "skills/subagent-manager/SKILL.md:105",
+        "skills/subagent-manager/SKILL.md:109"
+      ]
+    },
+    {
+      "id": "M02",
+      "decision": "new_worker",
+      "reason": "Server recovery changes the translation worker's domain, outcome, and permissions. The same repository and idle state do not authorize reuse for that assignment.",
+      "evidence": [
+        "skills/subagent-manager/SKILL.md:100",
+        "skills/subagent-manager/SKILL.md:101",
+        "skills/subagent-manager/SKILL.md:107",
+        "skills/subagent-manager/SKILL.md:108",
+        "skills/subagent-manager/SKILL.md:117"
+      ]
+    },
+    {
+      "id": "M03",
+      "decision": "new_worker",
+      "reason": "Independent review of a worker's result requires a new worker. Sharing the same file and checkout does not make the original worker independent.",
+      "evidence": [
+        "skills/subagent-manager/SKILL.md:113",
+        "skills/subagent-manager/SKILL.md:114"
+      ]
+    },
+    {
+      "id": "M04",
+      "decision": "new_worker_same_slice",
+      "reason": "When a necessary configuration change is unsupported by follow-up tools, route a new worker with a short verified handoff and retain the original slice.",
+      "evidence": [
+        "skills/subagent-manager/SKILL.md:119",
+        "skills/subagent-manager/SKILL.md:120",
+        "skills/subagent-manager/SKILL.md:121",
+        "skills/task-model-router/SKILL.md:150"
+      ]
+    },
+    {
+      "id": "A01",
+      "decision": "keep_scoped_guidance",
+      "reason": "A general diff check and document-specific checks of headings and cross-references have different required actions and conditions. They are not necessarily duplicates; necessary scoped guidance is retained.",
+      "evidence": [
+        "skills/agent-instructions-audit/references/checks.md:8",
+        "skills/agent-instructions-audit/SKILL.md:43"
+      ]
+    },
+    {
+      "id": "A02",
+      "decision": "apply_valid_override",
+      "reason": "Actual precedence is resolved before reporting conflict. The stated valid applicable higher-priority exception permits accepted evidence to be reused for unchanged exports.",
+      "evidence": [
+        "skills/agent-instructions-audit/references/checks.md:10",
+        "skills/agent-instructions-audit/references/checks.md:18"
+      ]
+    },
+    {
+      "id": "A03",
+      "decision": "unverified",
+      "reason": "HTTP 403 without access to the target content does not confirm a missing page or wrong destination. Record the access limitation and leave the link unverified.",
+      "evidence": [
+        "skills/agent-instructions-audit/references/checks.md:14",
+        "skills/agent-instructions-audit/SKILL.md:48"
+      ]
+    },
+    {
+      "id": "A04",
+      "decision": "allow_affected_recheck",
+      "reason": "A meaningful input change can invalidate prior acceptance evidence. Repeating the affected check is explicitly retained and is not necessarily wasteful duplication.",
+      "evidence": [
+        "skills/agent-instructions-audit/references/checks.md:18"
+      ]
+    }
+  ],
+  "findings": [],
+  "reviewed_files": {
+    "skills/task-model-router/SKILL.md": "36c2c38787345dfc41c05cdc5635c7273ddc275ff7b00b198bd5c240eac4a365",
+    "skills/task-model-router/references/rates.md": "9f3bb413562067e2823293eeaae8e6e5f6888139e717352b2d28c52cd0e10728",
+    "skills/subagent-manager/SKILL.md": "59fcedce75071e1f3bbd5d50fcca0a6479ee2272666c23898713cf933706a345",
+    "skills/agent-instructions-audit/references/checks.md": "66ea185bc90e4a8819917dfca933495fe356725b0f397425043e262633b8c06c"
+  }
+}

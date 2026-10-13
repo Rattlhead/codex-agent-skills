@@ -30,18 +30,22 @@ Exact model IDs, parameter names, payment units, and API names are technical nam
 ## Verified prices
 
 Read the saved [rate reference](references/rates.md) before a cost estimate.
-It gives the rates, speed multipliers, payment unit, sources, and check date.
-Use it without an online lookup while it is no more than 30 days old.
-Check rates when the reference is more than 30 days old.
+It gives the rates, speed multipliers, payment units, sources, and dates for checked groups.
+A rate group identifies a model and payment mode. A multiplier group identifies a speed and payment mode.
+Use each required group without an online lookup while its own check date is no more than 30 days old.
+Throughout the assessment, check required groups that are missing, have no check date, or are more than 30 days old.
 Also check when the user reports a change.
 Check rates when an official source shows a rate change.
 Check rates when the payment mode changes.
-Check only missing rates when the reference does not include a model or payment mode.
-After a check, update `references/rates.md` with the rates and the new date.
-Use the updated reference for all assignments in this assessment.
-Do not check the same rates again for each subagent.
+For a change trigger, check only the required groups that it affects.
+After a check, update `references/rates.md` with the checked values and their group dates.
+Date a group only after checking every value in it. Split the group if only some values were checked.
+Preserve the values and dates of unchecked groups.
+Use one effective rate reference for all model comparisons and assignments in this assessment.
+Do not check unchanged groups again for each subagent while they are current and no change trigger applies.
 If the skill directory is read-only, save one dated rate record for this assessment.
 Report that you could not update the saved reference.
+Use the environment's documentation rules for official sources.
 For API USD, use the applicable [official API rates](https://developers.openai.com/api/docs/pricing).
 Do not calculate API USD from credits.
 
@@ -119,7 +123,7 @@ Do not let a worker start another agent unless the primary agent assigns the rol
 Compare capability requirements with the actual tool's model IDs, supported efforts, and current-generation candidates above.
 Keep explicit whitelists.
 Before selection of a model, make sure that capability and tool availability are supported.
-Use the effective rate reference defined in `Calculate the forecast`.
+Use the effective rate reference from `Verified prices`.
 Do not automatically include older generations that user policy excludes.
 
 Luna is an initial candidate for light work and limited ordinary work with direct acceptance.
@@ -147,19 +151,10 @@ Make sure that the tool has the parameters necessary for a proposed change to a 
 
 ## Calculate the forecast
 
-At the start of an assessment, read the saved rate reference.
-If it is current and covers the model and payment mode, use it.
-Otherwise, check only rates that are old or missing.
-Update the saved reference after you check rates.
-Use the updated reference for all model comparisons and assignments in this assessment.
-Do not check the same rates again for each subagent.
-For a long assessment, update the reference if its rates become more than 30 days old.
-Also update it if a change trigger applies.
-Use the environment's documentation rules for official sources.
+Use the effective rate reference from `Verified prices`.
 
 Record the date, payment unit, account, payment mode, speed, and rates for permitted candidates.
 Do not mix API USD, purchased credits, and included subscription allowance.
-For API mode, get the applicable official API rates.
 If rates, counters, or volumes are unknown, record `unknown` or a range with its basis.
 Do not invent availability, success probabilities, exact costs, or precise savings.
 
