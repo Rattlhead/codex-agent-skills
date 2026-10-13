@@ -46,6 +46,8 @@ For each proposed improvement, specify a prevention plan:
 - A short check of the expected result.
 
 General advice without these details is not a complete prevention plan.
+Before you propose a prevention plan, trace one matching future task from its entry point.
+If a read condition does not cover that task, include the necessary route change in the proposal.
 Consider these patterns only when the task evidence supports them:
 
 - Repeated reads or checks with unchanged inputs and no identified gap.
