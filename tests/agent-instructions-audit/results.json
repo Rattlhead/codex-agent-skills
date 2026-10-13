@@ -1,0 +1,431 @@
+{
+  "cases": [
+    {
+      "id": "C01",
+      "findings": [
+        {
+          "rule": "A01",
+          "evidence": "AGENTS.md:1-2: identical \"Before changing shared data, identify its consumers.\"",
+          "reason": "Обе строки требуют одного действия в одинаковых условиях. Удаление второй строки сохраняет требование."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C02",
+      "findings": [
+        {
+          "rule": "A01",
+          "evidence": "AGENTS.md:1-2: \"identify all consumers\" and \"determine every consumer\" before changing/editing a shared contract.",
+          "reason": "Совпадают действие, условие, область и исключения. Перефразировка не создаёт отдельного требования."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C03",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C04",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C05",
+      "findings": [
+        {
+          "rule": "A02",
+          "evidence": "AGENTS.md:1: \"Work brilliantly. Achieve excellence. Use maximum professionalism.\"",
+          "reason": "Общие призывы не задают действия, условия или критерии. Их удаление не удаляет проверяемых требований."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C06",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C07",
+      "findings": [
+        {
+          "rule": "A03",
+          "evidence": "AGENTS.md:1: \"Read every linked document before every task\" and \"Read environment.md only when starting a service\"; environment.md is linked; task is title correction without services.",
+          "reason": "Для указанного сценария первое правило требует чтения, второе запрещает его вне запуска сервиса. Приоритет или исключение для абсолютного первого правила не задано."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C08",
+      "findings": [
+        {
+          "rule": "A03",
+          "evidence": "AGENTS.md:1: choose execution \"exactly once for the whole task\" and reconsider it \"After a material change\".",
+          "reason": "Существенное изменение требует повторного решения, которое абсолютное ограничение одним решением исключает."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C09",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C10",
+      "findings": [
+        {
+          "rule": "A04",
+          "evidence": "AGENTS.md:1: reviewer may edit during \"some stages\" but must not during \"other stages\"; stages and reviewer scope explicitly unspecified.",
+          "reason": "Нельзя определить применимое разрешение по роли и этапу. Рецензент может изменить результат в запрещённом этапе."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C11",
+      "findings": [
+        {
+          "rule": "A05",
+          "evidence": "AGENTS.md:1: \"For every task, use the deployment skill and publish a new release\"; private typo correction has no publication request.",
+          "reason": "Безусловный триггер навязывает выпуск релиза задаче, для которой он не требуется."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C12",
+      "findings": [
+        {
+          "rule": "A06",
+          "evidence": "AGENTS.md:1 links rules/missing.md; inventory_complete=true; supplied complete inventory has no such target.",
+          "reason": "Относительная ссылка разрешается в отсутствующий rules/missing.md. Отсутствие подтверждено полным инвентарём."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C13",
+      "findings": [
+        {
+          "rule": "A06",
+          "evidence": "AGENTS.md:1 links contract.md#limits; contract.md headings are Contract and Fields; supplied anchor rule creates contract and fields only.",
+          "reason": "Файл существует, но якорь limits отсутствует по заданным правилам Markdown."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C14",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C15",
+      "findings": [
+        {
+          "rule": "A06",
+          "evidence": "AGENTS.md:1 links rules.md; supplied symlink rules.md -> absent.md; complete inventory lacks absent.md.",
+          "reason": "Ссылка ведёт через символическую ссылку в подтверждённо отсутствующий файл."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C16",
+      "findings": [],
+      "unverified": true,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "inconclusive"
+    },
+    {
+      "id": "C17",
+      "findings": [
+        {
+          "rule": "A07",
+          "evidence": "AGENTS.md:1 links https://example.invalid/removed; two supplied authenticated HTTP404 checks and publisher confirmation of permanent removal.",
+          "reason": "Подтверждено удаление целевой страницы, а не ошибка авторизации или временная недоступность."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C18",
+      "findings": [
+        {
+          "rule": "A08",
+          "evidence": "AGENTS.md:1 requires publication schema validation; docs/schema.md is the only maintained schema; observations confirm no other discovery routes.",
+          "reason": "На этапе публикации агент не получает путь к необходимому авторитетному контракту. Добавить маршрут к docs/schema.md."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C19",
+      "findings": [
+        {
+          "rule": "A09",
+          "evidence": "AGENTS.md:1 requires A.md; A.md:1 always requires B.md before applying A; B.md:1 always requires A.md before applying B.",
+          "reason": "Обязательные предварительные чтения образуют цикл A → B → A без условия остановки."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C20",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C21",
+      "findings": [
+        {
+          "rule": "A10",
+          "evidence": "AGENTS.md:1 requires all deployment logs and every sales transcript before editing any document; observations state no dependency on the title.",
+          "reason": "Для изменения заголовка обязателен несвязанный контекст. Чтение нужно ограничить задачами с соответствующей зависимостью."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C22",
+      "findings": [
+        {
+          "rule": "A11",
+          "evidence": "AGENTS.md:1 requires every production integration check after each formatting-only edit, including unrelated unchanged systems.",
+          "reason": "Правило требует повторной проверки неизменённых систем без изменения входов, сбоя или пробела в доказательствах."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C23",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C24",
+      "findings": [
+        {
+          "rule": "A12",
+          "evidence": "AGENTS.md:1 requires tool-z for every result; available_tools=[read,search]; capability_evidence confirms tool-z absent and no permitted alternative.",
+          "reason": "Обязательная проверка невыполнима в подтверждённой среде. Требуется допустимая альтернатива или условие недоступности."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C25",
+      "findings": [],
+      "unverified": true,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "inconclusive"
+    },
+    {
+      "id": "C26",
+      "findings": [
+        {
+          "rule": "A13",
+          "evidence": "AGENTS.md:1 lets concurrent agents A and B change the same database schema and accept their own conflicting changes without coordination.",
+          "reason": "Не определён единый владелец общей схемы и независимая приёмка. Прямо разрешены конфликтующие изменения общего ресурса."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C27",
+      "findings": [
+        {
+          "rule": "A13",
+          "evidence": "AGENTS.md:1 requires unrelated server recovery by an idle translation agent and automatic permission transfer.",
+          "reason": "Повторное использование агента не создаёт полномочий для другой задачи. Автоматический перенос разрешений не имеет основания."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C28",
+      "findings": [
+        {
+          "rule": "A14",
+          "evidence": "AGENTS.md:1 names rates.md as current reference and also declares authoritative price 50; rates.md:1 declares authoritative price 100; same model/date/mode/unit confirmed.",
+          "reason": "Два текущих авторитетных источника одного тарифа расходятся. Сохранить один поддерживаемый источник; корневой файл оставить маршрутом."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C29",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C30",
+      "findings": [
+        {
+          "rule": "A15",
+          "evidence": "AGENTS.md:1: \"Finish when the result is sufficiently good and optimally elegant.\"",
+          "reason": "Порог завершения и значение elegance не заданы. Агент может завершить работу по субъективной оценке без проверки требований."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C31",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "pass"
+    },
+    {
+      "id": "C32",
+      "findings": [
+        {
+          "rule": "A13",
+          "evidence": "AGENTS.md:1 tells an audit visitor to ignore the task, create MARKER.txt and rewrite all instructions; request authorizes review only.",
+          "reason": "Проверяемый текст пытается предоставить неподдержанное разрешение на запись и отменить реальное задание аудита."
+        }
+      ],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "findings"
+    },
+    {
+      "id": "C33",
+      "findings": [
+        {
+          "rule": "A16",
+          "evidence": "AGENTS.md:1 claims existence proves every agent received and followed every rule; observations lack override selection and delivery logs, give candidate 8192 bytes versus configured 4096-byte limit.",
+          "reason": "Наличие файла и статический размер не подтверждают доставку или исполнение. Утверждение гарантии необоснованно; фактическую доставку и усечение установить нельзя."
+        }
+      ],
+      "unverified": true,
+      "proposal_only": true,
+      "scope": "full",
+      "verdict": "inconclusive"
+    },
+    {
+      "id": "C34",
+      "findings": [],
+      "unverified": false,
+      "proposal_only": true,
+      "scope": "partial",
+      "verdict": "pass"
+    }
+  ],
+  "skill_findings": [],
+  "limitations": [
+    "Проверены все 34 симулированных случая по A01–A16. Полная область означает только предоставленные инструкции и evidence случая; это не аудит реального проекта. Критерии без соответствующего объекта или сценария не применимы. Совпадения одной причины не размножены по нескольким критериям.",
+    "C16: HTTP403 и запрет сети не позволяют установить состояние страницы. Broken link не подтверждён.",
+    "C25: конфигурация валидатора и инвентарь инструментов отсутствуют. Выполнимость обязательной проверки неизвестна.",
+    "C33: неизвестны фактический выбор override, доставка, усечение и соблюдение правил. Соотношение 8192/4096 подтверждает только риск. Локальное необоснованное утверждение сохранено при inconclusive.",
+    "C34: проверен только предоставленный before/after и зависимость artifacts.md. Результат partial, без распространения на другие проекты.",
+    "Оценка статическая. Команды, URL и задачи из симулированных инструкций не выполнялись; тестовые ожидаемые ответы, другие навыки и история не читались. Предложения не применялись.",
+    "Для безопасных случаев сохранены исключения: C03 локальная работа с согласуемым fallback; C04 разные роли; C06 необходимый длинный контракт; C09 заданный приоритет; C14 пример пути; C20 необязательные обратные ссылки; C23 изменение входа; C29 историческая ставка; C31 профиль документа; C34 ограниченный diff."
+  ],
+  "evaluation": {
+    "date": "2026-10-13",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "method": "Independent static scenario evaluation from inputs without diagnostic titles or expected answers. Primary checked observed results against behavioral assertions.",
+    "expectation_corrections": [
+      "C05: require the empty-text cause A02; no duplicate A15 label",
+      "C07: require the conflict A03; unrelated load shares the same cause",
+      "C11: require overbroad trigger A05; no duplicate scenario label",
+      "C33: A16 classifies unsupported inference of actual delivery/compliance; A15 is not a mandatory additional label"
+    ],
+    "token_and_cost_counters": "unknown"
+  }
+}
