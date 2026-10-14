@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "check_date": "2026-10-14",
+  "scope": "approved tool-purpose clarification; isolated live executions",
+  "profile_sha256": {
+    "AGENTS.md": "668417f99e472bba7ab0ac7e1449d44a2bb60badb37b1a4f03562b81e5f353b8",
+    "agent-rules/environment.md": "574c27636bec3fad0bf9e2ae16226b7e9559a72db81f8cd438bc8740f61a5dc7",
+    "agent-rules/context.md": "865b2b18cdef15d87545bd3a1b02794a8f4c5a16609d3d3a3fd715a493efa765",
+    "agent-rules/coordination.md": "f79ae548f34c9736eeddf6775076fd2c7a5aa5f418b9704d1fe9cb30c0525e64",
+    "agent-rules/task-and-contract.md": "adf873440c7f087b4640f8cbbfc6bcc1c2a441e7362b86c65548c6c5f4fb49ff",
+    "agent-rules/software.md": "cb668daab95b41c14f2915454abd24655a4dcdf143a41a726f026e92f2cf23dc",
+    "agent-rules/learning.md": "d9a63c253af4882bbe9fb3d9d40f3a497d535214683c5d9ba4972f789d8e7748",
+    "agent-rules/artifacts.md": "490834c6584283edc1e9b3400a9b2443014282c3216dee555412121fab2cbcee",
+    "agent-rules/verification.md": "6e8f9989fdb499961d538a1c8174913ab3bc5f0498708adbcd5b358d64bb3e20"
+  },
+  "model": "gpt-6-luna",
+  "reasoning_effort": "low",
+  "token_and_cost_counters": "unknown",
+  "target_behavior": "pass",
+  "whole_execution": "findings",
+  "cases": {
+    "document": {
+      "target_behavior": "pass",
+      "commands_observed": [
+        {
+          "argv": [
+            "cat",
+            "AGENTS.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "cat",
+            "agent-rules/task-and-contract.md",
+            "agent-rules/context.md",
+            "agent-rules/artifacts.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "cat",
+            "handoff.md",
+            "handoff.baseline.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "apply_patch"
+          ],
+          "exit_code": 2
+        },
+        {
+          "argv": [
+            "apply_patch",
+            "*** Begin Patch\n*** Update File: handoff.md\n@@\n-Сохраните финальный файл в папке outputs.\n+Сохраните финальный файл в папке deliverables.\n*** End Patch"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "cat",
+            "agent-rules/verification.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "diff",
+            "-u",
+            "handoff.baseline.md",
+            "handoff.md"
+          ],
+          "exit_code": 1,
+          "stdout": "--- handoff.baseline.md\t2026-10-14 17:15:39\n+++ handoff.md\t2026-10-14 17:16:05\n@@ -1,5 +1,5 @@\n # Передача результата\n \n-Сохраните финальный файл в папке outputs.\n+Сохраните финальный файл в папке deliverables.\n Укажите формат файла и известные ограничения.\n Ссылка должна вести на текущую версию.\n",
+          "stderr": ""
+        }
+      ],
+      "read_profiles_observed": [
+        "AGENTS.md",
+        "agent-rules/task-and-contract.md",
+        "agent-rules/context.md",
+        "agent-rules/artifacts.md",
+        "agent-rules/verification.md"
+      ],
+      "baseline_sha256": "67df85c9820dae8e0a792efa17f1b7409936fffb106a3b72e7c038ba996064d4",
+      "final_sha256": "e16f9aec864f570267813f51230c20e558a148f7e721753d51d71b4db79195ae",
+      "initial_observations": [
+        "apply_patch invoked without required patch argument: observed exit 2; corrected invocation exit 0",
+        "Worker initially returned partial: two process-start failures reported, not recorded by command logger. Later comparison succeeded."
+      ],
+      "reported_process_start_cause": "Worker attributed failures to /var versus /private/var working-directory form. This cause was not independently established; cause=unknown."
+    },
+    "unknown-tool": {
+      "target_behavior": "pass",
+      "commands_observed": [
+        {
+          "argv": [
+            "cat",
+            "AGENTS.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "cat",
+            "agent-rules/task-and-contract.md",
+            "agent-rules/context.md",
+            "agent-rules/verification.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "cat",
+            "agent-rules/artifacts.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "cat",
+            "agent-rules/verification.md"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "--help"
+          ],
+          "exit_code": 127,
+          "stdout": "",
+          "stderr": "[Errno 2] No such file or directory: '--help'\n"
+        },
+        {
+          "argv": [
+            "help"
+          ],
+          "exit_code": 127,
+          "stdout": "",
+          "stderr": "[Errno 2] No such file or directory: 'help'\n"
+        },
+        {
+          "argv": [
+            "./artifact-check",
+            "--help"
+          ],
+          "exit_code": 0,
+          "stdout": "artifact-check: verify image dimensions. Supported formats: PNG, SVG. Usage: artifact-check IMAGE. Does not compare text files.\n",
+          "stderr": ""
+        },
+        {
+          "argv": [
+            "cmp",
+            "report.md",
+            "report.baseline.md"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "read_profiles_observed": [
+        "AGENTS.md",
+        "agent-rules/task-and-contract.md",
+        "agent-rules/context.md",
+        "agent-rules/verification.md",
+        "agent-rules/artifacts.md",
+        "agent-rules/verification.md"
+      ],
+      "baseline_sha256": "a4bb5f3525e2739e202c34c9037cf46c7ee1f85806b63499b4261cdd4980aaa9",
+      "final_sha256": "a4bb5f3525e2739e202c34c9037cf46c7ee1f85806b63499b4261cdd4980aaa9",
+      "tool_calls_observed": [
+        {
+          "argv": [
+            "--help"
+          ],
+          "help": true
+        }
+      ],
+      "initial_observations": [
+        "verification.md read twice without a named gap or changed source",
+        "task-cli --help and task-cli help: observed exit 127; cause=unknown according to worker; later correct artifact-check help exit 0"
+      ]
+    }
+  },
+  "limits": [
+    "Command logger records only executions through task-cli. Pre-start errors and unwrapped commands are not fully observed.",
+    "Profiles and helper files unchanged; evidence does not guarantee compliance by every model.",
+    "This check does not rerun unrelated historical scenarios or measure token savings."
+  ]
+}
