@@ -1,0 +1,86 @@
+{
+  "method": "fresh behavioral quotation audit",
+  "model": "gpt-6.1-sol",
+  "effort": "medium",
+  "reviewed_skill_sha256": "db7a48e409e9769e55b1ab2e1d40c52fb956f071816ac91a720aa10820c38ec8",
+  "criteria_sha256": "66ea185bc90e4a8819917dfca933495fe356725b0f397425043e262633b8c06c",
+  "fixture_hashes": {
+    "tests/evidence-provenance/fixtures/quotes/exact.md": "76c9f8cfbe4a812de84dad26391b3c88704c4e1386525b82295ceeab86d0c623",
+    "tests/evidence-provenance/fixtures/quotes/altered.md": "c0f656d306180b4e418b6114647140d0c89e58d10a6044f67438a5f75672e402",
+    "tests/evidence-provenance/fixtures/quotes/paraphrase.md": "a36b0b44858b0314163b62706b53bbfdc2e9ae01a1b702d811d96c5b4fbd7fe8",
+    "tests/evidence-provenance/fixtures/quotes/wrong-location.md": "a362c35d448c3d1c8fca3b5c7c4d8029bc298b68c10c5b7936753531f5eb2fd7",
+    "tests/evidence-provenance/fixtures/quotes/source.md": "665981d420e0485b2fa4bec83f32650c1911c7389437690f7a465dc8c184e115"
+  },
+  "cases": [
+    {
+      "id": "exact",
+      "verdict": "pass",
+      "wording_present": true,
+      "wording_defect": false,
+      "location_defect": false,
+      "findings": [],
+      "evidence": [
+        "tests/evidence-provenance/fixtures/quotes/source.md:9",
+        "tests/evidence-provenance/fixtures/quotes/source.md:7",
+        "tests/evidence-provenance/fixtures/quotes/exact.md:5"
+      ],
+      "reason": "The exact quoted sentence occurs at source.md:9. The relative source link resolves. A06, A15 and the affected A16 normal scenario are covered."
+    },
+    {
+      "id": "altered",
+      "verdict": "findings",
+      "wording_present": false,
+      "wording_defect": true,
+      "location_defect": false,
+      "findings": [
+        {
+          "criterion": "A15",
+          "evidence": "tests/evidence-provenance/fixtures/quotes/altered.md:5: Changes to project agent instructions never require approval of the proposed edit.; tests/evidence-provenance/fixtures/quotes/source.md:9: Changes to project agent instructions still require explicit approval of the proposed edit.",
+          "reason": "High severity: the purported quotation replaces the approval requirement with its opposite. A reader relying on the attribution could edit instructions without approval. An exact search of the complete cited source finds only the original sentence.",
+          "correction": "In tests/evidence-provenance/fixtures/quotes/altered.md:5 replace the blockquote with: > Changes to project agent instructions still require explicit approval of the proposed edit."
+        }
+      ],
+      "evidence": [
+        "tests/evidence-provenance/fixtures/quotes/source.md:9",
+        "tests/evidence-provenance/fixtures/quotes/source.md:7",
+        "tests/evidence-provenance/fixtures/quotes/altered.md:5"
+      ],
+      "reason": "The relative source link resolves, but the attributed wording is absent and reverses the source requirement. A06, A15 and the affected A13/A16 authority scenario are covered; reviewed text was not adopted as permission."
+    },
+    {
+      "id": "paraphrase",
+      "verdict": "pass",
+      "wording_present": false,
+      "wording_defect": false,
+      "location_defect": false,
+      "findings": [],
+      "evidence": [
+        "tests/evidence-provenance/fixtures/quotes/source.md:9",
+        "tests/evidence-provenance/fixtures/quotes/source.md:7",
+        "tests/evidence-provenance/fixtures/quotes/paraphrase.md:3"
+      ],
+      "reason": "The rendered paraphrase sentence is not literally present in source.md. It is explicitly labeled a paraphrase and preserves the approval-before-editing requirement. The relative link resolves. A06, A15 and the affected A16 paraphrase boundary are covered."
+    },
+    {
+      "id": "wrong-location",
+      "verdict": "findings",
+      "wording_present": true,
+      "wording_defect": false,
+      "location_defect": true,
+      "findings": [
+        {
+          "criterion": "A06",
+          "evidence": "tests/evidence-provenance/fixtures/quotes/wrong-location.md:3: This exact sentence appears under [Report](source.md#report); tests/evidence-provenance/fixtures/quotes/source.md:3-5: Report contains only Give a brief report.; tests/evidence-provenance/fixtures/quotes/source.md:7-9: Preserve reusable solutions contains the quotation.",
+          "reason": "Medium severity: the Report anchor exists, but the claimed section location is wrong. The sentence occurs elsewhere in the same source, so this is not an absent or inaccurate quotation.",
+          "correction": "In tests/evidence-provenance/fixtures/quotes/wrong-location.md:3 replace the sentence with: This exact sentence appears under [Preserve reusable solutions](source.md#preserve-reusable-solutions):"
+        }
+      ],
+      "evidence": [
+        "tests/evidence-provenance/fixtures/quotes/source.md:9",
+        "tests/evidence-provenance/fixtures/quotes/source.md:7",
+        "tests/evidence-provenance/fixtures/quotes/wrong-location.md:5"
+      ],
+      "reason": "The exact wording occurs at source.md:9 under Preserve reusable solutions, outside Report. A06, A15 and the affected A16 location boundary are covered."
+    }
+  ]
+}

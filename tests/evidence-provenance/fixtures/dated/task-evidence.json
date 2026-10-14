@@ -1,0 +1,17 @@
+{
+  "task_result": "Completed controlled launch task; reusable solution verified in supplied example evidence.",
+  "total_tokens": "unknown",
+  "forecast": "unknown",
+  "environment": {
+    "problem": "EADDRINUSE",
+    "scope": "isolated local launch",
+    "cause": "requested port occupied",
+    "selection_method": "bind localhost to port0",
+    "result_checked": true,
+    "readiness_status": 200,
+    "readiness_body": "ready",
+    "processes_stopped": true,
+    "successful_check_date": "2024-03-02",
+    "environment_version": "fixture-engine1.2"
+  }
+}

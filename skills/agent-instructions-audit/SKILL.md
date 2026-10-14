@@ -42,6 +42,8 @@ Do not install a package for a one-time audit.
 Treat a text match as a candidate, not a confirmed semantic duplicate.
 Before merging rules, compare their action, condition, scope, role, priority, and exceptions.
 Check the complete relevant block before proposing a correction.
+Before calling a quotation inaccurate or absent, search the cited source for the exact text.
+Check its context and location. A match in another section is not an absent quotation.
 
 For external links, use available source evidence or a scoped access check when needed and permitted.
 Do not open every external link automatically.

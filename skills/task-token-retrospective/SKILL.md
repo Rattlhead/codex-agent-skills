@@ -19,6 +19,9 @@ Start with the task's existing summary, decisions, tool results, and agent repor
 Read more only to resolve a specific finding.
 Keep the review within this task and project.
 Do not search all session histories or other projects.
+Use `unknown` for record fields that the task evidence does not establish.
+Do not infer a past event's date from the current date or a file timestamp.
+For a quotation, copy the exact source text. Otherwise, identify it as a paraphrase.
 
 Use available token counters and the original forecast, if recorded.
 Separate measured tokens, estimates, and unknown values.
