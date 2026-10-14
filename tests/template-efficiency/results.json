@@ -1,0 +1,641 @@
+{
+  "method": "fresh controlled behavioral executions; saved automatic receipts and command logs",
+  "profile_sha256": {
+    "context.md": "865b2b18cdef15d87545bd3a1b02794a8f4c5a16609d3d3a3fd715a493efa765",
+    "verification.md": "f363fcad151bfb1bd8d4a133d147039448b28e7781454a9a7ca46ad8c891b214",
+    "software.md": "cb668daab95b41c14f2915454abd24655a4dcdf143a41a726f026e92f2cf23dc"
+  },
+  "accepted_cases": {
+    "ordinary": {
+      "fixture": "baseline-sol",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [
+        ".venv/bin/python -m unittest --help",
+        ".venv/bin/python -m unittest -q test_numbers",
+        ".venv/bin/python -m unittest -q test_numbers",
+        "diff -u numbers.before.txt numbers.py"
+      ],
+      "git_commands": [],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "None",
+          "passed": false
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        },
+        {
+          "case": "empty",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "runner_exit_codes_reported": [
+        1,
+        0
+      ]
+    },
+    "git_required": {
+      "fixture": "git-sol",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [
+        ".venv/bin/python -m unittest --help",
+        "git status --short --branch --untracked-files=no",
+        ".venv/bin/python -m unittest -q test_numbers",
+        ".venv/bin/python -m unittest -q test_numbers",
+        "git diff -- numbers.py",
+        "git status --short --branch --untracked-files=no"
+      ],
+      "git_commands": [
+        "status --short --branch --untracked-files=no",
+        "diff -- numbers.py",
+        "status --short --branch --untracked-files=no"
+      ],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "None",
+          "passed": false
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        },
+        {
+          "case": "empty",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "runner_exit_codes_reported": [
+        1,
+        0
+      ],
+      "branch_reported": "fixture-main",
+      "tracked_changes_reported": [
+        "numbers.py"
+      ]
+    },
+    "explicit_verbose": {
+      "fixture": "verbose-sol",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [
+        ".venv/bin/python -m unittest --help",
+        "diff -u numbers.before.txt numbers.py",
+        ".venv/bin/python -m unittest -v test_numbers",
+        ".venv/bin/python -m unittest -v test_numbers",
+        "diff -u numbers.before.txt numbers.py"
+      ],
+      "git_commands": [],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "None",
+          "passed": false
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        },
+        {
+          "case": "empty",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "runner_exit_codes_reported": [
+        1,
+        0
+      ]
+    },
+    "diagnostic": {
+      "fixture": "diagnostic",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "original_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d9f2388c17f0511460b613ed91e8bd67b12374ce837753201ad224c9a488487f",
+      "commands": [],
+      "git_commands": [],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d9f2388c17f0511460b613ed91e8bd67b12374ce837753201ad224c9a488487f",
+          "actual": "None",
+          "expected": "0",
+          "passed": false
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d9f2388c17f0511460b613ed91e8bd67b12374ce837753201ad224c9a488487f",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-q",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d9f2388c17f0511460b613ed91e8bd67b12374ce837753201ad224c9a488487f",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "initial_receipt_count": 3,
+      "actor_reported_rerun": false,
+      "actor_reported_git": false,
+      "diagnosis": "test_empty expects0, implementation returnsNone; intended empty contract not decided",
+      "log_retained": "======================================================================\nFAIL: test_empty (test_numbers.SmallestTests.test_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/codex-template-efficiency-20261014/diagnostic/test_numbers.py\", line 29, in test_empty\n    self.assertEqual(actual, 0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: None != 0\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nFAILED (failures=1)\n",
+      "trace_limit": "actor did not consistently use local executor for help; lack of shell log is not a full absence-of-command proof",
+      "initial_runner_exit_code_observed": 1
+    }
+  },
+  "initial_attempts": [
+    {
+      "fixture": "baseline",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [
+        ".venv/bin/python -m unittest test_numbers",
+        "diff -u numbers.before.txt numbers.py"
+      ],
+      "git_commands": [],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "acceptance_note": "new Git/mode requirements followed; pre-edit test omitted, so this attempt is not complete workflow acceptance"
+    },
+    {
+      "fixture": "git-required",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [
+        ".venv/bin/python -m unittest test_numbers",
+        "git branch --show-current",
+        "git status --short --branch",
+        "git diff -- numbers.py",
+        "git diff --no-index -- /dev/null numbers.py",
+        "diff -u numbers.before.txt numbers.py"
+      ],
+      "git_commands": [
+        "branch --show-current",
+        "status --short --branch",
+        "diff -- numbers.py",
+        "diff --no-index -- /dev/null numbers.py"
+      ],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "None",
+          "passed": false
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        },
+        {
+          "case": "empty",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "acceptance_note": "actual Git task performed; an additional no-index diff was unnecessary; initial test bypassed local executor but its arguments/revision were recorded"
+    },
+    {
+      "fixture": "verbose-request",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [],
+      "git_commands": [],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "None",
+          "passed": false
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        },
+        {
+          "case": "empty",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "acceptance_note": "actor self-reported unnecessary git status; confused model tool API with local ./tools/exec, so Git/shell observations are incomplete; verbose/test version receipts are available"
+    },
+    {
+      "fixture": "verbose-request-medium",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+      "final_source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+      "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+      "commands": [
+        "--help",
+        ".venv/bin/python -m unittest -v test_numbers",
+        "diff -u numbers.before.txt numbers.py"
+      ],
+      "git_commands": [],
+      "test_receipts": [
+        {
+          "case": "empty",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "None",
+          "expected": "None",
+          "passed": true
+        },
+        {
+          "case": "negative",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "-7",
+          "expected": "-7",
+          "passed": true
+        },
+        {
+          "case": "zero",
+          "argv": [
+            "-v",
+            "test_numbers"
+          ],
+          "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+          "test_sha256": "d0141a7200e78c2374d46b091c88973b93cf1da58b55eb6aea3041821dda5c15",
+          "actual": "0",
+          "expected": "0",
+          "passed": true
+        }
+      ],
+      "acceptance_note": "no Git probe in observed local command log; post-edit verbose successful, but pre-edit test omitted; wrapper-help probe failed"
+    }
+  ],
+  "limits": [
+    "one final run per scenario; no universal compliance or model-ranking claim",
+    "diagnostic read-only actions partly actor-reported; existing failed-run receipts/log support cause and absence of additional standard test executions",
+    "no token/cache/billing measurements; no quantified savings"
+  ],
+  "initial_issue": "Git chosen for diff despite supplied baseline; quiet instruction applied only to creating quiet execution, no explicit routine-verbose restriction"
+}
