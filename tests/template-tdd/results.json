@@ -1,0 +1,97 @@
+{
+  "method": "fresh behavioral execution; automatic test receipts inspected independently",
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "profile_sha256": "cb668daab95b41c14f2915454abd24655a4dcdf143a41a726f026e92f2cf23dc",
+  "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+  "original_source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+  "normal": {
+    "commands_reported": [
+      ".venv/bin/python -m unittest -v test_numbers",
+      ".venv/bin/python -m unittest -v test_numbers"
+    ],
+    "exit_codes_reported": [
+      1,
+      0
+    ],
+    "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+    "test_receipts": [
+      {
+        "case": "empty",
+        "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+        "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+        "actual": "0",
+        "expected": "None",
+        "passed": false
+      },
+      {
+        "case": "negative",
+        "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+        "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+        "actual": "-7",
+        "expected": "-7",
+        "passed": true
+      },
+      {
+        "case": "zero",
+        "source_sha256": "991b4427d946cd4632724cb0aabdca6062ad1409dfc821aa75a30f0328d45fa1",
+        "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+        "actual": "0",
+        "expected": "0",
+        "passed": true
+      },
+      {
+        "case": "empty",
+        "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+        "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+        "actual": "None",
+        "expected": "None",
+        "passed": true
+      },
+      {
+        "case": "negative",
+        "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+        "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+        "actual": "-7",
+        "expected": "-7",
+        "passed": true
+      },
+      {
+        "case": "zero",
+        "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+        "test_sha256": "a73875349fcf1a75c9f8e4ac412d17749ce6319634f3ab57979e1689322ab2c5",
+        "actual": "0",
+        "expected": "0",
+        "passed": true
+      }
+    ],
+    "profiles_reported": [
+      "task-and-contract",
+      "context",
+      "software",
+      "verification",
+      "environment"
+    ],
+    "skills_reported": []
+  },
+  "unavailable": {
+    "authorized_runtime_available": false,
+    "test_executed": false,
+    "runtime_result": "unverified",
+    "test_receipts": [],
+    "source_sha256": "1faeb70e3d4fc4eda1540e36ceafa1f70e83c43d57abc413ae6be6a2f04fa68c",
+    "profiles_reported": [
+      "task-and-contract",
+      "context",
+      "software",
+      "verification"
+    ],
+    "skills_reported": [],
+    "explanation_reported": "authorized project runtime unavailable; no alternate runtime used; source diff inspected"
+  },
+  "limits": [
+    "command exit codes and read lists are actor-reported; automatic receipts establish tested source revisions and outcomes",
+    "one controlled run per case; not universal model compliance or token-cost measurement",
+    "extra Git probes and verbose mode remained; this correction covers TDD ordering and its exception only"
+  ]
+}
