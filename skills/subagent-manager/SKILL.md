@@ -1,20 +1,19 @@
 ---
 name: subagent-manager
-description: Decide whether to delegate large or multi-step work, then coordinate scoped assignments, resource ownership, acceptance evidence, and integration. Use for explicit delegation requests and independent review. Short tasks can stay with the primary agent.
+description: Choose whether to delegate work based on context, independence, permissions, review needs, and total cost. Coordinate delegated slices through scoped assignments, resource ownership, acceptance evidence, and integration. Use for explicit manager or delegation requests, execution planning for substantial work, and independent review.
 ---
 
 # Subagent Manager
 
-Before full implementation research, use manager mode.
-The manager has responsibility for scope, dependencies, assignments, blockers, acceptance, integration, and the existing status.
-Workers examine their slices and make their results. Workers do the necessary checks.
-Without a specified gap, do not do their research again.
+Before project operations or full implementation research, assess the whole current user request and select an execution mode below.
+In `delegate` mode, the manager directs scope, dependencies, assignments, blockers, acceptance, and integration, and keeps brief status in the conversation.
+Workers examine their slices, make their results, and do the necessary checks. Without a specified gap, do not repeat their research.
 Keep project rules, authorization, and environment limits.
-If delegation is unavailable, record the limitation. Continue the work that is possible.
 Do not use another project's paths or tools.
 
 ## Technical nouns
 
+- **Work item**: a bounded substantive task with one coherent result and acceptance criteria.
 - **Slice**: a defined part of a task with its own result and acceptance criteria.
 - **Acceptance criteria**: the conditions for acceptance of a result.
 - **Owner**: the agent with responsibility for a specified resource, interface, or check.
@@ -25,28 +24,38 @@ Do not use another project's paths or tools.
 
 Model IDs, tool parameters, file paths, and native agent tool names are technical names.
 
-## Select the configuration
-
-Before every new assignment or material change to the assessment, use [$task-model-router](../task-model-router/SKILL.md).
-Before every repeated worker start, use its forecast and selection procedure again.
-The router controls classification, model and effort selection, prices, and budget conditions.
-Do not copy its algorithm here. The router also operates without this manager.
-Install both skills in adjacent directories.
-If the router is missing, record the missing dependency. Do not invent a replacement selection procedure.
-
 ## Choose the execution mode
 
-Use the router's decision for the whole task.
-If it records `primary_only`, keep the work with the primary agent and do not assign workers.
-If it records `delegate`, keep the primary agent responsible for shared contracts, integration, and final acceptance.
-Do not treat task length, multiple steps, or a complex score alone as a reason to delegate.
-For an explicit delegation request, use `delegate` unless tool access, permissions, or budget limits prevent it.
+Assess the whole current user goal, its context, and dependencies. Prefer one agent's continuous work cycle for closely connected context and sequential work, including long tasks. Task or file counts, professional roles, and roadmap size alone do not justify delegation.
 
-## Give assignments
+Select `execution_mode=delegate` for useful independent parallel work; necessary isolation of context, permissions, or tools; independent review; demonstrated context overload or tool-selection problems; or a model configuration justified by the router's forecast of total cost through acceptance. Potential parallelism alone does not establish a benefit. Otherwise, select `execution_mode=primary_only`. Explicit user requirements and applicable constraints take priority, including required delegation or independent review.
 
-Select slices with independent acceptance criteria.
-Do not create an agent for each command or a mandatory research, production, and review chain.
-Give work to a worker only when the router selects `delegate`.
+Use the router to assess configuration adequacy, verified rates in the applicable payment unit, and forecast cost through acceptance. Model name, generation, or raw token rate alone cannot establish the benefit. Record unknown primary model, effort, payment mode, cache use, or cost inputs; do not invent them. Unknown cost alone does not require delegation.
+
+Where both modes meet these constraints, let the router compare total cost and select an adequate mode. Reassess the mode when new evidence changes dependencies, expected benefit, cost, or required capability. Do not use reassessment to bypass user constraints. Do not change the primary agent's global model settings.
+
+## Select the configuration
+
+Before selecting a mode, give [$task-model-router](../task-model-router/SKILL.md) the whole goal, context dependencies, useful independent work, and the mode criteria above. Supply mandatory delegation or review constraints explicitly. Its generic defaults must not force delegation from task count or potential parallelism alone.
+Before every new assignment, repeated worker start, or material change to the assessment, use its forecast and selection procedure.
+The router controls classification, model and effort selection, prices, and budget conditions within these constraints. Do not copy its algorithm here. The router also operates without this manager.
+Install both skills in adjacent directories.
+If the router is missing, stop mode selection and dependent project operations. Do not invent a replacement selection procedure.
+
+## Execute within the selected mode
+
+In `primary_only` mode, the primary agent may perform the connected work and necessary acceptance checks within the authorized scope.
+In `delegate` mode, the primary agent coordinates and accepts supplied evidence. Assign production work and integration to workers. The manager may read instructions, the router, rates, and tool schemas; assess models and budgets; use coordination tools; and keep brief status. It may also perform a bounded inspection or check for a named evidence gap, contradiction, or changed input. Use the smallest necessary scope, current permissions, and explicit ownership of the check and resources. Do not repeat full research or test suites, or replace a required independent reviewer. Publication still requires the applicable authorization.
+Defaults in called skills, including the router, audit, and retrospective, do not override the selected execution mode. Their standalone modes are unchanged.
+User instructions, permissions, environment limits, and budget limits retain priority. This skill does not guarantee automatic invocation in every project.
+
+If required delegation is blocked by unavailable workers, slots, tools, a strict budget, or required permissions, stop dependent operations and record the blocker. Do not silently substitute primary execution or use bounded inspection to bypass it. For optional delegation, reassess the mode against the criteria above. If a required worker operation is available only to the primary agent, request an explicit role change or worker access before that operation.
+
+## Give assignments in delegate mode
+
+Select slices by the context and shared interface each needs, with independent acceptance criteria.
+Do not create an agent for each command or a mandatory research, implementation, and verification chain. These phases can stay with one slice owner when its scope and permissions cover them; retain any required independent review.
+Give work to a worker after the router selects a configuration consistent with the selected execution mode.
 Start with one worker.
 Add workers for independent slices that justify parallel work.
 Honor an explicit request for sequential workers unless tool access, permissions, or budget limits prevent it.
@@ -59,8 +68,8 @@ Give each worker a short, independent assignment with these items:
 - The outcome, purpose, directory, and owner.
 - Exact writable paths or read-only scope, exclusions, applicable rules, contracts, and essential evidence.
 - Dependencies and owners of shared resources. Include process handles and artifact paths when necessary.
-- The router decision, observable acceptance criteria, and appropriate checks.
-- The communication rules below.
+- The slice-specific execution limits, observable acceptance criteria, and appropriate checks.
+- Any slice-specific communication requirement beyond the rules below.
 - The required result: verdict, owned changes, checks, evidence, and remaining risk or blocker.
 
 Workers do not automatically receive the manager role.
@@ -120,23 +129,29 @@ For a new worker, use the router. Give only the short, verified handoff, not ano
 If the tool cannot change a follow-up configuration, use a new worker when a model or effort change is necessary.
 Keep the same slice for that worker.
 Use native waits. Do not get unchanged status again and again.
-Continue independent work. Give updates for meaningful changes without empty periodic reports.
+Continue independent management work and coordinate unblocked worker work. Give updates for meaningful changes without empty periodic reports.
 
 ## Limit communication
 
-Apply these rules to the manager and workers. Include them in each worker's assignment.
+Apply these rules to the manager and workers. Do not copy this section into each assignment.
 Give only the context necessary for the owned slice.
+Keep shared background and general instructions in their existing sources. Reference only the relevant section when the slice needs it and the worker does not already have it.
+If a required source is inaccessible, supply only the essential excerpt. Do not create a separate briefing file merely to avoid copying a short assignment.
+Keep rate tables, model-selection explanations, and the team forecast with the manager. Pass only applicable resource limits unless the worker's assigned role requires pricing or budget work.
 Use short handoffs that keep required facts.
 Use file and line references, a diff, or a saved log instead of complete files, histories, or successful tool output.
 Send inter-agent updates for blockers, necessary decisions, scope changes, or material findings.
 Do not send acknowledgments, repeated instructions, or duplicate summaries.
 Give one short acceptance report.
+Report the result and acceptance evidence, not the full investigation history. Include a short cause only when it affects acceptance, the next action, or reusable knowledge.
+On follow-up, give changed facts, new evidence, and unresolved gaps. Reference unchanged accepted facts instead of repeating them.
+Expand an explanation only for a specific unresolved acceptance question or a user request.
 For user updates, keep the required cadence. Give useful progress information.
 When messages become shorter, keep contracts, essential evidence, failures, and material uncertainty.
 
 ## Accept and integrate
 
-For each result, get these items:
+For each delegated result, get these items:
 
 - `done`, `partial`, or `blocked`.
 - Owned paths or read-only findings.
@@ -145,15 +160,14 @@ For each result, get these items:
 - Checks not done, up to three evidence references, and remaining risk.
 - Available counters, with `unknown` or `lower-bound` where applicable.
 
-Compare the result with the acceptance criteria.
-Examine the applicable diff or artifact and evidence gaps. A worker's statement alone is insufficient.
-If the reuse conditions are still true, first tell that worker to give the missing facts.
+Compare bounded actual evidence in the handoff with the acceptance criteria, including the applicable diff or artifact excerpts. A worker's statement alone is insufficient.
+Assign missing evidence to its owner when the reuse conditions still hold. The manager may resolve a named gap with the bounded inspection or check permitted above; identify its scope and ownership before execution.
 Accept command and result evidence only for the stable, identified revision under review.
 Do not duplicate a worker's check for the same revision without a named gap or contradiction.
-Before you do a check again, record the changed input, failure, or evidence gap that makes it necessary.
-Start with the smallest failed or affected area.
+Before assigning a repeated check, record the changed input, failure, or evidence gap that makes it necessary.
+Have the check owner start with the smallest failed or affected area.
 After integration, do the necessary overall check through its assigned owner.
-After a local change, do it again only for an affected dependency or a specified gap.
+After a local change, have the assigned owner repeat it only for an affected dependency or a specified gap.
 
 For material risk, disputed decisions, or explicit review requests, use independent review.
 Give the reviewer the criteria and artifacts. Do not tell the reviewer which conclusions to give.
@@ -165,10 +179,14 @@ Keep the failure artifacts.
 Give the next worker the contract, expected and actual results, case, artifact, and previous attempts.
 Before a material increase in effort or model capability, use the router.
 After acceptance failure or cost beyond the forecast, recheck remaining work and slice configurations before further starts.
-After a demonstrated correction, do the affected acceptance check again.
+After a demonstrated correction, have the assigned owner repeat the affected acceptance check.
 
-Keep one accepted result per slice in the existing plan or status.
+Keep one accepted result per slice in the existing plan or status. In `delegate` mode, assign file-based updates to its worker owner.
 Do not create duplicate logs or dashboards.
 After integration, complete the overall user goal.
 Continue from the last handoff. Do not invent missing counters or close another agent's tasks.
 Give the outcome, verification, and material limitations. Do not claim savings without measurements.
+
+## Evaluate architecture changes
+
+When changing the agent architecture, compare alternatives on the same end-to-end tasks. Assess completion of the whole goal and quality, plus total cost, latency, and rework where telemetry is available. Repeat affected important cases. This comparison is for architecture changes, not a benchmark before each ordinary task. Mark missing counters as unknown; do not claim measured savings without them.
