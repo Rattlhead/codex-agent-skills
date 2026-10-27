@@ -58,7 +58,7 @@ Before each assignment, examine the actual tool schema. Use that schema if it di
 | Model | Model override | Supported reasoning effort |
 | --- | --- | --- |
 | gpt-6.1-sol | Available | low, medium, high, xhigh, max, ultra |
-| gpt-6.1-terra | Unavailable | — |
+| gpt-6.1-terra | Available | low, medium, high, xhigh, max, ultra |
 | gpt-6-sol | Available | low, medium, high, xhigh, max, ultra |
 | gpt-6-luna | Available | low, medium, high, xhigh, max |
 | gpt-6-astra | Available | low, medium, high, xhigh, max, ultra |
@@ -126,7 +126,7 @@ Do not automatically include older generations that user policy excludes.
 
 Luna is an initial candidate for focused, repeatable work with direct acceptance.
 For complex work, compare 6.1 Sol with Astra against capability, cost, and acceptance evidence.
-For writing, visual understanding, or computer use, consider 6.1 Terra for the primary agent when the current runtime offers it.
+For writing, visual understanding, or computer use, consider 6.1 Terra when the applicable runtime offers it.
 Assign a model to a subagent only when its ID appears in the current `collaboration.spawn_agent` schema.
 These candidates do not give a universal model ranking. Comparable accepted work can change the permitted candidates.
 [Official model information](https://learn.chatgpt.com/docs/models) describes Astra for the most demanding work, 6.1 Sol for complex cost-sensitive work, Terra for writing and visual or computer-use work, and Luna for focused repeatable tasks.
