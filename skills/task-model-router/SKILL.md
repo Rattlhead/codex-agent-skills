@@ -106,7 +106,8 @@ Choose `delegate` if one or more of these conditions apply:
 For optional delegation, compare the total cost with primary-only work.
 If both modes meet the task requirements, choose the lower-cost mode.
 Choose `primary_only` when no delegation condition or explicit request applies and the primary agent can complete the task.
-Keep the shared contract, integration, and final acceptance with the primary agent.
+Keep responsibility for the shared contract, integration coordination, and final acceptance with the primary agent.
+In `delegate` mode, assign execution of integration to workers. In `primary_only` mode, the primary agent performs the work and integration.
 Honor an explicit request to delegate unless tool access, permissions, or budget limits prevent it.
 Do not start an agent to classify the task or select models.
 If an unknown fact can change this decision, find it before an agent starts.

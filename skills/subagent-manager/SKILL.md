@@ -6,7 +6,8 @@ description: Choose whether to delegate work based on context, independence, per
 # Subagent Manager
 
 Before project operations or full implementation research, assess the whole current user request and select an execution mode below.
-In `delegate` mode, the manager directs scope, dependencies, assignments, blockers, acceptance, and integration, and keeps brief status in the conversation.
+In `delegate` mode, the manager directs scope, dependencies, assignments, blockers, and acceptance, coordinates integration, and keeps brief status in the conversation.
+The primary agent remains responsible for the shared contract, integration coordination, and final acceptance. Assigned workers execute integration.
 Workers examine their slices, make their results, and do the necessary checks. Without a specified gap, do not repeat their research.
 Keep project rules, authorization, and environment limits.
 Do not use another project's paths or tools.
@@ -44,7 +45,7 @@ If the router is missing, stop mode selection and dependent project operations. 
 
 ## Execute within the selected mode
 
-In `primary_only` mode, the primary agent may perform the connected work and necessary acceptance checks within the authorized scope.
+In `primary_only` mode, the primary agent may perform the connected work, integration, and necessary acceptance checks within the authorized scope.
 In `delegate` mode, the primary agent coordinates and accepts supplied evidence. Assign production work and integration to workers. The manager may read instructions, the router, rates, and tool schemas; assess models and budgets; use coordination tools; and keep brief status. It may also perform a bounded inspection or check for a named evidence gap, contradiction, or changed input. Use the smallest necessary scope, current permissions, and explicit ownership of the check and resources. Do not repeat full research or test suites, or replace a required independent reviewer. Publication still requires the applicable authorization.
 Defaults in called skills, including the router, audit, and retrospective, do not override the selected execution mode. Their standalone modes are unchanged.
 User instructions, permissions, environment limits, and budget limits retain priority. This skill does not guarantee automatic invocation in every project.
