@@ -53,7 +53,7 @@ Do not calculate API USD from credits.
 
 Observation date: **2026-10-27**. Source: this session's `collaboration.spawn_agent` schema.
 This observation is for this runtime only. It gives no assurance of availability for an account or another runtime.
-Before each assignment, examine the actual tool schema. Use that schema if it differs from this table.
+Before each assignment, examine the schema of the delegation tool that will be used. Use that schema if it differs from this table.
 
 | Model | Model override | Supported reasoning effort |
 | --- | --- | --- |
@@ -63,7 +63,9 @@ Before each assignment, examine the actual tool schema. Use that schema if it di
 | gpt-6-luna | Available | low, medium, high, xhigh, max |
 | gpt-6-astra | Available | low, medium, high, xhigh, max, ultra |
 
-If an ID is absent from the actual schema, it is unavailable for that tool.
+If the actual schema lists permitted model IDs or efforts, keep those limits.
+If it does not list them, use other applicable evidence to confirm support in the actual tool and environment.
+A parameter with type `string` alone does not confirm support for a model ID or effort.
 A price table or chat picker does not show tool access or account access.
 User policy does not include older generations in automatic selection. This exclusion does not mean technical unavailability.
 For a subsequent explicit model request, keep the user's choice. Make sure that the requested model is available.
@@ -96,21 +98,24 @@ For the whole task, record `execution_mode=primary_only` or `execution_mode=dele
 The primary agent must make one decision for the whole task in the current assessment.
 After a material change or a new requirement for independent review, reconsider this decision.
 Use task complexity to select a model and effort. Do not use it to select the number of agents.
-Choose `delegate` if one or more of these conditions apply:
+Choose `delegate` if one or more of these requirements apply:
 
-- Separate slices can run in parallel.
 - A worker can do a required task that the primary cannot do.
 - A separate review is required.
 - The user requests agents.
 
-For optional delegation, compare the total cost with primary-only work.
+Parallel slices alone do not require delegation.
+For optional delegation, compare the total cost through acceptance with primary-only work.
 If both modes meet the task requirements, choose the lower-cost mode.
-Choose `primary_only` when no delegation condition or explicit request applies and the primary agent can complete the task.
+If costs are unknown, use the available qualitative evidence and record the uncertainty and decision basis.
+Do not claim that either mode is cheaper without supporting evidence.
+If there is no supported cost advantage for optional delegation and the primary agent can complete the task, choose `primary_only`.
 Keep responsibility for the shared contract, integration coordination, and final acceptance with the primary agent.
 In `delegate` mode, assign execution of integration to workers. In `primary_only` mode, the primary agent performs the work and integration.
 Honor an explicit request to delegate unless tool access, permissions, or budget limits prevent it.
 Do not start an agent to classify the task or select models.
-If an unknown fact can change this decision, find it before an agent starts.
+Before an agent starts, resolve unknown facts needed to meet task requirements or mandatory budget limits.
+For other unknown facts, record their effect on the decision without inventing precise costs.
 Record the mode and its reason.
 For `primary_only`, record the primary model and its effort.
 For `delegate`, name each slice. Select a model and an effort level for each worker.
@@ -128,7 +133,8 @@ Do not automatically include older generations that user policy excludes.
 Luna is an initial candidate for focused, repeatable work with direct acceptance.
 For complex work, compare 6.1 Sol with Astra against capability, cost, and acceptance evidence.
 For writing, visual understanding, or computer use, consider 6.1 Terra when the applicable runtime offers it.
-Assign a model to a subagent only when its ID appears in the current `collaboration.spawn_agent` schema.
+Assign a model and effort to a subagent only after confirming that the delegation tool and environment support both.
+Use the current schema and, where it does not list permitted values, other applicable evidence as specified in `Subagent availability`.
 These candidates do not give a universal model ranking. Comparable accepted work can change the permitted candidates.
 [Official model information](https://learn.chatgpt.com/docs/models) describes Astra for the most demanding work, 6.1 Sol for complex cost-sensitive work, Terra for writing and visual or computer-use work, and Luna for focused repeatable tasks.
 Compare 6 Sol with rates and acceptance evidence from comparable tasks when the runtime offers it.
