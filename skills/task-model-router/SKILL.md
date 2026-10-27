@@ -51,19 +51,17 @@ Do not calculate API USD from credits.
 
 ## Subagent availability
 
-Observation date: **2026-10-08**. Source: this session's `collaboration.spawn_agent` schema.
+Observation date: **2026-10-27**. Source: this session's `collaboration.spawn_agent` schema.
 This observation is for this runtime only. It gives no assurance of availability for an account or another runtime.
 Before each assignment, examine the actual tool schema. Use that schema if it differs from this table.
 
 | Model | Model override | Supported reasoning effort |
 | --- | --- | --- |
 | gpt-6.1-sol | Available | low, medium, high, xhigh, max, ultra |
+| gpt-6.1-terra | Unavailable | — |
 | gpt-6-sol | Available | low, medium, high, xhigh, max, ultra |
 | gpt-6-luna | Available | low, medium, high, xhigh, max |
 | gpt-6-astra | Available | low, medium, high, xhigh, max, ultra |
-| Daybreak Blue / Red | Unavailable: absent from schema | — |
-| GPT-Rosalind-Research | Unavailable: absent from schema | — |
-| GPT-Image-2 | Unavailable: absent from schema | — |
 
 If an ID is absent from the actual schema, it is unavailable for that tool.
 A price table or chat picker does not show tool access or account access.
@@ -126,11 +124,13 @@ Before selection of a model, make sure that capability and tool availability are
 Use the effective rate reference from `Verified prices`.
 Do not automatically include older generations that user policy excludes.
 
-Luna is an initial candidate for light work and limited ordinary work with direct acceptance.
-Sol is an initial candidate for complex work.
+Luna is an initial candidate for focused, repeatable work with direct acceptance.
+For complex work, compare 6.1 Sol with Astra against capability, cost, and acceptance evidence.
+For writing, visual understanding, or computer use, consider 6.1 Terra for the primary agent when the current runtime offers it.
+Assign a model to a subagent only when its ID appears in the current `collaboration.spawn_agent` schema.
 These candidates do not give a universal model ranking. Comparable accepted work can change the permitted candidates.
-[Official model information](https://learn.chatgpt.com/docs/models) gives 6.1 Sol for complex agent work and Luna for narrow, repeatable work.
-First, examine 6.1 Sol as the strong candidate. Then compare 6 Sol with rates and acceptance evidence from comparable tasks.
+[Official model information](https://learn.chatgpt.com/docs/models) describes Astra for the most demanding work, 6.1 Sol for complex cost-sensitive work, Terra for writing and visual or computer-use work, and Luna for focused repeatable tasks.
+Compare 6 Sol with rates and acceptance evidence from comparable tasks when the runtime offers it.
 Do not select a candidate that evidence already shows is inadequate.
 Without evidence of insufficient capability, do not select Astra for unknown causes or missing fixtures.
 
