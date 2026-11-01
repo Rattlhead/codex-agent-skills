@@ -71,6 +71,7 @@ Give each worker a short, independent assignment with these items:
 - Dependencies and owners of shared resources. Include process handles and artifact paths when necessary.
 - The slice-specific execution limits, observable acceptance criteria, and appropriate checks.
 - The worker's report language and any separate deliverable language, with explicit user overrides. State this compactly even when the default below applies.
+- Any required location format. If numeric lines are required, state compactly that references must use tool-produced numbering for the exact file and revision, including blank lines.
 - The required result: verdict, owned changes, checks, evidence, and remaining risk or blocker.
 
 Workers use the supplied source paths without reconstructing them from basenames. After a missing-source error, compare the attempted path with the assignment's path and check only that gap. Do not guess a relocated file. If the required source remains inaccessible, report the blocker; do not claim completion of work that depends on it. The manager may supply its essential excerpt as described below.
@@ -136,7 +137,7 @@ Continue independent management work and coordinate unblocked worker work. Give 
 
 ## Limit communication
 
-Apply these rules to the manager and workers. Do not copy this section into each assignment; include the compact language requirement and source bindings specified above.
+Apply these rules to the manager and workers. Do not copy this section into each assignment; include the compact language requirement, source bindings, and applicable location requirement specified above.
 The primary agent writes user-facing messages in Russian. Apply clear technical language: short sentences, one main idea per sentence, active voice, and consistent terms. ASD-STE100 applies to English; do not claim that Russian text conforms to it.
 Write all manager-to-worker, worker-to-manager, and worker-to-worker messages in English. Apply ASD-STE100 to the prose that agents write, including assignments, updates, handoffs, and reports.
 A worker's final report to the manager is inter-agent communication, regardless of the source task's language. The language of task text or source material alone does not override the report language. Use the task's required language for a separate deliverable and the report language for its handoff.
@@ -150,6 +151,7 @@ If a required source is inaccessible, supply only the essential excerpt. Do not 
 Keep rate tables, model-selection explanations, and the team forecast with the manager. Pass only applicable resource limits unless the worker's assigned role requires pricing or budget work.
 Use short handoffs that keep required facts.
 Use file and line references, a diff, or a saved log instead of complete files, histories, or successful tool output.
+For numeric line references, use tool-produced numbering for the exact file and revision, including blank lines. Number before selecting an excerpt so it retains absolute source line numbers. Do not infer source line numbers from combined output or diff display positions. Reuse suitable evidence already available; otherwise read only the needed numbered range. Where numeric lines are not required, prefer a stable identifier or exact quotation that locates the evidence. If the source changes, refresh affected references.
 Send inter-agent updates for blockers, necessary decisions, scope changes, or material findings.
 Do not send acknowledgments, repeated instructions, or duplicate summaries.
 Give one short acceptance report.
