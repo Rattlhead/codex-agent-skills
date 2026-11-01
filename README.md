@@ -1,14 +1,22 @@
 # Навыки и правила проектов для Codex
 
-`task-model-router` оценивает сложность и бюджет задачи. Он выбирает модель и усилие. Он решает, справится ли основной агент сам или нужны субагенты. `subagent-manager` выполняет это решение. Он делит работу, координирует исполнителей и принимает результаты. Установите оба навыка в соседние каталоги, чтобы менеджер находил роутер.
+Семь навыков помогают планировать работу, выбирать способ выполнения, проверять причины сбоев и улучшать инструкции. Они подходят для кода, документов, исследований, данных и графики. Условия запуска различаются: установка всех навыков не требует чтения или применения всех навыков в каждой задаче.
 
-`task-token-retrospective` помогает проекту предотвращать повторные затраты токенов. После крупной задачи он проверяет лишнюю работу, перегрузку контекста, поиск документов и причины неприменения правил. Каждое улучшение содержит условие применения, место хранения, ссылку для поиска, действие агента и короткую проверку. Если причина неизвестна, навык указывает недостающие доказательства и минимальную следующую проверку. Правки инструкций проекта и разделение документов требуют явного одобрения пользователя.
+| Навык | Когда применять | Результат и границы |
+| --- | --- | --- |
+| [`task-model-router`](skills/task-model-router/SKILL.md) | Нужен выбор модели, усилия, бюджета или способа выполнения | Оценка сложности и стоимости до приёмки; рекомендация не меняет модель чата |
+| [`subagent-manager`](skills/subagent-manager/SKILL.md) | Крупная работа, независимые результаты, запрос координации или делегирования | Выбор самостоятельного выполнения или делегирования через роутер, назначения и приёмка; размер задачи сам по себе не требует субагентов |
+| [`plan-agent-work`](skills/plan-agent-work/SKILL.md) | Нужна сложная дорожная карта, её ревью или возобновление | Проверяемые результаты, зависимости, владельцы и состояние; режим плана не разрешает реализацию |
+| [`autonomous-decision-agent`](skills/autonomous-decision-agent/SKILL.md) | Нетривиальный выбор внутри уже разрешённой длительной работы | Ограниченный совет исполнителя с правом чтения через текущего менеджера; не заменяет обязательное согласие пользователя |
+| [`root-cause-audit`](skills/root-cause-audit/SKILL.md) | Связанные симптомы, повторный сбой или аудит области системы | Причинные объяснения, альтернативы и покрытие ветвей с указанием доказательств; аудит не разрешает исправления |
+| [`task-token-retrospective`](skills/task-token-retrospective/SKILL.md) | Завершена крупная задача или запрошен разбор потерь токенов | Проверенные причины лишней работы и предложения предотвращения; не выдумывает расход или экономию |
+| [`agent-instructions-audit`](skills/agent-instructions-audit/SKILL.md) | Нужен аудит инструкций или ревью их изменений | Подтверждённые дефекты и точный предлагаемый diff; изменение инструкций требует одобрения этой правки |
 
-Навык сохраняет проверенные решения в существующей документации проекта при наличии разрешения. Это могут быть решения проблем среды, найденные документы, способы проверки и зависимости контрактов. Запись получает статус «готова к повторному применению» после проверки её доступности, условий применения и нужного действия. До одобрения правка остаётся предложением. Сохранение записи само по себе не доказывает экономию: её оценивают по последующей сопоставимой работе.
+Менеджеру нужен установленный `task-model-router`. Для исполнителя решений нужны менеджер, роутер и доступный инструмент субагентов. Остальные навыки подключают эти возможности только по необходимости. Установка сама по себе не предоставляет разрешений и не гарантирует доступность инструментов.
 
-Переиспользование агента разрешено только для продолжения исходного среза в том же контексте. Новая область, самостоятельный результат или независимое ревью требуют нового агента; подробные критерии — в [правиле переиспользования](skills/subagent-manager/SKILL.md#reuse-within-the-original-slice).
+Проверенные решения сохраняются в существующем источнике проекта только при наличии разрешения на запись. Сохранённая запись не доказывает экономию: её оценивают по последующей сопоставимой работе. Проверка инструкций не доказывает, что каждый агент выполнит их.
 
-`agent-instructions-audit` проверяет `AGENTS.md`, связанные профили и конфигурации агентов по [16 критериям](skills/agent-instructions-audit/references/checks.md). Он находит повторы, лишний текст, конфликты, повреждённые ссылки и ненужное чтение. Навык различает дефект, допустимое исключение и непроверенное предположение. По умолчанию он только проверяет и предлагает точный diff. Применение правки требует подтверждения этой правки. Проверка текста не доказывает, что каждый агент выполнит инструкции.
+Переиспользование агента разрешено только для продолжения исходного среза в том же контексте. Новая область, самостоятельный результат или независимое ревью требуют нового агента; критерии — в [правиле переиспользования](skills/subagent-manager/SKILL.md#reuse-within-the-original-slice).
 
 ## Универсальный шаблон проекта
 
@@ -18,9 +26,9 @@
 
 ## Установка навыков
 
-Можно попросить Codex: `$skill-installer Установи четыре навыка из https://github.com/Rattlhead/codex-agent-skills по путям skills/task-model-router, skills/subagent-manager, skills/task-token-retrospective и skills/agent-instructions-audit`.
+Можно попросить Codex: `$skill-installer Установи семь навыков из https://github.com/Rattlhead/codex-agent-skills по путям skills/task-model-router, skills/subagent-manager, skills/task-token-retrospective, skills/agent-instructions-audit, skills/root-cause-audit, skills/plan-agent-work и skills/autonomous-decision-agent`.
 
-Для ручной установки клонируйте репозиторий и скопируйте четыре навыка. Команды остановятся, если любой навык уже установлен:
+Для ручной установки клонируйте репозиторий и скопируйте семь навыков. Команды остановятся, если любой навык уже установлен:
 
 ```sh
 git clone https://github.com/Rattlhead/codex-agent-skills.git
@@ -28,18 +36,20 @@ cd codex-agent-skills
 (
 set -eu
 skill_root="${CODEX_HOME:-$HOME/.codex}/skills"
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
   if [ -e "$skill_root/$name" ] || [ -L "$skill_root/$name" ]; then
     echo "Уже существует: $skill_root/$name — остановка" >&2
     exit 1
   fi
 done
 mkdir -p "$skill_root"
-cp -R skills/task-model-router skills/subagent-manager skills/task-token-retrospective skills/agent-instructions-audit "$skill_root/"
+cp -R skills/task-model-router skills/subagent-manager skills/task-token-retrospective skills/agent-instructions-audit skills/root-cause-audit skills/plan-agent-work skills/autonomous-decision-agent "$skill_root/"
 )
 ```
 
-После установки начните новый ход в Codex. По умолчанию навыки могут применяться автоматически; явные вызовы приведены ниже.
+Проверьте, что навыки появились в доступном каталоге Codex. Если изменения не обнаружены, перезапустите приложение или CLI. Автовыбор зависит от запроса и среды; явные вызовы приведены ниже.
+
+Команды используют `${CODEX_HOME:-$HOME/.codex}/skills`, совместимый с существующей установкой этого набора. В актуальной [документации Codex](https://learn.chatgpt.com/docs/build-skills) пользовательский каталог — `~/.agents/skills`. Если ваша среда использует его, замените значение `skill_root` в обеих процедурах. Не создавайте две копии одноимённого навыка в разных обнаруживаемых каталогах.
 
 Если нужны только проверки инструкций, можно установить один навык: `$skill-installer Установи skills/agent-instructions-audit из https://github.com/Rattlhead/codex-agent-skills`. Он работает самостоятельно; менеджер и роутер нужны только при соответствующем выборе режима проверки.
 
@@ -53,7 +63,7 @@ set -eu
 git pull --ff-only
 skill_root="${CODEX_HOME:-$HOME/.codex}/skills"
 backup_dir="${CODEX_HOME:-$HOME/.codex}/skill-backups/$(date +%Y%m%d-%H%M%S)-$$"
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
   test -f "skills/$name/SKILL.md"
   test ! -L "$skill_root/$name"
   if [ -e "$skill_root/$name" ]; then
@@ -61,12 +71,12 @@ for name in task-model-router subagent-manager task-token-retrospective agent-in
   fi
 done
 mkdir -p "$backup_dir"
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
   if [ -d "$skill_root/$name" ]; then
     cp -R "$skill_root/$name" "$backup_dir/$name"
   fi
 done
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
   mkdir -p "$skill_root/$name"
   rsync -a --checksum --delete "skills/$name/" "$skill_root/$name/"
 done
@@ -74,12 +84,15 @@ echo "Обновлено. Резервная копия: $backup_dir"
 )
 ```
 
-Начните новый ход в Codex, чтобы использовать обновлённые навыки. Если потребуется восстановление, скопируйте содержимое нужной резервной версии обратно в соответствующие каталоги навыков.
+Проверьте обнаружение обновлений в каталоге навыков. Если изменения не появились, перезапустите Codex. Если потребуется восстановление, скопируйте содержимое нужной резервной версии обратно в соответствующие каталоги навыков.
 
 ## Примеры
 
 - `$task-model-router Оцени задачу и порекомендуй модель и уровень усилия.`
 - `$subagent-manager Разбей эту задачу на независимые части и координируй их выполнение.`
+- `$plan-agent-work Составь дорожную карту обновления отчёта. Только план; реализацию и проверки не запускай.`
+- `$autonomous-decision-agent Разреши нетривиальный выбор формата внутри текущей разрешённой длительной задачи через существующего менеджера.`
+- `$root-cause-audit Проверь причины повторных сбоев и связанных симптомов в указанной области. Покажи доказательства и непроверенные ветви. Ничего не исправляй.`
 - `$task-token-retrospective Кратко разбери потери токенов в завершённой задаче и предложи исправления правил.`
 - `$agent-instructions-audit Проверь AGENTS.md и связанные инструкции этого проекта. Покажи подтверждённые дефекты и предлагаемый diff без изменения файлов.`
 - `$agent-instructions-audit Проверь изменения инструкций относительно указанного коммита и затронутые зависимости. Не повторяй полный аудит без причины.`
@@ -87,6 +100,8 @@ echo "Обновлено. Резервная копия: $backup_dir"
 Логические случаи для проверки нового навыка и границы этой проверки описаны в [тестовой справке](tests/agent-instructions-audit/README.md). Они не входят в устанавливаемый навык и не читаются при обычном аудите.
 
 Проверка исправлений тарифов, повторного использования субагентов и сокращённых правил описана в [сценариях регрессии](tests/skill-rule-regressions/README.md).
+
+[Проверка маршрутов семи навыков](tests/template-skill-routing/README.md) содержит восемь исходных трасс и три точечных подтверждения. Она проверяет выбор правил и навыков; полное выполнение исходных задач, безусловное соблюдение инструкций и экономия токенов ею не подтверждены.
 
 Проверка неподтверждённых дат и цитирования описана в [поведенческих случаях](tests/evidence-provenance/README.md).
 

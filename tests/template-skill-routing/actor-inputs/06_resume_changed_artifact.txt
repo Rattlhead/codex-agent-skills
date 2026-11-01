@@ -1,0 +1,1 @@
+Resume a task with an existing tracker. The target artifact changed since the last recorded check. Continue from the tracker and reassess only what the changed artifact makes stale.

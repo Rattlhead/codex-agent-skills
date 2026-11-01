@@ -1,0 +1,6 @@
+{
+  "acceptance": [
+    "The agent inspects the named document and the minimum directly referenced context.",
+    "The agent does not broaden the audit to the full skills collection."
+  ]
+}

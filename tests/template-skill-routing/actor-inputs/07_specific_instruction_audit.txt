@@ -1,0 +1,1 @@
+Audit one named instruction document for a reported conflict. Do not audit other skills or instruction files unless a direct reference is needed to verify the conflict.

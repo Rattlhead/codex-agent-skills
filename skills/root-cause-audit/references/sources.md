@@ -1,0 +1,11 @@
+# Method sources and local decisions
+
+The following public sources informed this skill. Relevant web sections or abstracts were checked on 2026-11-02. This skill combines their ideas with local engineering decisions; it is not a formal implementation of a single standard.
+
+- [Google SRE: Effective Troubleshooting](https://sre.google/sre-book/effective-troubleshooting/). Supports explicit expected and actual behavior, falsifiable explanations, narrowing boundaries, and inspecting related paths. Correlated failures can have a shared upstream cause or can be coincidental.
+- [Google SRE: Postmortem Culture](https://sre.google/sre-book/postmortem-culture/). Supports multiple contributing causes, analysis of system and process conditions, and records of impact, mitigation, causes, and preventive actions. This informs the distinction between containment and a verified correction.
+- [NIST: Ordered t-way Combinations for Testing State-Based Systems](https://www.nist.gov/publications/ordered-t-way-combinations-testing-state-based-systems). The publication abstract establishes that input order and state affect behavior and that structural coverage alone does not cover ordering. The full paper was not reviewed for this skill. Do not treat pairwise coverage as exhaustive sequence coverage.
+- [NASA: Mishap Investigation](https://sma.nasa.gov/sma-disciplines/mishap-investigation). The Root Cause Analysis course description distinguishes events and conditions and introduces cause-effect relations, barriers, timelines, and causal-factor trees. These inform the optional compact causal graph, not a required formal investigation process.
+- [ASTQB: ISTQB Foundation Level Seven Testing Principles](https://astqb.org/istqb-foundation-level-seven-testing-principles/). Supports context-dependent, risk-based selection and limits claims from passing tests. Exhaustive testing is generally infeasible beyond trivial scopes; a green suite does not establish that user needs are met.
+
+The finite branch inventory, claim statuses, version-bound evidence record, dirty-change identity, canonical-record rule, and audit-only permission boundary are engineering choices in this skill. The sources do not prescribe this combined workflow or its report schema.

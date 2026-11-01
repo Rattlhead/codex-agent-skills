@@ -1,0 +1,1 @@
+Perform a read-only audit of several reported symptoms. Some supplied evidence predates the current checkout. Do not change files.

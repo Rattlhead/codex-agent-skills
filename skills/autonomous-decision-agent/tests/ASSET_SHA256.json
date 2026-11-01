@@ -1,0 +1,21 @@
+{
+  "sha256": {
+    "scripts/check_results.py": "6aea8505b51037e7a7d02bf66a3bebe0b4d54efadc3ffa927aebd961b577b28e",
+    "scripts/decision_contract.py": "5bb0601f11d7e85a94bc628e8976cc60479c26b728f85e20ecad2e97018f2606",
+    "scripts/validate_decision.py": "f209517aa5ed0dfe13ba3d8df5b3f15244e47704a4e92cdf276cd0634d5dd581",
+    "tests/README.md": "7384132d9c53d98433d2092e38b338d5af6e0270b29b60c3437ddc3d461265e3",
+    "tests/contract.json": "5b2e9a09079524c96f7be78c49a4f5470f1aabad29ed099d735d8f079557d03b",
+    "tests/fixtures/development-inputs.jsonl": "7678ce9ac15e2e605e93f21d13db72c1f45154c494a89f76d45144eb212e7366",
+    "tests/fixtures/development-oracles.jsonl": "a2b5e0c0dea161eed263ae9c5f143bbd7cf57adcb45cf32be7bb5b1d94a8ae71",
+    "tests/fixtures/holdout-inputs.jsonl": "ff355aa72905b5f3bdc1d89ef69f51c827783427ae42585fb544c9d4e1b4cb59",
+    "tests/fixtures/holdout-oracles.jsonl": "fcc42dfc8bd1482941e045b4561a5ffc6d8cdd4c5277351e7a72f5216d27c57b",
+    "tests/fixtures/index.json": "01b95d651cb5f4ca918aa34bd46ef527d2ba80897a5ccdbf5b300b7428282698",
+    "tests/protocol.md": "76cb50a75b18b66f85076110684f82f36fb461ef9fa4ec409d2e9e6b31f25467",
+    "tests/reference-run-summary.json": "671b7ac7f0d2f20d70a3b1706238cba28ea3517c96f538efba07fd2ed026ae7d",
+    "tests/reporting-addendum.md": "e50ce578ce0efa2f40a663b4e17fdb7144d6de1ddba35fa4a2c29e814deb7550",
+    "tests/rubric.json": "db7a56e9e6ea24144424fdb626cc597caf423c02494df51a2f5cf05bdb023ec5",
+    "tests/test_contract.py": "f4b35966af4bbf771b6d7bff9b0779ec64096a023c0d053aaf876352768ecf46",
+    "tests/test_evaluation.py": "0e5d462002d3138976dc32438bbf4d513bbfb00c4a0861ac0b80771fad94a918"
+  },
+  "scope": "Portable benchmark and runtime utilities; excludes this manifest itself. Source instructions are unchanged and identified by the reference summary source-bundle hash."
+}

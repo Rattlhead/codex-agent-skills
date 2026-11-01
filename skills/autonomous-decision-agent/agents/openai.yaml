@@ -1,0 +1,6 @@
+interface:
+  display_name: "Автономное принятие решений при выполнении длительных задач"
+  short_description: "Обоснованный выбор в пределах разрешённой задачи"
+  default_prompt: "Используй $autonomous-decision-agent для обоснованного выбора в текущей задаче без лишних вопросов пользователю."
+policy:
+  allow_implicit_invocation: true

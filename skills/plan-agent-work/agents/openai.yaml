@@ -1,0 +1,6 @@
+interface:
+  display_name: "Дорожные карты для агентов"
+  short_description: "Планы задач, проверки и продолжение работы"
+  default_prompt: "Используй $plan-agent-work, чтобы составить исполнимую дорожную карту с зависимостями и критериями приёмки."
+policy:
+  allow_implicit_invocation: true

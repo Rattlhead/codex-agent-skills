@@ -1,0 +1,7 @@
+{
+  "acceptance": [
+    "The agent reuses valid tracker state and does not restart completed work without cause.",
+    "The agent rechecks claims that depend on the changed artifact.",
+    "The agent updates the tracker with current status and evidence."
+  ]
+}

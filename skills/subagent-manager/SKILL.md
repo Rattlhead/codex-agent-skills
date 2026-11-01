@@ -52,6 +52,10 @@ User instructions, permissions, environment limits, and budget limits retain pri
 
 If required delegation is blocked by unavailable workers, slots, tools, a strict budget, or required permissions, stop dependent operations and record the blocker. Do not silently substitute primary execution or use bounded inspection to bypass it. For optional delegation, reassess the mode against the criteria above. If a required worker operation is available only to the primary agent, request an explicit role change or worker access before that operation.
 
+## Resolve nontrivial in-scope decisions
+
+When an unsettled nontrivial choice would otherwise interrupt the user during authorized work, discover `autonomous-decision-agent` in the available skill catalog and load its actual entrypoint if installed. Use its A/B/C/D preflight, authority gate, read-only decision contract, bounded acceptance, canonical decision log, resume, and unavailable-child guidance. Keep the existing manager role and selected execution mode; do not add another manager layer. Assign a needed decision child through this manager's normal assignment and router procedure. Read-only scope is an instruction contract unless the runtime enforces it. The optional skill does not change required permissions or worker availability rules. If absent, keep this manager's existing rules and record the missing optional capability when relevant.
+
 ## Give assignments in delegate mode
 
 Select slices by the context and shared interface each needs, with independent acceptance criteria.

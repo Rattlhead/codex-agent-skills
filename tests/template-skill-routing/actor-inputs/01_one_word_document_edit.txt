@@ -1,0 +1,1 @@
+In an existing document, change one misspelled word and preserve the rest.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Root Cause Audit"
+  short_description: "Audit causal mechanisms and related behavior paths"
+  default_prompt: "Use $root-cause-audit to audit this area, test causal explanations, and report branch coverage and evidence limits."

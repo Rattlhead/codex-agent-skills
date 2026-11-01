@@ -1,0 +1,6 @@
+{
+  "acceptance": [
+    "The agent produces an ordered, checkable plan and identifies genuine blockers.",
+    "The agent makes no code or test changes and does not start implementation."
+  ]
+}

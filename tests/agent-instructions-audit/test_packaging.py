@@ -11,7 +11,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 NAMES = ("task-model-router", "subagent-manager", "task-token-retrospective",
-         "agent-instructions-audit")
+         "agent-instructions-audit", "autonomous-decision-agent",
+         "plan-agent-work", "root-cause-audit")
 
 
 class PackagingTest(unittest.TestCase):
@@ -56,12 +57,15 @@ class PackagingTest(unittest.TestCase):
         self.assert_success(self.run_snippet(self.install))
 
     def test_install_preserves_existing_directory(self):
-        existing = self.target / NAMES[0]
-        existing.mkdir()
-        (existing / "local.txt").write_text("keep")
-        self.assertNotEqual(self.run_snippet(self.install).returncode, 0)
-        self.assertEqual((existing / "local.txt").read_text(), "keep")
-        self.assertFalse((self.target / NAMES[-1]).exists())
+        for name in NAMES:
+            with self.subTest(name=name):
+                existing = self.target / name
+                existing.mkdir()
+                (existing / "local.txt").write_text("keep")
+                self.assertNotEqual(self.run_snippet(self.install).returncode, 0)
+                self.assertEqual((existing / "local.txt").read_text(), "keep")
+                self.assertEqual({p.name for p in self.target.iterdir()}, {name})
+                shutil.rmtree(existing)
 
     def test_install_rejects_dangling_link(self):
         link = self.target / NAMES[-1]
@@ -89,10 +93,15 @@ class PackagingTest(unittest.TestCase):
         self.assertFalse(self.backup.exists())
 
     def test_update_missing_source_stops_before_writes(self):
-        (self.clone / "skills" / NAMES[-1] / "SKILL.md").unlink()
-        self.assertNotEqual(self.run_snippet(self.update).returncode, 0)
-        self.assertFalse(self.backup.exists())
-        self.assertEqual(list(self.target.iterdir()), [])
+        for name in NAMES:
+            with self.subTest(name=name):
+                source = self.clone / "skills" / name / "SKILL.md"
+                contents = source.read_bytes()
+                source.unlink()
+                self.assertNotEqual(self.run_snippet(self.update).returncode, 0)
+                self.assertFalse(self.backup.exists())
+                self.assertEqual(list(self.target.iterdir()), [])
+                source.write_bytes(contents)
 
 
 if __name__ == "__main__":

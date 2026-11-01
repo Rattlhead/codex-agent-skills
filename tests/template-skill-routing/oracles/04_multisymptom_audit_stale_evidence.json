@@ -1,0 +1,7 @@
+{
+  "acceptance": [
+    "The agent audits all reported symptoms within the read-only boundary.",
+    "The agent identifies stale evidence and does not treat it as current proof.",
+    "The agent makes no edits, cleanup, or inferred fixes."
+  ]
+}

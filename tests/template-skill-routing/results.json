@@ -1,0 +1,67 @@
+{
+  "kind": "routing_observations",
+  "task_execution_performed": false,
+  "token_savings_measured": false,
+  "initial_actors": {
+    "actor_a": {
+      "cases": {
+        "01_one_word_document_edit": {
+          "assessment": "unscorable_completion",
+          "observation": "Actor identified missing task contract and artifact, selected a document skill before discovering the format, and asked for the document format. The prompt supplies no document, target word, or format, so correction completion cannot be judged. Actor avoided unrelated coordination, environment, implementation-plan, and automatic-test work.",
+          "routing_note": "The initial format-specific skill selection was unsupported. Fresh confirmation corrected the route by identifying the format before selecting a skill."
+        },
+        "02_complex_code_plan_only": {
+          "assessment": "conditional_route",
+          "observation": "Actor preserved PLAN ONLY and produced a planning route without edits or checks. It explicitly skipped manager/router. Current template requires coordination only for substantial current planning; the prompt does not establish whether that threshold is met. No rule defect is established."
+        },
+        "03_decision_boundary": {
+          "assessment": "matches_oracle",
+          "observation": "Actor separated routine in-scope choice from the action requiring new approval, blocked the dependent action, and continued independent authorized work."
+        },
+        "04_multisymptom_audit_stale_evidence": {
+          "assessment": "matches_oracle",
+          "observation": "Actor routed to bounded read-only audit, rejected stale evidence as current proof, and identified coverage gaps without edits."
+        }
+      }
+    },
+    "actor_b": {
+      "cases": {
+        "05_graphics_delegation": {
+          "assessment": "unscorable_completion",
+          "observation": "Actor did not delegate without the required manager/router and identified the need for an artwork contract. The prompt supplies no artwork or exact change, so completion of authorized work cannot be judged."
+        },
+        "06_resume_changed_artifact": {
+          "assessment": "routing_gap",
+          "observation": "Actor proposed comparing versions, rechecking affected claims, and updating the existing tracker. It omitted the mandatory task-context route and the conditional plan-agent RESUME route."
+        },
+        "07_specific_instruction_audit": {
+          "assessment": "matches_oracle",
+          "observation": "Actor routed to a read-only, narrowly scoped instruction audit and proposed an approved-diff path without expanding to all skills."
+        },
+        "08_completed_retrospective": {
+          "assessment": "matches_oracle",
+          "observation": "Actor used the learning route only when the substantial-task or explicit-retrospective trigger applied; the prompt did not establish either trigger. Actor gave a concise completion response."
+        }
+      },
+      "protocol": "Actor sent a duplicate handoff message and final acknowledgement despite the actor protocol requiring final-only delivery. This is recorded as a protocol failure, separate from the routing oracles."
+    }
+  },
+  "fresh_confirmation": {
+    "model_effort": "6.1 Sol / medium",
+    "cases": {
+      "01_one_word_document_edit": {
+        "assessment": "input_limited",
+        "observation": "Route through task contract and artifact discovery; identify document format without assuming DOCX; compare the result after the edit. Do not add automatic TDD, coordination, or tool choice without a trigger. The supplied prompt still has no document or correction target, so execution remains unscorable."
+      },
+      "02_complex_code_plan_only": {
+        "assessment": "matches_plan_only_boundary",
+        "observation": "Use task contract plus plan-agent planning. Keep PLAN ONLY: no edits, execution checks, or worker starts; describe future checks as not run. Coordination/router applies only if the current planning work is substantial; planning for later implementation does not itself require delegation."
+      },
+      "06_resume_changed_artifact": {
+        "assessment": "matches_resume_boundary",
+        "observation": "Use task context and verification; inspect the tracker, restore mode and authority, and reassess only claims affected by the changed artifact. Use plan-agent execution guidance only if the tracker contains a roadmap. Do not restart all work or create a second tracker."
+      }
+    },
+    "protocol": "Fresh confirmation used final-only delivery without duplicate handoffs. It did not execute the described tasks or measure resource savings."
+  }
+}

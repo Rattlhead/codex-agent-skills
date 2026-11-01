@@ -1,0 +1,207 @@
+{
+  "development_ids": [
+    "ADA-001",
+    "ADA-002",
+    "ADA-203",
+    "ADA-204",
+    "ADA-005",
+    "ADA-006",
+    "ADA-207",
+    "ADA-208",
+    "ADA-009",
+    "ADA-210",
+    "ADA-011",
+    "ADA-012",
+    "ADA-013",
+    "ADA-014",
+    "ADA-015",
+    "ADA-016",
+    "ADA-217",
+    "ADA-118",
+    "ADA-019",
+    "ADA-020",
+    "ADA-021",
+    "ADA-022",
+    "ADA-023",
+    "ADA-024",
+    "ADA-125",
+    "ADA-126",
+    "ADA-027",
+    "ADA-128",
+    "ADA-129",
+    "ADA-030",
+    "ADA-131",
+    "ADA-032"
+  ],
+  "holdout_ids": [
+    "ADA-033",
+    "ADA-034",
+    "ADA-035",
+    "ADA-036",
+    "ADA-037",
+    "ADA-038",
+    "ADA-039",
+    "ADA-040",
+    "ADA-041",
+    "ADA-142",
+    "ADA-143",
+    "ADA-144"
+  ],
+  "batches": {
+    "development": [
+      [
+        "ADA-001",
+        "ADA-002",
+        "ADA-203",
+        "ADA-204",
+        "ADA-005",
+        "ADA-006",
+        "ADA-207",
+        "ADA-208"
+      ],
+      [
+        "ADA-009",
+        "ADA-210",
+        "ADA-011",
+        "ADA-012",
+        "ADA-013",
+        "ADA-014",
+        "ADA-015",
+        "ADA-016"
+      ],
+      [
+        "ADA-217",
+        "ADA-118",
+        "ADA-019",
+        "ADA-020",
+        "ADA-021",
+        "ADA-022",
+        "ADA-023",
+        "ADA-024"
+      ],
+      [
+        "ADA-125",
+        "ADA-126",
+        "ADA-027",
+        "ADA-128",
+        "ADA-129",
+        "ADA-030",
+        "ADA-131",
+        "ADA-032"
+      ]
+    ],
+    "holdout": [
+      [
+        "ADA-033",
+        "ADA-034",
+        "ADA-035",
+        "ADA-036",
+        "ADA-037",
+        "ADA-038"
+      ],
+      [
+        "ADA-039",
+        "ADA-040",
+        "ADA-041",
+        "ADA-142",
+        "ADA-143",
+        "ADA-144"
+      ]
+    ]
+  },
+  "repeat_complex_ids": [
+    "ADA-005",
+    "ADA-207",
+    "ADA-009",
+    "ADA-015",
+    "ADA-019",
+    "ADA-023",
+    "ADA-027",
+    "ADA-030",
+    "ADA-035",
+    "ADA-041"
+  ],
+  "paraphrase_equivalents": [
+    [
+      "ADA-001",
+      "ADA-002"
+    ],
+    [
+      "ADA-005",
+      "ADA-006"
+    ],
+    [
+      "ADA-013",
+      "ADA-014"
+    ],
+    [
+      "ADA-039",
+      "ADA-040"
+    ]
+  ],
+  "one_condition_flips": [
+    {
+      "pair": [
+        "ADA-203",
+        "ADA-204"
+      ],
+      "condition": "Only existing_decisions changes: current user selection flex-panel settles the same tested layout tradeoff.",
+      "expected_routes": [
+        "B",
+        "A"
+      ],
+      "expected_statuses": [
+        "AUTO_DECIDE",
+        "NO_DECISION_NEEDED"
+      ]
+    },
+    {
+      "pair": [
+        "ADA-207",
+        "ADA-208"
+      ],
+      "condition": "Only permissions changes: package installation now requires missing user approval.",
+      "expected_routes": [
+        "B",
+        "D"
+      ],
+      "expected_statuses": [
+        "AUTO_DECIDE",
+        "ESCALATE_TO_USER"
+      ]
+    },
+    {
+      "pair": [
+        "ADA-009",
+        "ADA-210"
+      ],
+      "condition": "Only evidence changes: the installed v3 lock entry and current runtime Promise result are now supplied.",
+      "expected_routes": [
+        "C",
+        "A"
+      ],
+      "expected_statuses": [
+        "NEED_EVIDENCE",
+        "NO_DECISION_NEEDED"
+      ]
+    },
+    {
+      "pair": [
+        "ADA-011",
+        "ADA-012"
+      ],
+      "condition": "Only task readiness changes: implementation is pending while requirements run.",
+      "expected_routes": [
+        "B",
+        "PENDING"
+      ],
+      "expected_statuses": [
+        "AUTO_DECIDE",
+        "DEFER"
+      ]
+    }
+  ],
+  "max_batch_size": 8,
+  "version": "3.0.0-pretrial",
+  "repeat_protocol": "Each arm has44core cases plus two fresh rounds of10repeat cases in batches8and2. Each repeated case appears in three independent contexts. Never tune a skill on its holdout."
+}
