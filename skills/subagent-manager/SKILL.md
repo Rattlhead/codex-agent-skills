@@ -135,6 +135,12 @@ Continue independent management work and coordinate unblocked worker work. Give 
 ## Limit communication
 
 Apply these rules to the manager and workers. Do not copy this section into each assignment.
+The primary agent writes user-facing messages in Russian. Apply clear technical language: short sentences, one main idea per sentence, active voice, and consistent terms. ASD-STE100 applies to English; do not claim that Russian text conforms to it.
+Write all manager-to-worker, worker-to-manager, and worker-to-worker messages in English. Apply ASD-STE100 to the prose that agents write, including assignments, updates, handoffs, and reports.
+Keep exact quotations, identifiers, commands, code, paths, and diagnostic evidence unchanged, including their original language. Use the language required by the task for deliverables.
+These rules govern communication; they do not prescribe the language of internal reasoning.
+For a requested ASD-STE100 compliance check, use the standard's rules and dictionary. Claim full compliance only after that check. Do not add a separate compliance review to each message.
+Explicit user requirements for another communication language take priority.
 Give only the context necessary for the owned slice.
 Keep shared background and general instructions in their existing sources. Reference only the relevant section when the slice needs it and the worker does not already have it.
 If a required source is inaccessible, supply only the essential excerpt. Do not create a separate briefing file merely to avoid copying a short assignment.
