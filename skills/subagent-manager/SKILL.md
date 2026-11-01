@@ -67,11 +67,13 @@ Give each worker a short, independent assignment with these items:
 
 - A stable slice ID in the existing brief or plan. Keep that ID for the slice's lifetime.
 - The outcome, purpose, directory, and owner.
-- Exact writable paths or read-only scope, exclusions, applicable rules, contracts, and essential evidence.
+- Exact writable paths or read-only scope, exclusions, applicable rules, contracts, and essential evidence. Bind each required source to its exact path and relevant section; give the base directory for relative paths.
 - Dependencies and owners of shared resources. Include process handles and artifact paths when necessary.
 - The slice-specific execution limits, observable acceptance criteria, and appropriate checks.
-- Any slice-specific communication requirement beyond the rules below.
+- The worker's report language and any separate deliverable language, with explicit user overrides. State this compactly even when the default below applies.
 - The required result: verdict, owned changes, checks, evidence, and remaining risk or blocker.
+
+Workers use the supplied source paths without reconstructing them from basenames. After a missing-source error, compare the attempted path with the assignment's path and check only that gap. Do not guess a relocated file. If the required source remains inaccessible, report the blocker; do not claim completion of work that depends on it. The manager may supply its essential excerpt as described below.
 
 Workers do not automatically receive the manager role.
 For nested delegation, explicitly give the worker an independent slice and a shared budget.
@@ -134,10 +136,11 @@ Continue independent management work and coordinate unblocked worker work. Give 
 
 ## Limit communication
 
-Apply these rules to the manager and workers. Do not copy this section into each assignment.
+Apply these rules to the manager and workers. Do not copy this section into each assignment; include the compact language requirement and source bindings specified above.
 The primary agent writes user-facing messages in Russian. Apply clear technical language: short sentences, one main idea per sentence, active voice, and consistent terms. ASD-STE100 applies to English; do not claim that Russian text conforms to it.
 Write all manager-to-worker, worker-to-manager, and worker-to-worker messages in English. Apply ASD-STE100 to the prose that agents write, including assignments, updates, handoffs, and reports.
-Keep exact quotations, identifiers, commands, code, paths, and diagnostic evidence unchanged, including their original language. Use the language required by the task for deliverables.
+A worker's final report to the manager is inter-agent communication, regardless of the source task's language. The language of task text or source material alone does not override the report language. Use the task's required language for a separate deliverable and the report language for its handoff.
+Keep exact quotations, identifiers, commands, code, paths, and diagnostic evidence unchanged, including their original language.
 These rules govern communication; they do not prescribe the language of internal reasoning.
 For a requested ASD-STE100 compliance check, use the standard's rules and dictionary. Claim full compliance only after that check. Do not add a separate compliance review to each message.
 Explicit user requirements for another communication language take priority.
