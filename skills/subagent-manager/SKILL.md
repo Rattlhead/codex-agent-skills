@@ -72,7 +72,7 @@ Give each worker a short, independent assignment with these items:
 - The slice-specific execution limits, observable acceptance criteria, and appropriate checks.
 - The worker's report language and any separate deliverable language, with explicit user overrides. State this compactly even when the default below applies.
 - Any required location format. If numeric lines are required, state compactly that references must use tool-produced numbering for the exact file and revision, including blank lines.
-- The required result: verdict, owned changes, checks, evidence, and remaining risk or blocker.
+- The required result: verdict, owned changes, checks, evidence, and remaining risk or blocker. Bind `Completion route` to the actual runtime: `final response` when it is automatically forwarded to the manager; otherwise name the destination and delivery channel.
 
 Workers use the supplied source paths without reconstructing them from basenames. After a missing-source error, compare the attempted path with the assignment's path and check only that gap. Do not guess a relocated file. If the required source remains inaccessible, report the blocker; do not claim completion of work that depends on it. The manager may supply its essential excerpt as described below.
 
@@ -153,8 +153,8 @@ Use short handoffs that keep required facts.
 Use file and line references, a diff, or a saved log instead of complete files, histories, or successful tool output.
 For numeric line references, use tool-produced numbering for the exact file and revision, including blank lines. Number before selecting an excerpt so it retains absolute source line numbers. Do not infer source line numbers from combined output or diff display positions. Reuse suitable evidence already available; otherwise read only the needed numbered range. Where numeric lines are not required, prefer a stable identifier or exact quotation that locates the evidence. If the source changes, refresh affected references.
 Send inter-agent updates for blockers, necessary decisions, scope changes, or material findings.
-Do not send acknowledgments, repeated instructions, or duplicate summaries.
-Give one short acceptance report.
+Give the manager one short completion handoff through the assigned completion route. When the runtime automatically forwards the final response to the parent, use that response unless the assignment explicitly names another destination or delivery channel. Ordinary wording such as "send the manager a handoff" does not specify another channel.
+Use coordination messages for the material updates above and necessary peer coordination. Omit acknowledgments that only say a handoff was sent, repeated instructions, and duplicate summaries.
 Report the result and acceptance evidence, not the full investigation history. Include a short cause only when it affects acceptance, the next action, or reusable knowledge.
 On follow-up, give changed facts, new evidence, and unresolved gaps. Reference unchanged accepted facts instead of repeating them.
 Expand an explanation only for a specific unresolved acceptance question or a user request.
