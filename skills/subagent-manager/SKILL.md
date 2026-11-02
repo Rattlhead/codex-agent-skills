@@ -27,9 +27,11 @@ Model IDs, tool parameters, file paths, and native agent tool names are technica
 
 ## Choose the execution mode
 
-Assess the whole current user goal, its context, and dependencies. Prefer one agent's continuous work cycle for closely connected context and sequential work, including long tasks. Task or file counts, professional roles, and roadmap size alone do not justify delegation.
+Assess the whole current user goal, its context, and dependencies. Apply the router's capability assessment before cost optimization or the default of one agent's continuous work cycle. If it finds the primary configuration inadequate for a required slice, select `execution_mode=delegate` and start an adequate worker for that slice through the configuration and assignment procedure below. A recommendation alone does not satisfy this requirement. Keep the primary agent as manager and acceptance owner; do not add a manager layer.
 
-Select `execution_mode=delegate` for useful independent parallel work; necessary isolation of context, permissions, or tools; independent review; demonstrated context overload or tool-selection problems; or a model configuration justified by the router's forecast of total cost through acceptance. Potential parallelism alone does not establish a benefit. Otherwise, select `execution_mode=primary_only`. Explicit user requirements and applicable constraints take priority, including required delegation or independent review.
+When the primary configuration is adequate, prefer one agent's continuous work cycle for closely connected context and sequential work, including long tasks. Task or file counts, professional roles, and roadmap size alone do not justify delegation.
+
+If the capability assessment does not already require delegation, select `execution_mode=delegate` for useful independent parallel work; necessary isolation of context, permissions, or tools; independent review; demonstrated context overload or tool-selection problems; or a model configuration justified by the router's forecast of total cost through acceptance. Potential parallelism alone does not establish a benefit. Otherwise, select `execution_mode=primary_only`. Explicit user requirements and applicable constraints take priority, including required delegation or independent review.
 
 Use the router to assess configuration adequacy, verified rates in the applicable payment unit, and forecast cost through acceptance. Model name, generation, or raw token rate alone cannot establish the benefit. Record unknown primary model, effort, payment mode, cache use, or cost inputs; do not invent them. Unknown cost alone does not require delegation.
 
@@ -50,7 +52,7 @@ In `delegate` mode, the primary agent coordinates and accepts supplied evidence.
 Defaults in called skills, including the router, audit, and retrospective, do not override the selected execution mode. Their standalone modes are unchanged.
 User instructions, permissions, environment limits, and budget limits retain priority. This skill does not guarantee automatic invocation in every project.
 
-If required delegation is blocked by unavailable workers, slots, tools, a strict budget, or required permissions, stop dependent operations and record the blocker. Do not silently substitute primary execution or use bounded inspection to bypass it. For optional delegation, reassess the mode against the criteria above. If a required worker operation is available only to the primary agent, request an explicit role change or worker access before that operation.
+If required delegation is blocked by unavailable workers, slots, tools, a strict budget, required permissions, or explicit user restrictions, stop dependent operations and record the blocker. Continue independent authorized work within the selected mode and role boundaries. Do not silently substitute primary execution or use bounded inspection to bypass it. Do not change global model settings or expand authorization to remove the blocker. For optional delegation, reassess the mode against the criteria above. If a required worker operation is available only to the primary agent, request an explicit role change or worker access before that operation.
 
 ## Resolve nontrivial in-scope decisions
 

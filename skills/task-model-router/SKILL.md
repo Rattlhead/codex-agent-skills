@@ -98,9 +98,12 @@ For the whole task, record `execution_mode=primary_only` or `execution_mode=dele
 The primary agent must make one decision for the whole task in the current assessment.
 After a material change or a new requirement for independent review, reconsider this decision.
 Use task complexity to select a model and effort. Do not use it to select the number of agents.
+First assess whether the primary model and effort can meet the requirements for each required slice. Use task requirements, observed failures, and applicable capability evidence. Model name, raw price, or unknown facts alone do not establish inadequate capability. An established capability gap does not require a failed attempt first.
+If the primary configuration is inadequate for any required slice, select `execution_mode=delegate`. Select an adequate, available worker model and effort through this skill, then start the worker for that slice through the applicable delegation workflow. This requirement applies even to one coherent slice. A recommendation alone is insufficient. Do not choose `primary_only` to reduce cost when the primary configuration is known to be inadequate. Keep coordination and acceptance with the primary agent; do not add a manager layer.
+Keep explicit user model and delegation restrictions, permissions, and budget limits. If they prevent the required worker configuration or start, stop dependent work and record the blocker. Continue independent authorized work within the selected mode and role boundaries. Do not substitute inadequate primary execution, silently change the global model, or expand authorization to proceed.
 Choose `delegate` if one or more of these requirements apply:
 
-- A worker can do a required task that the primary cannot do.
+- The capability assessment above requires it.
 - A separate review is required.
 - The user requests agents.
 
