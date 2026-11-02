@@ -1,6 +1,6 @@
 ---
 name: task-model-router
-description: Select a model and reasoning effort for a task or slice. Decide whether the primary agent should work alone or delegate. Compare capability, workload, rates, and total cost through acceptance. Use for model, budget, or delegation decisions. Do not start agents for classification.
+description: Select a model and reasoning effort for a task or slice. Preserve the primary agent's director role and delegation default, with an explicit short whole-goal exception. Compare capability, workload, rates, and total cost through acceptance. Use for model, budget, or delegation decisions. Do not start agents for classification.
 ---
 
 # Task Model Router
@@ -95,6 +95,7 @@ Missing facts, access, or verification are blockers or limitations. They do not 
 ## Select who does the work
 
 For the whole task, record `execution_mode=primary_only` or `execution_mode=delegate`.
+The primary agent is the director by default. Start from `delegate`; primary execution is an explicit exception for a confirmed short, self-contained whole goal.
 The primary agent must make one decision for the whole task in the current assessment.
 After a material change or a new requirement for independent review, reconsider this decision.
 Use task complexity to select a model and effort. Do not use it to select the number of agents.
@@ -110,8 +111,9 @@ Choose `delegate` if one or more of these requirements apply:
 - The user requests agents.
 
 Parallel slices alone do not require delegation.
-Use `primary_only` only when the entire goal is short and self-contained, the primary configuration is adequate, the context is bounded, and there is no series of substantive work stages or other required delegation. Ordinary supporting inspection, a small patch, and a focused check within one short local correction do not themselves constitute such a series. Do not count commands or create one worker per action.
-Optimize cost only among configurations that satisfy these gates. For optional delegation within the remaining eligible short tasks, compare the total cost through acceptance with primary-only work.
+Use `primary_only` only after an affirmative assessment that the entire goal is short and self-contained, the primary configuration is adequate, the context is bounded, and there is no series of substantive work stages or other required delegation. Ordinary supporting inspection, a small patch, and a focused check within one short local correction do not themselves constitute such a series. Never extract a small pending substep from an already delegated larger goal to claim this exception. Do not count commands or create one worker per action.
+If whole-goal eligibility is uncertain, use only minimal bounded clarification or discovery needed to resolve it. Do not start an agent just for classification. Uncertainty does not authorize primary execution; retain `delegate` if the exception remains unconfirmed.
+Optimize cost only among configurations that satisfy these gates. Only after the short-task exception is established, compare optional delegation with primary-only work on total cost through acceptance. Price alone cannot establish the exception or make primary execution the default.
 If both modes meet these requirements, choose the lower-cost mode.
 If costs are unknown, use the available qualitative evidence and record the uncertainty and decision basis.
 Do not claim that either mode is cheaper without supporting evidence.

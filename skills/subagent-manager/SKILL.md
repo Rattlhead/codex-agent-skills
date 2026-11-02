@@ -1,12 +1,13 @@
 ---
 name: subagent-manager
-description: Choose whether to delegate work based on context, independence, permissions, review needs, and total cost. Coordinate delegated slices through scoped assignments, resource ownership, acceptance evidence, and integration. Use for explicit manager or delegation requests, execution planning for substantial work, and independent review.
+description: Direct work as the primary agent by default. Delegate execution, monitor quality, assign follow-up work, and accept evidence. Use for manager or delegation requests and work beyond a confirmed short standalone whole-goal exception.
 ---
 
 # Subagent Manager
 
-Before project operations or full implementation research, assess the whole current user request and select an execution mode below.
-In `delegate` mode, the manager directs scope, dependencies, assignments, blockers, and acceptance, coordinates integration, and keeps brief status in the conversation.
+The primary agent is the director by default. Use `delegate` mode unless the whole current user goal qualifies for the explicit short-task exception below.
+Before project operations or full implementation research, assess that whole goal and record the execution mode.
+In `delegate` mode, the manager directs scope, dependencies, assignments, blockers, and acceptance, monitors work and quality, assigns follow-up work, coordinates integration, and keeps brief status in the conversation.
 The primary agent remains responsible for the shared contract, integration coordination, and final acceptance. Assigned workers execute integration.
 Workers examine their slices, make their results, and do the necessary checks. Without a specified gap, do not repeat their research.
 Keep project rules, authorization, and environment limits.
@@ -27,13 +28,13 @@ Model IDs, tool parameters, file paths, and native agent tool names are technica
 
 ## Choose the execution mode
 
-Assess the whole current user goal, its anticipated context, work stages, and dependencies before full research. Apply the router's ordered gates: first sufficient primary capability, then protection of primary context even when capability is sufficient, then cost optimization among permitted configurations. Follow its mandatory delegation decision and start the selected worker through the configuration and assignment procedure below. A recommendation alone does not satisfy required delegation. Keep the primary agent as manager and acceptance owner; do not add a manager layer.
+Assess the whole current user goal, its anticipated context, work stages, and dependencies before full research. Start from `delegate`. Use the router to establish whether the entire goal meets the short-task exception, then optimize cost among permitted configurations. Follow its delegation decision and start the selected worker through the configuration and assignment procedure below. A recommendation alone does not satisfy required delegation. Keep the primary agent as manager and acceptance owner; do not add a manager layer.
 
-`primary_only` is limited to a short, self-contained whole goal with adequate primary capability, bounded context, and no series of substantive work stages or other required delegation. Use the router's distinction between substantive stages and supporting actions within a short local correction. Do not defer delegation until context overload or treat a long connected chain as a short goal. Keep coupled stages with one worker when its assigned scope and permissions permit. Task or file counts, professional roles, and potential parallelism alone do not justify more workers.
+Select `primary_only` only after an affirmative assessment that the entire goal is short and self-contained, primary capability is adequate, context is bounded, and there is no series of substantive work stages or other required delegation. Use the router's distinction between substantive stages and supporting actions within a short local correction. If eligibility is uncertain, use only minimal bounded clarification or discovery needed to resolve it; do not turn uncertainty into primary execution or start an agent just for classification. If the exception remains unconfirmed, retain `delegate`. Never extract a small pending substep from an already delegated larger goal to claim this exception. Do not defer delegation until context overload or treat a long connected chain as a short goal. Keep coupled stages with one worker when its assigned scope and permissions permit. Task or file counts, professional roles, and potential parallelism alone do not justify more workers.
 
 Use the router to assess configuration adequacy, verified rates in the applicable payment unit, and forecast cost through acceptance. Model name, generation, or raw token rate alone cannot establish the benefit. Record unknown primary model, effort, payment mode, cache use, or cost inputs; do not invent them. Unknown cost alone does not require delegation.
 
-Where both modes meet the router's gates, let it compare total cost and select an adequate mode. Reassess before further substantive work when new evidence changes the anticipated context, stages, dependencies, cost, or required capability. Do not use reassessment to bypass user constraints. Do not change the primary agent's global model settings.
+Only after the short-task exception is established may the router compare optional delegation with primary execution. Reassess before further substantive work when new evidence changes the anticipated context, stages, dependencies, cost, or required capability. Do not use reassessment to bypass user constraints. Do not change the primary agent's global model settings.
 
 ## Select the configuration
 
