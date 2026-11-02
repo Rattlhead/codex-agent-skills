@@ -6,6 +6,8 @@ Use this reference only within the authorization selected in SKILL.md.
 
 Find and update the existing canonical tracker. Do not create a second manual queue. Designate one status writer; workers submit receipts to that writer. Keep derived views synchronized or regenerate them from the canonical state.
 
+Use its executor/context map when work becomes ready. Validate the affected assignment and current manager/router conditions before dispatch, rather than rebuilding all assignments or loading each owner's investigation into director context. Record actual starts separately from planned owner labels. Keep production and integration with workers in delegate mode.
+
 Use the project's labels. Their logical meanings should distinguish waiting, in progress, review, done, blocked, and cancelled. A ready task has all preconditions met. A done task has accepted output and the required proof. A blocked task states the blocker and the affected scope. Continue unblocked authorized work. Do not treat a timeout, lost response, or exhausted budget as completion.
 
 Task state is separate from check outcome. Record checks as success, failure, not run, or unknown. Do not translate unknown into success.
@@ -33,7 +35,8 @@ Store large intermediate outputs as artifacts. Use brief receipts with artifact 
 ```text
 Goal, active mode, authorization, and constraints:
 Accepted outputs: artifact + content identity + proof + proof limits
-Active work: owner, state, resources, pending actions
+Executor map: planned owners and slice/step IDs; actual agent bindings and configurations
+Active work: owner, original scope, state, resources, pending actions
 Artifacts and inputs required to continue:
 Decisions and unresolved questions:
 Blockers and their affected scope:
@@ -42,6 +45,8 @@ Native tool/API state needed: handles, sessions, pending-call identifiers
 ```
 
 Preserve required native API and tool state using the environment's supported mechanism. A prose checkpoint does not restore a runtime, a session, or a pending call. On resume, verify their actual status before continuing. If that state is unavailable, describe the recovery limit and rebuild only what is safe within the active mode.
+
+Validate existing assignments, input revisions, and readiness on resume. Preserve valid artifacts, accepted evidence, and owner context. Reassess only owners, dependencies, context bindings, or model decisions affected by a change. Apply the manager's original-slice reuse rules before continuing a worker; do not treat a planned label or stale agent ID as a live executor. In PLAN ONLY, describe future execution checks and worker starts without performing them.
 
 ## Evaluate the method
 

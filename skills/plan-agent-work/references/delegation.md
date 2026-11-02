@@ -1,23 +1,40 @@
 # Delegation and ownership
 
-## Choose delegation for a concrete benefit
+## Plan owners before execution
 
-Delegate when independent parallel work, bounded context, isolated tools, or independent review has enough benefit to pay for assignment, coordination, and integration. Otherwise keep one owner. Specialization helps when it changes the method or evidence quality; a role name alone does not do this. Confirm that each worker has adequate tools and permissions.
+Use the actual manager/router assessment of the whole goal. The director/delegate default and confirmed short whole-goal exception apply before optimizing coordination cost. Do not use one short roadmap step to claim `primary_only` for a larger goal. Planning does not grant permission to start execution workers.
 
-Keep tightly coupled planning, implementation, and the owner's tests with one owner. Make research questions and change scopes disjoint. Different files or worktrees do not prove independence: check interfaces, databases, ports, browser sessions, the Git index, and external systems. Assign one owner or serialize access to each shared resource. Record the boundary before dispatch.
+In the existing canonical plan, record a compact executor/context map. Use planned labels such as `W1`; these are ownership proposals, not agent IDs or evidence of a start. Assign connected steps to one coherent slice where their shared context, scope, and permissions allow it. Keep tightly coupled investigation, implementation, and the owner's tests together. Do not create a worker for each step or role, recursive managers, or parallelism without a concrete benefit. Preserve required independent review.
 
-The primary agent owns the goal, decisions, canonical state, integration accountability, and final acceptance. It may do useful non-overlapping work only when the current execution mode permits it. If `subagent-manager` reserves production changes and integration to workers in delegate mode, preserve that restriction. The primary may then perform only its permitted bounded checks of named gaps. Accountability does not grant permission to implement or integrate personally. Do not introduce a default hierarchy or grant recursive delegation by default.
+```text
+Planned owner / stable slice ID / connected step IDs:
+Outcome and original role/scope; writable paths or read-only resources; exclusions:
+Essential inputs: exact source paths + relevant sections/revisions; base for relative paths:
+Context retained by owner; compact decisions/interfaces/evidence needed by director:
+Dependencies, readiness, shared resources/interfaces/checks and their owners:
+Model/effort recommendation + router assessment reference; unresolved limits:
+Acceptance and artifact receipt: output location/identity + criteria + checks + limits:
+Start state: planned; actual agent ID/configuration/delivery route only after start
+```
+
+Bind each step to its planned owner and model/effort recommendation; refer to the owner's unchanged assessment instead of repeating it. Include an overall model/effort recommendation. When a step needs a configuration change, name it. For test creation or change, include its recommendation explicitly. Use the router's current schema, effective rate reference, and whole-team cost basis, including handoffs and acceptance. Record unknown billing or forecasts as unknown; do not claim savings without measurements.
+
+Keep this map in the canonical plan, not in a second queue or files per step. Put detailed working material in artifacts and give the director short receipts and source bindings. Do not pass full conversation history when a bounded assignment suffices. Confirm actual context inheritance and tools before dispatch; planned context is not a claim that the runtime transfers it.
+
+The primary owns overall decisions, canonical state, integration accountability, and final acceptance. In delegate mode, production work and integration belong to assigned workers. Director checks remain bounded to named gaps under the manager's rules; accountability does not grant implementation permission.
 
 ## Assign only ready work
 
 Check preconditions before starting a worker. Do not occupy a worker while a required artifact, decision, permission, or dependency is missing. Dispatch ready tasks as dependencies clear; use waves only when their shared boundary helps coordination.
+
+Independent ready slices may run concurrently only with explicit resource/interface ownership and within actual runtime concurrency and budget limits. Different files do not prove independence: account for databases, ports, browser state, servers, the Git index, builds, and external systems. Serialize conflicting access. Do not invent equal-load scheduling, fixed worker quotas, or token thresholds.
 
 Inspect the actual agent API. Verify how context inheritance works and whether clean or inherited context is supported. Choose the supported form that fits the task. Explicitly pass critical constraints even when context is inherited. Do not assume a fork includes tools, runtime state, files, or permissions that its schema does not promise.
 
 ## Assignment template
 
 ```text
-Task ID: stable ID from the canonical plan
+Planned owner and stable slice/step IDs from the canonical plan:
 Role and goal:
 Inputs: verified artifacts and minimum relevant context
 Bounds: owned changes, shared resources, exclusions
@@ -30,6 +47,8 @@ No recursive delegation unless explicitly authorized
 ```
 
 Use `task-model-router` for model and effort decisions when available, as routed by SKILL.md. Do not copy its algorithms or price tables into an assignment.
+
+At dispatch, validate the map against current inputs and the manager/router procedure. Record the actual agent binding only after a successful start. Continue an existing worker only within its original slice, role, scope, permissions, and result contract. A changed domain or independent review needs a new worker and bounded handoff, not repurposing an idle worker.
 
 ## Receipts and review
 
