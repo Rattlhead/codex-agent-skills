@@ -218,6 +218,7 @@ Do not start a classification agent or make a benchmark for each choice.
 
 After failure, find the cause: reasoning weakness, unclear contract, tool failure, test-system failure, or missing environment.
 For deeper analysis, increase effort. For insufficient capability, select a model with sufficient capability.
+When evidence shows that the selected model lacked required capability, revise the internal estimate and retry allocation as needed; a low initial estimate does not require repeating an inadequate configuration. Keep prior spend, remaining work, handoff, and acceptance in the revised total forecast, and continue the same slice under existing permissions. Do not increase without limit or jump to the most expensive model. An explicit user cap remains binding: if an adequate attempt cannot fit within it, stop dependent paid starts and ask only for the required cap change.
 Usually, change one parameter at a time. Do not select candidates again if evidence already shows insufficient capability.
 Keep the least expensive configuration with an accepted result.
 After a material change to the assessment, use this skill again.
