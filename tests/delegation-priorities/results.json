@@ -1,0 +1,161 @@
+{
+  "trial": {
+    "type": "read_only_instruction_routing_analysis",
+    "underlying_tasks_executed": false,
+    "workers_started": false,
+    "permissions_changed": false,
+    "checks_run": false,
+    "limitations": [
+      "This records document-level routing judgments, not runtime execution or performance.",
+      "Specific model IDs, effort levels, account/payment mode, rates, counters, and cost inputs are absent from the case facts. No exact forecast or model assignment is claimed.",
+      "The stated worker availability and capability facts are scenario inputs, not independently verified runtime availability.",
+      "These observations are not new oracles and were not used to retune expected outputs."
+    ]
+  },
+  "revisions": {
+    "skills/subagent-manager/SKILL.md": "85dc9808d8a7cd062265867bf9e7728c40dcf7bba26e47affb527ae2c7a6fc4e",
+    "skills/task-model-router/SKILL.md": "ba083e05d0c6d7fb3a683ab15c547095c0949c895361f3c55c65a52476bed22f",
+    "templates/universal-project/AGENTS.md": "91b2390f3bf1d027b96c34dbe99d535423fcc9c85acf5194d0df427390dfa3ac",
+    "templates/universal-project/agent-rules/coordination.md": "f033b837ee780e4393057233136f9092be475b194d2fc241d2e9e0da762a4a36"
+  },
+  "cases": [
+    {
+      "id": "A",
+      "raw_case_facts": "Whole user goal: correct one word in known plaintext. Source is available. Primary is capable. Narrow diff verification. No other work.",
+      "mode": "primary_only",
+      "who_executes": "Primary agent performs the one-word correction and its narrow acceptance check.",
+      "next_allowed_actions": [
+        "Make the bounded correction after assessing the whole goal.",
+        "Inspect the diff and perform the stated narrow verification."
+      ],
+      "blocked_work_or_permissions": [],
+      "source_gap": null,
+      "unknowns": [
+        "The primary model ID and effort are not supplied, so they cannot be recorded as actual values.",
+        "No worker configuration, prices, or cost advantage is supplied; optional delegation has no supported cost advantage here."
+      ],
+      "basis": "The whole goal is short and self-contained, capability is adequate, context is bounded, and the local correction plus focused check are supporting actions within one task."
+    },
+    {
+      "id": "B",
+      "raw_case_facts": "Whole user goal: one coherent feature requiring investigation of events, contract update, implementation, and integration checks, with substantial expected logs/context. Primary is capable. A worker is available. Budget allows.",
+      "mode": "delegate",
+      "who_executes": "A worker owns the coherent feature slice, including its investigation, contract update, implementation, and integration checks. Primary retains coordination and final acceptance.",
+      "next_allowed_actions": [
+        "Before the worker starts, use the router to select a supported model and effort and forecast cost through acceptance.",
+        "Give the worker the whole coherent slice, its scope, dependencies, permissions, and acceptance criteria.",
+        "Primary accepts the result against the stable contract and evidence."
+      ],
+      "blocked_work_or_permissions": [],
+      "source_gap": null,
+      "unknowns": [
+        "Primary and worker model IDs, effort, payment mode, rates, token estimates, and numeric budget are not supplied. The scenario says the budget allows, but an exact forecast cannot be reconstructed.",
+        "No worker start or underlying feature work was performed in this trial."
+      ],
+      "basis": "The expected investigation, contract, implementation, and integration stages plus substantial logs/context require delegation before full research. A single coherent slice may stay with one worker; primary capability and the fact that there is only one result do not remove the context gate."
+    },
+    {
+      "id": "C",
+      "raw_case_facts": "One required slice is beyond primary configuration capability and within an available worker configuration. The child costs more and handoff overhead exists. Budget allows.",
+      "mode": "delegate",
+      "who_executes": "An adequate worker executes the capability-gap slice; primary remains manager and acceptance owner.",
+      "next_allowed_actions": [
+        "Use the router to confirm a supported adequate worker configuration and forecast the full slice through acceptance.",
+        "Assign the slice with a verified handoff and acceptance criteria."
+      ],
+      "blocked_work_or_permissions": [],
+      "source_gap": null,
+      "unknowns": [
+        "Exact model IDs, effort, rate basis, cost, and budget amounts are not supplied.",
+        "No worker start or underlying slice execution was performed in this trial."
+      ],
+      "basis": "A known primary capability gap makes delegation mandatory for even one coherent slice. Higher child cost and handoff overhead cannot justify substituting an inadequate primary configuration. Cost and budget still require a forecast before a real start."
+    },
+    {
+      "id": "D",
+      "raw_case_facts": "Same long, context-heavy feature chain as B. No workers are available. Primary has capacity. External user permissions are unchanged.",
+      "mode": "delegate",
+      "status": "blocked",
+      "who_executes": "No one may execute the dependent feature work under the stated conditions. Primary remains coordinator and must report the blocker.",
+      "next_allowed_actions": [
+        "Record worker unavailability as a blocker and stop dependent investigation, contract changes, implementation, and integration work.",
+        "Continue only work that is independently authorized and does not substitute for the blocked delegated slice."
+      ],
+      "blocked_work_or_permissions": [
+        "Do not silently switch to primary-only because the primary has capacity.",
+        "Do not change external user permissions or expand authorization to remove the blocker."
+      ],
+      "source_gap": null,
+      "unknowns": [
+        "The case does not identify any independent authorized work that can advance without the feature slice.",
+        "Model, effort, rates, and forecast inputs remain unspecified."
+      ],
+      "basis": "The B context/stage gate still requires delegation. The manager's blocker rule forbids substituting primary execution or changing authorization."
+    },
+    {
+      "id": "E",
+      "raw_case_facts": "Whole user goal: tiny known bug fix in one function. An existing focused regression is available. A local patch and check fit bounded primary context. Primary is capable.",
+      "mode": "primary_only",
+      "who_executes": "Primary performs the local fix and runs the existing focused regression as the acceptance check.",
+      "next_allowed_actions": [
+        "Inspect the relevant function and its direct contract.",
+        "Apply the local fix and run the existing focused regression.",
+        "Inspect the diff and report the check result."
+      ],
+      "blocked_work_or_permissions": [],
+      "source_gap": null,
+      "unknowns": [
+        "Primary model ID and effort are not supplied.",
+        "No supported cost advantage for optional delegation is stated."
+      ],
+      "basis": "A short local correction with its focused check is explicitly treated as one short goal, not a series of substantive stages."
+    },
+    {
+      "id": "F",
+      "raw_case_facts": "User asks for plan only: a large dependency map requiring broad source investigation. No source edits or actual checks are authorized. A worker is available.",
+      "mode": "delegate",
+      "who_executes": "A worker can investigate and prepare the plan/dependency map within the plan-only scope. Primary coordinates and accepts the plan.",
+      "next_allowed_actions": [
+        "Use the router before full investigation to select a supported configuration and forecast the planning work through acceptance.",
+        "Assign read-only source investigation and plan preparation with exact scope and plan acceptance criteria.",
+        "Keep the output at planning level; do not edit source or run project checks."
+      ],
+      "blocked_work_or_permissions": [
+        "Source edits and actual project checks remain outside the user's plan-only authorization."
+      ],
+      "source_gap": null,
+      "unknowns": [
+        "Specific model IDs, effort, rates, payment mode, budget, and estimated context are absent, so no exact forecast is available.",
+        "The case states that a worker is available but does not state which worker configuration is supported."
+      ],
+      "basis": "The plan requires broad source investigation and substantial context, which invokes the delegation gate before full research. Plan-only limits the work product and permissions; it does not remove the context gate."
+    },
+    {
+      "id": "G",
+      "raw_case_facts": "A selected delegate owns one substantial coherent slice. The worker completed its first stage and must continue the same original context/result. Domain and review role do not change.",
+      "mode": "delegate",
+      "status": "continuation",
+      "continuation": {
+        "worker": "same worker",
+        "slice": "original slice",
+        "context": "same context"
+      },
+      "who_executes": "The same worker continues the original slice in the same context. Primary continues coordination and acceptance ownership.",
+      "next_allowed_actions": [
+        "Verify that slice ID, result contract, acceptance criteria, scope, project, role, permissions, ownership, and artifact purpose still match.",
+        "Provide current revisions and relevant changes, then use a follow-up for the original slice.",
+        "Use a new worker with a short verified handoff only if a required identity or context condition changes, or if a necessary configuration change cannot be made through follow-up."
+      ],
+      "blocked_work_or_permissions": [
+        "Do not repurpose the completed worker for an unrelated slice or independent review through follow-up.",
+        "Do not change the domain, result, role, or permissions through a task-bearing follow-up."
+      ],
+      "source_gap": null,
+      "unknowns": [
+        "Current artifact revisions and any material changes must be supplied before the continuation message; the scenario does not list them.",
+        "No continuation message or worker operation was performed in this trial."
+      ],
+      "basis": "The manager permits reuse only within the worker's original slice and requires the original identity and purpose to remain stable. The supplied facts preserve them, so same-context follow-up is the allowed continuation route."
+    }
+  ]
+}

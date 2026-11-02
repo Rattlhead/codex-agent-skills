@@ -101,18 +101,21 @@ Use task complexity to select a model and effort. Do not use it to select the nu
 First assess whether the primary model and effort can meet the requirements for each required slice. Use task requirements, observed failures, and applicable capability evidence. Model name, raw price, or unknown facts alone do not establish inadequate capability. An established capability gap does not require a failed attempt first.
 If the primary configuration is inadequate for any required slice, select `execution_mode=delegate`. Select an adequate, available worker model and effort through this skill, then start the worker for that slice through the applicable delegation workflow. This requirement applies even to one coherent slice. A recommendation alone is insufficient. Do not choose `primary_only` to reduce cost when the primary configuration is known to be inadequate. Keep coordination and acceptance with the primary agent; do not add a manager layer.
 Keep explicit user model and delegation restrictions, permissions, and budget limits. If they prevent the required worker configuration or start, stop dependent work and record the blocker. Continue independent authorized work within the selected mode and role boundaries. Do not substitute inadequate primary execution, silently change the global model, or expand authorization to proceed.
+Next assess the anticipated primary context for the whole goal, even when the primary configuration is adequate. Select `execution_mode=delegate` for a series of substantive work stages, such as investigation, implementation, and integration, or when the expected research, artifacts, dependencies, or checks require substantial context. Make this decision before full research; do not wait for context overload. Describe the expected context burden qualitatively. Do not invent numerical thresholds. Calling a long connected chain one coherent slice does not permit `primary_only`; assign that chain to one worker when its scope and permissions permit.
 Choose `delegate` if one or more of these requirements apply:
 
 - The capability assessment above requires it.
+- The anticipated work stages or context burden require it.
 - A separate review is required.
 - The user requests agents.
 
 Parallel slices alone do not require delegation.
-For optional delegation, compare the total cost through acceptance with primary-only work.
-If both modes meet the task requirements, choose the lower-cost mode.
+Use `primary_only` only when the entire goal is short and self-contained, the primary configuration is adequate, the context is bounded, and there is no series of substantive work stages or other required delegation. Ordinary supporting inspection, a small patch, and a focused check within one short local correction do not themselves constitute such a series. Do not count commands or create one worker per action.
+Optimize cost only among configurations that satisfy these gates. For optional delegation within the remaining eligible short tasks, compare the total cost through acceptance with primary-only work.
+If both modes meet these requirements, choose the lower-cost mode.
 If costs are unknown, use the available qualitative evidence and record the uncertainty and decision basis.
 Do not claim that either mode is cheaper without supporting evidence.
-If there is no supported cost advantage for optional delegation and the primary agent can complete the task, choose `primary_only`.
+If there is no supported cost advantage for optional delegation and the whole goal qualifies for `primary_only`, choose `primary_only`.
 Keep responsibility for the shared contract, integration coordination, and final acceptance with the primary agent.
 In `delegate` mode, assign execution of integration to workers. In `primary_only` mode, the primary agent performs the work and integration.
 Honor an explicit request to delegate unless tool access, permissions, or budget limits prevent it.
