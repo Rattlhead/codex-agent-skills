@@ -204,6 +204,16 @@ After integration, complete the overall user goal.
 Continue from the last handoff. Do not invent missing counters or close another agent's tasks.
 Give the outcome, verification, and material limitations. Do not claim savings without measurements.
 
+## Choose local checkpoints
+
+The manager may select a local checkpoint when it helps review, handoff, or recovery after a significant coherent result. Useful boundaries include a large completed task, an important contract or architecture change, or integration. Select checkpoints by their value, not by command, edit, or task counts. Routine small actions do not each need a commit.
+
+Choose the checkpoint before assignment when practical, or at an accepted milestone. Record the checkpoint owner, exact accepted scope, trigger and required acceptance, and existing local-commit authority in the existing brief or status. Use an authorized existing executor or integration owner. In `delegate` mode, the manager assigns the Git work; it does not perform the commit. Do not create a worker only for bookkeeping or give two owners concurrent access to the shared Git index. Reuse existing permission; do not request approval again for each checkpoint already within that authority.
+
+A worker's completion report does not establish manager acceptance. Release a planned checkpoint only after manager acceptance of the covered output and checks, unless an explicit, preauthorized acceptance mechanism already covers that decision. A planned post-acceptance commit can require a follow-up to the same slice owner. Apply the original-slice reuse rules: the worker's scope and permissions must already cover that checkpoint. Do not use a checkpoint assignment to expand permissions or change the worker's domain.
+
+For the Git procedure, discover `plan-agent-work` in the available skill catalog and resolve its actual location. From that discovered skill root, load only the `Local milestone commits` section of `references/execution.md`; do not load the full planning workflow or create a roadmap for a commit. Use the existing brief or status when there is no roadmap. If that procedure is unavailable, use a verified existing project checkpoint procedure. If neither is available, or authority or an eligible owner is missing, report the checkpoint as blocked and continue independent authorized work. Do not invent authority or silently install a skill. Keep the Git procedure in one place.
+
 ## Evaluate architecture changes
 
 When changing the agent architecture, compare alternatives on the same end-to-end tasks. Assess completion of the whole goal and quality, plus total cost, latency, and rework where telemetry is available. Repeat affected important cases. This comparison is for architecture changes, not a benchmark before each ordinary task. Mark missing counters as unknown; do not claim measured savings without them.
