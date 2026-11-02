@@ -4,7 +4,9 @@ Use this reference only within the authorization selected in SKILL.md.
 
 ## Maintain one state source
 
-Find and update the existing canonical tracker. Do not create a second manual queue. Designate one status writer; workers submit receipts to that writer. Keep derived views synchronized or regenerate them from the canonical state.
+Find the canonical plan package and its status authority, normally the index. Do not create a second manual queue. Designate one status writer; workers submit receipts to that writer. Keep derived views synchronized or regenerate them from the authority. In delegate mode the manager assigns plan-file updates to existing workers within their roles; do not start a new worker only for bookkeeping. Assign non-overlapping file ownership or serialize edits to a shared file.
+
+Write the output artifact, then record its evidence receipt in the relevant step file before the status writer records completion in the index. Accept the required proof before marking done. Batch independent file writes when safe; receipt-to-completion updates are dependent. If a write or reply fails, inspect which artifacts, receipts, and index changes actually exist. Repair the incomplete update without inventing proof or blindly repeating external actions. An index entry alone cannot establish completion.
 
 Use its executor/context map when work becomes ready. Validate the affected assignment and current manager/router conditions before dispatch, rather than rebuilding all assignments or loading each owner's investigation into director context. Record actual starts separately from planned owner labels. Keep production and integration with workers in delegate mode.
 
@@ -30,12 +32,12 @@ Set a reachable exit criterion and a justified retry bound for the task, using r
 
 ## Resume checkpoint
 
-Store large intermediate outputs as artifacts. Use brief receipts with artifact links, evidence, and limits. Keep this checkpoint in the canonical state:
+Store large intermediate outputs as artifacts. Keep evidence receipts with their step files; link them from the index. Keep the index checkpoint compact, with links instead of copied step bodies or logs:
 
 ```text
 Goal, active mode, authorization, and constraints:
-Accepted outputs: artifact + content identity + proof + proof limits
-Executor map: planned owners and slice/step IDs; actual agent bindings and configurations
+Accepted outputs: links to step receipts with content identity, proof, and limits
+Executor map: owner/assessment references; actual agent bindings separate from planned owners
 Active work: owner, original scope, state, resources, pending actions
 Artifacts and inputs required to continue:
 Decisions and unresolved questions:
@@ -46,7 +48,7 @@ Native tool/API state needed: handles, sessions, pending-call identifiers
 
 Preserve required native API and tool state using the environment's supported mechanism. A prose checkpoint does not restore a runtime, a session, or a pending call. On resume, verify their actual status before continuing. If that state is unavailable, describe the recovery limit and rebuild only what is safe within the active mode.
 
-Validate existing assignments, input revisions, and readiness on resume. Preserve valid artifacts, accepted evidence, and owner context. Reassess only owners, dependencies, context bindings, or model decisions affected by a change. Apply the manager's original-slice reuse rules before continuing a worker; do not treat a planned label or stale agent ID as a live executor. In PLAN ONLY, describe future execution checks and worker starts without performing them.
+On resume, read the index and the step files needed for the next authorized action. Validate affected assignments, input revisions, and readiness; do not reload every step or full histories. Preserve stable IDs, valid artifacts, accepted evidence, and owner context. Reuse current instruction/evidence bindings until a named change or gap requires refresh; reassess only the affected dependency frontier, context bindings, or model decisions. Apply the manager's original-slice reuse rules before continuing a worker; do not treat a planned label or stale agent ID as a live executor. In PLAN ONLY, update authorized plan files and describe future execution checks and worker starts without performing them.
 
 ## Evaluate the method
 

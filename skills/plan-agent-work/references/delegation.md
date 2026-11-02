@@ -4,7 +4,7 @@
 
 Use the actual manager/router assessment of the whole goal. The director/delegate default and confirmed short whole-goal exception apply before optimizing coordination cost. Do not use one short roadmap step to claim `primary_only` for a larger goal. Planning does not grant permission to start execution workers.
 
-In the existing canonical plan, record a compact executor/context map. Use planned labels such as `W1`; these are ownership proposals, not agent IDs or evidence of a start. Assign connected steps to one coherent slice where their shared context, scope, and permissions allow it. Keep tightly coupled investigation, implementation, and the owner's tests together. Do not create a worker for each step or role, recursive managers, or parallelism without a concrete benefit. Preserve required independent review.
+In the canonical plan package, record a compact executor/context map or link to its maintained source. Use planned labels such as `W1`; these are ownership proposals, not agent IDs or evidence of a start. Assign connected steps across their separate files to one coherent slice where their shared context, scope, and permissions allow it. Keep tightly coupled investigation, implementation, and the owner's tests together. Do not create a worker for each file or role, recursive managers, or parallelism without a concrete benefit. Preserve required independent review.
 
 ```text
 Planned owner / stable slice ID / connected step IDs:
@@ -19,7 +19,7 @@ Start state: planned; actual agent ID/configuration/delivery route only after st
 
 Bind each step to its planned owner and model/effort recommendation; refer to the owner's unchanged assessment instead of repeating it. Include an overall model/effort recommendation. When a step needs a configuration change, name it. For test creation or change, include its recommendation explicitly. Use the router's current schema, effective rate reference, and whole-team cost basis, including handoffs and acceptance. Record unknown billing or forecasts as unknown; do not claim savings without measurements.
 
-Keep this map in the canonical plan, not in a second queue or files per step. Put detailed working material in artifacts and give the director short receipts and source bindings. Do not pass full conversation history when a bounded assignment suffices. Confirm actual context inheritance and tools before dispatch; planned context is not a claim that the runtime transfers it.
+Keep each owner assessment in one maintained location and reference it from the index and that owner's step files. Put detailed working material in artifacts and give the director short receipts and source bindings. The director reads the index plus needed steps; the worker reads its own step plus specifically named accepted dependency outputs and contracts. Pass critical global constraints, exact source paths, path bases, and revision/content bindings explicitly. Do not load all step files or full conversation history when a bounded assignment suffices. Confirm actual context inheritance and tools before dispatch; planned context is not a claim that the runtime transfers it.
 
 The primary owns overall decisions, canonical state, integration accountability, and final acceptance. In delegate mode, production work and integration belong to assigned workers. Director checks remain bounded to named gaps under the manager's rules; accountability does not grant implementation permission.
 
@@ -34,7 +34,7 @@ Inspect the actual agent API. Verify how context inheritance works and whether c
 ## Assignment template
 
 ```text
-Planned owner and stable slice/step IDs from the canonical plan:
+Planned owner and stable slice/step IDs; assigned step-file paths and index/status reference:
 Role and goal:
 Inputs: verified artifacts and minimum relevant context
 Bounds: owned changes, shared resources, exclusions
@@ -55,7 +55,7 @@ At dispatch, validate the map against current inputs and the manager/router proc
 Require a result that connects the real artifact to its criterion and evidence. Accept that evidence at its actual scope. Do not repeat the worker's whole task. Inspect a named gap, changed dependency, or unsupported claim when needed.
 
 ```text
-Task ID and state:
+Task ID and completion/blocker claim for the status writer (not a second status tracker):
 Output artifacts and content identity:
 Criteria: pass / fail / not run / unknown, with evidence links
 Changes and affected dependencies:

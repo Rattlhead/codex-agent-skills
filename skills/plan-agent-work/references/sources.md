@@ -25,6 +25,8 @@ The 37 normative requirements and the 10 choices below are an engineering synthe
 
 These are design decisions for this skill, not claims that all sources recommend one recipe.
 
+A bounded source refresh on 2026-11-02 checked [Anthropic: Effective context engineering for AI agents](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents), particularly context retrieval and structured note-taking, and the durable project memory example in the OpenAI long-horizon article linked above. They support selective retrieval by paths/identifiers and durable notes outside active context. Retrieval overhead can itself waste context. The OpenAI example remains one coding experiment. The user-required index plus one file per step, single status authority, and delta/affected-frontier read protocol are engineering choices here, not official prescribed layouts or evidence of measured savings. This refresh does not reverify or redate the original research registry.
+
 | Tension | Choose according to the task |
 | --- | --- |
 | Detailed or brief plan | Use an action and check for small work. Add explicit ownership and dependencies when work becomes long or coupled. |

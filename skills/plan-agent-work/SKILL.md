@@ -11,7 +11,7 @@ Convert the requested outcome into work that an agent can start, check, and resu
 
 Use the user's intent and existing authorization. State the mode briefly when ambiguity could affect actions.
 
-- **PLAN ONLY:** Produce assignments, configurations, and future checks. A request to “make a plan” does not authorize implementation. Do not start execution workers, change source or tests, or run execution checks. Describe future checks as **not run**. A large planning assignment may itself be delegated for authorized read-only planning through the manager; that child produces the plan, not its future outputs.
+- **PLAN ONLY:** Produce assignments, configurations, and future checks. Write authorized plan files, including the index and step files. A request to “make a plan” does not authorize implementation. Do not start execution workers, change source or tests, or run execution checks. Describe future checks as **not run**. A large planning assignment may itself be delegated through the manager to inspect permitted sources and write only its assigned plan files; that child produces the plan, not its future outputs.
 - **PLAN+EXECUTE:** Plan and carry out work already authorized by the user. Preserve that authorization across turns. Do not ask for it again. Seek appropriate approval for a material scope change or an action outside that authorization.
 - **REVIEW:** Assess an existing plan against the requested outcome and observed constraints. Report concrete gaps and corrections. Review does not grant execution permission.
 - **RESUME:** Restore the prior mode and authorization before work continues. Inspect current state. Run a safe, relevant check only if already authorized and allowed by that mode. A plan-only resume describes the check without running it.
@@ -24,7 +24,9 @@ Confirm the outcome and authorization, then choose the smallest useful route bel
 
 A small task needs an action and its check. Answer a one-step question directly. Related outcomes need a compact plan. Long work needs explicit ownership, dependencies, state, decisions, and a resume point.
 
-For a short plan-only request, give the outcome, action or actions, and future check. Stop there. Do not load delegation, execution, or sources references automatically.
+For a short plan-only request, give the outcome, action or actions, and future check. Stop there unless a persisted roadmap is requested; then use the package layout in [planning.md](references/planning.md). Do not load delegation, execution, or sources references automatically.
+
+A persisted roadmap is one canonical package: a compact index with links and authoritative task status, plus one file per defined step. Keep global constraints and authorization in the index; load only the needed step files. See [planning.md](references/planning.md) for layout and selective reading, and [execution.md](references/execution.md) for safe updates and recovery.
 
 For substantial planning or plan review, read [planning.md](references/planning.md). It contains outcome contracts, requirement coverage, dependencies, uncertainty, and templates. It also covers research and non-code work.
 
