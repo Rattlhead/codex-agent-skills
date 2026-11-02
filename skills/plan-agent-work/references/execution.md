@@ -22,6 +22,16 @@ Tie evidence to the actual content, including relevant dirty changes or a conten
 
 After separate branches join, perform the planned integration task and end-to-end flow checks. Component success does not establish system success. Report remaining limits explicitly.
 
+## Local milestone commits
+
+In an existing Git repository where local commits are authorized, make one scoped checkpoint commit after a significant coherent step or related group has accepted outputs and checks, with its step receipts and index status updated. Do not commit every command or small edit, or create empty commits. This rule does not require Git probes for unrelated non-Git tasks or authorize repository initialization. Preserve PLAN ONLY and REVIEW limits: planning alone does not authorize committing user work. A local commit grants no push, publication, broader source-change, or new-repository permission.
+
+The director coordinates acceptance. An authorized existing executor or integration owner performs Git operations; the designated status writer maintains the plan. Do not start a worker only for bookkeeping. Assign one owner and serialize access to the shared Git index. Include only the authorized, accepted slice and its related tracked plan changes. Preserve unrelated staged and dirty work. Inspect the actual staged content before committing; do not use automatic `git add .`, destructive reset or stash, amend, hook bypass, or weaker acceptance criteria to obtain a commit.
+
+Keep hooks active. After failure, timeout, or a lost reply, inspect actual status and HEAD before retrying or reporting success. Do not repeat a completed commit. Reuse valid accepted evidence while its content and relevant inputs remain unchanged. If hooks modify files, revalidate affected content and inputs before retrying or accepting the checkpoint.
+
+Return the full commit SHA, covered step IDs, and check results in a compact receipt. The status writer adds the checkpoint reference to the index on its next necessary update; do not create a separate commit only to record the checkpoint's own SHA. A commit cannot contain its own final hash. Keep receipts in step files and status authority in the index. The SHA identifies the checkpoint, but does not establish current content or proof when dirty work remains.
+
 ## Diagnose and recover
 
 After failure, inspect actual state before retrying. A lost reply does not imply a lost result. Locate outputs and check pending actions before overwriting work or repeating external effects.
