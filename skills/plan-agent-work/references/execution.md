@@ -4,41 +4,83 @@ Use this reference only within the authorization selected in SKILL.md.
 
 ## Maintain one state source
 
-Find the canonical plan package and its status authority, normally the index. Do not create a second manual queue. Designate one status writer; workers submit receipts to that writer. Keep derived views synchronized or regenerate them from the authority. In delegate mode the manager assigns plan-file updates to existing workers within their roles; do not start a new worker only for bookkeeping. Assign non-overlapping file ownership or serialize edits to a shared file.
+Find the canonical package and status authority, normally the index. Do not make a second manual queue.
+Use single-writer ownership for status. Workers submit receipts to that writer.
+Keep derived views synchronized or regenerate them from the authority.
+In delegate mode, assign plan-file updates to existing workers within their roles. Do not start bookkeeping workers.
+Assign non-overlapping files or serialize shared-file edits.
 
-Write the output artifact, then record its evidence receipt in the relevant step file before the status writer records completion in the index. Accept the required proof before marking done. Batch independent file writes when safe; receipt-to-completion updates are dependent. If a write or reply fails, inspect which artifacts, receipts, and index changes actually exist. Repair the incomplete update without inventing proof or blindly repeating external actions. An index entry alone cannot establish completion.
+Write the output artifact. Then record its evidence receipt in the step file, before index completion.
+Accept necessary proof before marking done. Batch safe independent writes; order receipt-to-completion updates.
+After write or reply failure, examine actual artifacts, receipts, and index changes.
+Repair incomplete updates without invented proof or blind repetition of external actions. An index entry alone cannot prove completion.
 
-Use its executor/context map when work becomes ready. Validate the affected assignment and current manager/router conditions before dispatch, rather than rebuilding all assignments or loading each owner's investigation into director context. Record actual starts separately from planned owner labels. Keep production and integration with workers in delegate mode.
+When work is ready, use its executor/context map.
+Before dispatch, validate the affected assignment and current manager/router conditions.
+Do not rebuild all assignments or load owner investigations into director context.
+Record actual starts separately from planned owner labels. In delegate mode, keep production and integration with workers.
 
-Use the project's labels. Their logical meanings should distinguish waiting, in progress, review, done, blocked, and cancelled. A ready task has all preconditions met. A done task has accepted output and the required proof. A blocked task states the blocker and the affected scope. Continue unblocked authorized work. Do not treat a timeout, lost response, or exhausted budget as completion.
+Use project labels that distinguish waiting, in progress, review, done, blocked, and cancelled.
+A ready task has all prerequisites. A done task has accepted output and necessary proof.
+For blocked tasks, state the blocker and affected scope. Continue unblocked authorized work.
+Do not interpret timeouts, lost responses, or exhausted budgets as completion.
 
 Task state is separate from check outcome. Record checks as success, failure, not run, or unknown. Do not translate unknown into success.
 
 ## Accept evidence at the right scope
 
-For code, use relevant project checks. Choose TDD according to the user request, project rules, and risk. Do not require new tests for every trivial document edit. For UI work, verify actual user behavior: initial state, action, and expected visible result. Static inspection alone does not establish that flow. For research, inspect source content that supports the claim, not only a title or search snippet. For other artifacts, use the contract's reproducible content or visual checks.
+For code, use relevant project checks. Select TDD from user requirements, project rules, and risk.
+Do not make new tests mandatory for every trivial document edit.
+For UI work, validate the actual flow: initial state, action, and expected visible result. Static inspection alone is insufficient.
+For research, examine source content as evidence for claims. Titles and search snippets alone are insufficient.
+For other artifacts, use the contract's reproducible content or visual checks.
 
-Tie evidence to the actual content, including relevant dirty changes or a content hash, and to inputs, environment, and criterion. A commit identifier alone is insufficient. Reuse checks when the relevant content and conditions remain unchanged and the evidence is still valid. Rerun affected checks after relevant changes, for a named unresolved risk, or when project rules require them. Do not rerun unchanged work merely because another stage begins.
+Bind evidence to actual content, inputs, environment, and criteria. Include relevant dirty changes or a content hash.
+A commit identifier alone is insufficient. Use valid evidence while relevant content and conditions remain unchanged.
+Run affected checks again after relevant changes, for named unresolved risks, or under project rules.
+A new stage alone does not justify unchanged checks.
 
-After separate branches join, perform the planned integration task and end-to-end flow checks. Component success does not establish system success. Report remaining limits explicitly.
+After separate branches join, do the planned integration task and end-to-end flow checks.
+Component success does not prove system success. Report remaining limits explicitly.
 
 ## Local milestone commits
 
-For a selected checkpoint in an existing Git repository where local commits are authorized, make one scoped commit after a significant coherent step, slice, or related group has accepted outputs and checks, with its evidence receipt and status updated. For a roadmap, use its step receipts and index; otherwise use the existing brief or status without creating plan files. Do not commit every command or small edit, or create empty commits. This rule does not require Git probes for unrelated non-Git tasks or authorize repository initialization. Preserve PLAN ONLY and REVIEW limits: planning alone does not authorize committing user work. A local commit grants no push, publication, broader source-change, or new-repository permission.
+Use selected checkpoints only in existing Git repositories with local-commit authorization.
+After acceptance of a significant coherent step, slice, or related group, make one scoped commit.
+First update its evidence receipt and status. For roadmaps, use step receipts and the index; otherwise use existing brief or status.
+Do not make plan files for a commit. Do not commit every command or small edit, or make empty commits.
+This procedure grants no repository-initialization permission. Do not probe Git for unrelated non-Git tasks.
+Keep PLAN ONLY and REVIEW limits; planning alone grants no permission to commit user work.
+A local commit grants no push, publication, broader source-change, or new-repository permission.
 
-The director coordinates acceptance. An authorized existing executor or integration owner performs Git operations; the designated status writer maintains the existing plan or status. Do not start a worker only for bookkeeping. Assign one owner and serialize access to the shared Git index. Include only the authorized, accepted slice and its related tracked plan or status changes. Preserve unrelated staged and dirty work. Inspect the actual staged content before committing; do not use automatic `git add .`, destructive reset or stash, amend, hook bypass, or weaker acceptance criteria to obtain a commit.
+The director manages acceptance. An authorized existing executor or integration owner performs Git operations.
+The designated status writer updates the existing plan or status. Do not start bookkeeping workers.
+Assign one owner to the shared Git index; serialize access.
+Include only the authorized accepted slice and its related tracked plan/status changes. Keep unrelated staged and dirty work.
+Before commit, examine staged content. Do not use automatic `git add .`, destructive reset or stash, amend, or hook bypass.
+Do not weaken acceptance criteria to obtain a commit.
 
-Keep hooks active. After failure, timeout, or a lost reply, inspect actual status and HEAD before retrying or reporting success. Do not repeat a completed commit. Reuse valid accepted evidence while its content and relevant inputs remain unchanged. If hooks modify files, revalidate affected content and inputs before retrying or accepting the checkpoint.
+Keep hooks active. After failure, timeout, or lost reply, examine actual status and HEAD before another attempt or success claim.
+Do not make a completed commit again. Use valid accepted evidence while content and relevant inputs remain unchanged.
+If hooks change files, validate affected content and inputs again before another attempt or checkpoint acceptance.
 
-Return the full commit SHA, covered step or slice IDs, and check results in a compact receipt. The status writer adds the checkpoint reference to the existing status authority on its next necessary update; do not create a separate commit only to record the checkpoint's own SHA. A commit cannot contain its own final hash. For a roadmap, keep receipts in step files and status authority in the index; otherwise keep them in the existing brief or status. The SHA identifies the checkpoint, but does not establish current content or proof when dirty work remains.
+Return a compact receipt with full commit SHA, covered step/slice IDs, and check results.
+On its next necessary update, the status writer adds the checkpoint reference to existing status authority.
+Do not make a separate commit only to record its own SHA. A commit cannot contain its own final hash.
+Keep roadmap receipts in step files and authoritative status in the index. Otherwise use existing brief or status.
+The SHA identifies the checkpoint. It does not prove current content or acceptance when dirty work remains.
 
 ## Diagnose and recover
 
-After failure, inspect actual state before retrying. A lost reply does not imply a lost result. Locate outputs and check pending actions before overwriting work or repeating external effects.
+After failure, examine actual state before another attempt. A lost reply does not imply a lost result.
+Find outputs and examine pending actions before overwriting work or causing external effects again.
 
-Determine whether the failure is in the premise, dependency, approach, implementation, or integration. Replan the affected portion using that diagnosis. Preserve mandatory acceptance. Do not weaken a criterion merely to make a check pass.
+Find whether the premise, dependency, approach, implementation, or integration caused failure. Replan only the affected portion.
+Keep mandatory acceptance. Do not weaken criteria to pass a check.
 
-Set a reachable exit criterion and a justified retry bound for the task, using risk, available resources, and evidence. Do not use a universal attempt count. Retry only after conditions change or evidence supports a transient failure. If a blocker remains, identify its impact and the action or input needed to resolve it.
+Set a reachable exit criterion and justified retry bound from task risk, resources, and evidence. Do not use universal attempt counts.
+Try again only after changed conditions or evidence of transient failure.
+If blocked, state the impact and necessary action or input.
 
 ## Resume checkpoint
 
@@ -56,10 +98,19 @@ Next authorized action and readiness conditions:
 Native tool/API state needed: handles, sessions, pending-call identifiers
 ```
 
-Preserve required native API and tool state using the environment's supported mechanism. A prose checkpoint does not restore a runtime, a session, or a pending call. On resume, verify their actual status before continuing. If that state is unavailable, describe the recovery limit and rebuild only what is safe within the active mode.
+Save necessary native API and tool state through the environment's supported mechanism.
+A prose checkpoint cannot restore a runtime, session, or pending call. On resume, examine their actual status before continuation.
+If state is unavailable, state the recovery limit. Rebuild only safe state within the active mode.
 
-On resume, read the index and the step files needed for the next authorized action. Validate affected assignments, input revisions, and readiness; do not reload every step or full histories. Preserve stable IDs, valid artifacts, accepted evidence, and owner context. Reuse current instruction/evidence bindings until a named change or gap requires refresh; reassess only the affected dependency frontier, context bindings, or model decisions. Apply the manager's original-slice reuse rules before continuing a worker; do not treat a planned label or stale agent ID as a live executor. In PLAN ONLY, update authorized plan files and describe future execution checks and worker starts without performing them.
+On resume, read the index and steps necessary for the next authorized action.
+Validate affected assignments, input revisions, and readiness. Do not load every step or full histories.
+Keep stable IDs, valid artifacts, accepted evidence, and owner context.
+Use current instruction/evidence bindings until a named change or gap. Reassess only affected dependencies, context bindings, or model decisions.
+Before worker continuation, apply the manager's original-slice reuse rules. Planned labels and stale IDs do not prove live executors.
+In PLAN ONLY, update authorized plan files. Describe future execution checks and starts without performing them.
 
 ## Evaluate the method
 
-Assess outcome quality, elapsed time, retries, and the tokens and cost of all participants and tools when data is available. Include coordination and integration. Mark unavailable measurements unknown, not zero. Do not claim measured savings without comparison data. Use observed failures or costs to adjust the next relevant step, not to add universal process.
+With available data, examine outcome quality, elapsed time, retries, tokens, and cost for all participants and tools.
+Include coordination and integration. Mark unavailable measurements unknown, not zero. Do not claim measured savings without comparison data.
+Use observed failures or costs to adjust the next relevant step. Do not add universal process.

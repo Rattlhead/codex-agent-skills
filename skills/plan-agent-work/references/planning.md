@@ -2,27 +2,44 @@
 
 ## Establish the contract
 
-Define an observable outcome, the permitted scope, exclusions, constraints, and completion evidence. State numerical targets only when they come from the user, an applicable contract, or measurements. Otherwise label a target as a proposal and explain its basis. Do not invent a tolerance to make a task testable.
+Define the observable outcome, permitted scope, exclusions, constraints, and completion evidence.
+Use numerical targets from the user, applicable contracts, or measurements. Otherwise label targets proposed and give their basis.
+Do not invent tolerances to make work testable.
 
-Keep facts, decisions, assumptions, and open questions distinct. Resolve a question before dependent work when its answer can change acceptance, authorization, or an expensive choice. Continue independent work within the active mode.
+Keep facts, decisions, assumptions, and open questions separate.
+Before dependent work, answer questions that can change acceptance, authorization, or expensive choices. Continue independent work within the active mode.
 
-Inspect applicable instructions, existing artifacts, interfaces, and checks before proposing changes. Verify paths, APIs, tools, and relevant baseline health. If not verified, label them unknown or proposed. Do not present a guessed path or assumed passing baseline as fact.
+Before proposed changes, examine applicable instructions, artifacts, interfaces, and checks.
+Make sure paths, APIs, tools, and relevant baseline health are correct. Otherwise label them unknown or proposed.
+Do not present guessed paths or assumed baseline success as facts.
 
-For research, set the question, source scope, needed evidence, and stop condition before searching. Stop when the evidence supports the required decision or when the declared limit requires a qualified result. An unresolved question is not a license for unbounded research. For analysis, identify inputs, method, uncertainty, and reproducible outputs. For document work, identify the intended reader, source material, output artifact, and content or layout checks.
+Before research, specify the question, source scope, necessary evidence, and stop condition.
+Stop when evidence is sufficient for the decision or the declared limit makes a qualified result necessary.
+Do not research without bounds.
+For analysis, specify inputs, method, uncertainty, and reproducible outputs.
+For documents, specify the reader, sources, output artifact, and content or layout checks.
 
 ## Build backward from the outcome
 
-Start with final acceptance. Identify the outputs and preconditions that can establish it. Then derive tasks and their dependencies.
+Start with final acceptance. Find the outputs and preconditions that can prove it. Then derive tasks and dependencies.
 
-Keep requirement coverage in the canonical plan. Map each material requirement to at least one task and check. Every task must support a requirement, a dependency, or an observed risk. Remove tasks with no such basis. A requirement may need several tasks; a task may satisfy several requirements.
+Keep requirement coverage in the canonical plan. Map each material requirement to at least one task and check.
+Each task must address a requirement, dependency, or observed risk. Remove tasks without that basis.
+Requirements and tasks can have many-to-many relationships.
 
-Make slices independently acceptable where feasible. Keep each behavior change with the configuration, documentation, and tests needed to accept that behavior. Avoid separate layer tasks that leave no usable outcome until all layers exist.
+Where possible, make each slice independently acceptable. Include the configuration, documentation, and tests necessary to accept its behavior change.
+Avoid layer tasks that produce no usable outcome until every layer exists.
 
-For substantial roadmaps, plan the executors and their context with [delegation.md](delegation.md). Group connected steps under a coherent slice owner instead of rediscovering assignments at every step. Keep the detailed investigation, changes, and checks with that owner where its original scope permits; retain required independent review. The director keeps the shared contract, decisions, dependency state, and acceptance evidence, rather than loading every worker's research.
+For substantial roadmaps, use [delegation.md](delegation.md) to plan executors and context. Group connected steps under a coherent slice owner.
+Keep investigation, changes, and checks with that owner where permitted by its original scope. Keep mandatory independent review.
+The director keeps shared contracts, decisions, dependency state, and acceptance evidence. Do not load every worker's research.
 
-Specify each slice's inputs, outputs, interfaces, and decisions. Identify consumers and providers of shared interfaces. Build the actual dependency graph, including shared state and hidden links. Check for cycles, missing preconditions, and dependencies that only appear independent because they touch different files. Resolve cycles through an explicit interface decision or a prerequisite task. Do not schedule a worker to wait for an absent input.
+Specify slice inputs, outputs, interfaces, and decisions. Identify shared-interface producers and consumers.
+Build the dependency graph, including shared state and hidden links. Examine cycles, missing preconditions, and false independence between different files.
+Remove cycles through an explicit interface decision or prerequisite task. Do not schedule workers to wait for absent inputs.
 
-Detail the next ready tasks enough to execute them. Keep distant work at outcome and dependency level. Refine it when inputs and decisions become available. Do not write future implementation details as if unknown conditions were settled.
+Use rolling-wave planning: detail ready tasks; describe distant work by outcomes and dependencies.
+Add detail when inputs and decisions become available. Do not present unknown future conditions as settled.
 
 ## Persist one plan package
 
@@ -35,19 +52,39 @@ roadmap/steps/S2-change.md
 roadmap/steps/S3-accept.md
 ```
 
-These names are examples. Use the project's authorized location and preserve stable step IDs and paths. The index and step files form one canonical plan package, not separate trackers. Each defined future step gets a file; distant work remains a short outcome/dependency stub until its inputs are known. Do not invent detailed tasks for undefined work.
+Use the project's authorized location; these paths are examples. Keep stable step IDs and paths.
+The index and step files form one canonical package. Give each defined future step a file.
+Until inputs are known, keep distant steps as short outcome/dependency stubs. Do not invent detailed undefined tasks.
 
-The index provides navigation, authoritative operational task status, planned owners, dependencies, essential global constraints and authorization, and the next authorized action. Link to step bodies, accepted receipts, and existing contracts instead of copying them into the index. Keep long logs and intermediate research in linked artifacts. Store an owner assessment or shared contract once, in an existing source or one maintained location when needed; do not require extra shared files or repeated boilerplate.
+In the index, keep navigation, authoritative task status, planned owners, dependencies, global constraints, authorization, and the next authorized action.
+Link step bodies, accepted receipts, contracts, long logs, and intermediate research. Do not copy them into the index.
+Store each owner assessment or shared contract once. Use existing sources or one maintained location, without extra mandatory shared files.
 
-Step files hold their contract, bound inputs, minimal context, owner reference, model/effort recommendation, outputs, acceptance, and evidence receipt. They do not repeat mutable operational status. Use the index as status authority by default; if a project already designates another single status source, link it and make index status a derived view. Separate planned owners from actual agent bindings. A planned label is never proof of a worker start.
+In step files, keep contracts, bound inputs, essential context, owner references, model/effort recommendations, outputs, acceptance, and evidence receipts.
+Do not duplicate mutable status. By default, the index is the status authority.
+If the project has another single status authority, link it and derive index status from it.
+Separate planned owners from actual agent bindings. Planned labels do not prove worker starts.
 
-The director reads the index and only the step files needed for the current decision. A worker reads its own step and specifically named accepted dependency outputs or contracts. Carry essential global constraints and exact source path, path base, and revision/content bindings into the assignment. Do not glob-read all steps or full histories. Reuse current instructions, assessments, and accepted evidence until a named change or gap requires refresh. Refresh the affected dependency frontier, not the whole plan. Batch safe independent reads or file writes; keep dependency-sensitive updates ordered. Use compact receipts and changed decisions rather than repeated narratives. Do not impose fixed word/token quotas or claim unmeasured savings.
+The director reads the index and step files necessary for its decision.
+Workers read their steps and specifically named accepted dependencies or contracts.
+Include essential global constraints, exact source paths, path bases, and revision/content bindings in assignments.
+Do not read all steps or full histories by default.
+Use current instructions, assessments, and evidence until a named change or gap.
+Refresh only affected dependencies. Batch safe independent reads or writes; order dependent updates.
+Use compact receipts and decision changes. Do not impose fixed word/token quotas or claim unmeasured savings.
 
 ## Review an existing plan
 
-Read the index and select the step files relevant to the review. Compare them with the contract and inspected artifacts. Report each material mismatch with the requirement, observed evidence, and proposed correction. Check for missing acceptance, unsupported assumptions, uncovered requirements, impossible dependencies, ownership conflicts, and execution beyond authorization. Validate the executor map, essential context bindings, readiness, and model recommendations against the actual manager/router rules. Preserve stable IDs, valid assignments, accepted artifacts, and evidence. Reassess only affected owners, context, dependencies, and configurations when an input or requirement changes. Do not add process simply to fill the template.
+Read the index and relevant step files. Compare them with the contract and examined artifacts.
+Report material mismatches with their requirement, evidence, and proposed correction.
+Look for missing acceptance, unsupported assumptions, uncovered requirements, impossible dependencies, ownership conflicts, and unauthorized execution.
+Validate the executor map, context bindings, readiness, and model recommendations against actual manager/router rules.
+Keep stable IDs, valid assignments, accepted artifacts, and evidence. After input or requirement changes, examine only affected owners, context, dependencies, and configurations.
+Do not add process only to complete a template.
 
-Migrate an existing monolithic roadmap only within explicit authorization to change that plan. Preserve its IDs, source bindings, and accepted evidence; replace its authoritative queue with the package index or a clear pointer to the existing authority. Do not silently restructure existing projects or leave two authoritative queues. A read-only REVIEW reports the proposed migration without performing it.
+Migrate a monolithic roadmap only with explicit authorization to change it. Keep IDs, source bindings, and accepted evidence.
+Replace its authoritative queue with the package index or a clear pointer to existing authority.
+Do not restructure projects silently or leave two authoritative queues. In read-only REVIEW, propose migration without execution.
 
 ## Roadmap template
 
@@ -67,7 +104,8 @@ Accepted outputs: receipt links / blockers / next authorized action
 Resume: artifact locations and any required native runtime state
 ```
 
-For a future plan-only roadmap, tasks are waiting and checks are not run. Do not describe the planned output as completed. Preserve existing project state labels where they have equivalent meaning. Task state and check outcome are separate fields.
+For future plan-only roadmaps, tasks wait and checks are not run. Do not describe planned output as complete.
+Keep equivalent project state labels. Task state and check outcome are separate fields.
 
 ## Single-task template
 
@@ -80,7 +118,7 @@ Observable outcome:
 Inputs and verified locations:
 Dependencies and readiness conditions:
 Planned slice owner and executor-map reference; actual agent ID only after start:
-Model/effort recommendation: reuse owner assessment or state needed change
+Model/effort recommendation: existing owner assessment or necessary change
 Change scope and shared resources:
 Outputs, interfaces, and decisions:
 Acceptance: criterion + method + required evidence

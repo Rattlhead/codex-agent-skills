@@ -1,6 +1,7 @@
 # Decision contract v1.0.0
 
-Use these exact field sets. No extra fields are permitted, including at nested object levels. Inputs and outputs are JSON objects. Strings described as nonempty must contain content. IDs identify stable items. Arrays may be empty unless a specific decision requires their content.
+Use these exact field sets. Do not add fields, including nested fields. Inputs and outputs are JSON objects.
+Nonempty strings must contain content. IDs identify stable items. Arrays may be empty unless the decision needs their content.
 
 ## Ten input fields
 
@@ -19,7 +20,8 @@ Use these exact field sets. No extra fields are permitted, including at nested o
 
 ## Twelve output fields
 
-Return one JSON object only. No Markdown fences, comments, NaN, or surrounding prose. The supplied contract names twelve output fields; do not add a thirteenth.
+Return only one JSON object, without Markdown fences, comments, NaN, or surrounding prose.
+Use exactly twelve output fields.
 
 | Field | Type and meaning |
 | --- | --- |
@@ -40,13 +42,15 @@ Return one JSON object only. No Markdown fences, comments, NaN, or surrounding p
 
 | Status | `chosen_option` | `requires_user` | `next_action.type` | Required meaning |
 | --- | --- | --- | --- | --- |
-| `AUTO_DECIDE` | Offered ID | `false` | `execute` | Resolve a genuinely unsettled nontrivial choice among admissible offered options inside current authority. Computing a uniquely implied answer is not this status. Execution belongs to the authorized owner. |
+| `AUTO_DECIDE` | Offered ID | `false` | `execute` | Select an admissible offered option for a nontrivial unsettled choice within current authority. This excludes uniquely implied answers. The authorized owner executes. |
 | `NEED_EVIDENCE` | `null` | `false` | `check` | Name the smallest authorized observation or input amendment and how it enables the choice. |
-| `ESCALATE_TO_USER` | `null` | `true` | `escalate` | Name missing authority or the human-only conflict; block dependent action. A requested operation that still needs new authority or mandatory human approval remains D even when its immediate refusal is obvious. Approval for another action cannot permit an independently forbidden action. |
+| `ESCALATE_TO_USER` | `null` | `true` | `escalate` | Name missing authority or human-only conflict. Block dependent action. Operations needing new authority or mandatory human approval remain D even when refusal is obvious. Approval for another action cannot authorize an independently forbidden action. |
 | `DEFER` | `null` | `false` | `wait` | Name the pending dependency or future trigger. |
-| `NO_DECISION_NEEDED` | `null` | `false` | `none` | The answer is uniquely determined by current requirements, authoritative documentation, tests, a mechanical rule, a valid prior decision, or accepted completion; or no choice is open. State the answer and supporting basis in reason/evidence. No prior logged decision is required. Here `none` means no new decision action; it does not stop the task. After acceptance, the controller resumes any already determined authorized task through its owner. |
+| `NO_DECISION_NEEDED` | `null` | `false` | `none` | Requirements, authoritative documentation, tests, a mechanical rule, valid prior decision, or accepted completion uniquely determine the answer. Alternatively, no choice remains. Give the answer and basis in reason/evidence; prior decision logs are unnecessary. Here `none` means no new decision action, not task termination. After acceptance, the controller resumes determined authorized work through its owner. |
 
-Malformed, stale, lost, or unsupported content is never executable authority. Unknown effect, timing, token, and cost telemetry is UNKNOWN, not zero. Validation `passed` requires a cited actual observation; a proposed check is `pending`.
+Malformed, stale, lost, or unsupported content is never executable authority.
+Unknown effect, timing, token, and cost telemetry is UNKNOWN, not zero.
+Validation `passed` needs a cited actual observation; a proposed check is `pending`.
 
 ## Example request
 
@@ -58,7 +62,7 @@ This illustrative input contains its own bounded facts. It is not a test fixture
   "goal": "Deliver a useful offline review report",
   "question": "Which of the two supported report formats should the owner use?",
   "context": "delegate mode; input revision 1; the report has long tables and section links; the recipient reviews on a laptop and sometimes prints; no format preference or binding decision exists",
-  "constraints": ["Deliver one self-contained local file", "Preserve all report data", "Use an existing exporter"],
+  "constraints": ["Deliver one self-contained local file", "Keep all report data", "Use an existing exporter"],
   "existing_decisions": [],
   "alternatives": [
     {"id": "html", "description": "Use the existing self-contained HTML exporter for search, links, and flexible table layout"},
@@ -70,7 +74,7 @@ This illustrative input contains its own bounded facts. It is not a test fixture
     "approval_required": []
   },
   "affected_tasks": [{"task_id": "T-report", "state": "pending", "depends_on": []}],
-  "evidence": [{"source": "owner exporter check, revision 1", "content": "Both existing exporters preserve the report data and produce a self-contained file; the recipient can open either format offline", "trust": "observed"}]
+  "evidence": [{"source": "owner exporter check, revision 1", "content": "Both existing exporters keep the report data and produce self-contained files. The recipient can open either format offline.", "trust": "observed"}]
 }
 ```
 
@@ -81,17 +85,17 @@ This illustrative input contains its own bounded facts. It is not a test fixture
   "decision_id": "D-report-format",
   "status": "AUTO_DECIDE",
   "chosen_option": "html",
-  "reason": "Both formats meet the constraints. Choose HTML because search, section links, and flexible tables offer more benefit for laptop review than fixed pagination. PDF remains admissible and is stronger for printing. Confidence is medium because the owner check is supplied evidence and the relative value of occasional printing is a bounded judgment.",
+  "reason": "Both formats obey the constraints. Select HTML for search, section links, and flexible tables during laptop inspection. These benefits outweigh fixed pagination here. PDF remains admissible and is better for printing. Confidence is medium: the owner supplied evidence, and the value of occasional printing is a bounded judgment.",
   "alternatives_considered": [
-    {"option": "html", "assessment": "Supports navigation and flexible tables during laptop review; printed pagination can vary."},
-    {"option": "pdf", "assessment": "Provides stable printed pages; long tables and cross-section navigation can be less convenient on a laptop."}
+    {"option": "html", "assessment": "Gives navigation and flexible tables for laptop inspection. Printed pagination can vary."},
+    {"option": "pdf", "assessment": "Gives stable printed pages. Long tables and section navigation can be less convenient on laptops."}
   ],
-  "evidence": [{"source": "owner exporter check, revision 1", "finding": "The supplied check supports both formats as compliant offline outputs; it does not uniquely select one."}],
-  "risks": ["HTML printed page breaks can vary; the owner must check table readability in the delivered file."],
+  "evidence": [{"source": "owner exporter check, revision 1", "finding": "The supplied check shows that both formats obey offline-output requirements. It does not uniquely select one."}],
+  "risks": ["HTML printed page breaks can vary. The owner must examine table readability in the delivered file."],
   "reversibility": "reversible",
   "confidence": "medium",
-  "validation": {"method": "The assigned owner opens the HTML file offline and checks data completeness, section links, and table readability.", "outcome": "pending", "evidence": []},
+  "validation": {"method": "The assigned owner opens the HTML file offline. The owner examines data completeness, section links, and table readability.", "outcome": "pending", "evidence": []},
   "requires_user": false,
-  "next_action": {"type": "execute", "description": "The authorized owner exports HTML locally and checks the delivered file.", "affected_tasks": ["T-report"]}
+  "next_action": {"type": "execute", "description": "The owner exports HTML locally within authorization. The owner then examines the delivered file.", "affected_tasks": ["T-report"]}
 }
 ```

@@ -4,7 +4,11 @@
 
 Use the actual manager/router assessment of the whole goal. The director/delegate default and confirmed short whole-goal exception apply before optimizing coordination cost. Do not use one short roadmap step to claim `primary_only` for a larger goal. Planning does not grant permission to start execution workers.
 
-In the canonical plan package, record a compact executor/context map or link to its maintained source. Use planned labels such as `W1`; these are ownership proposals, not agent IDs or evidence of a start. Assign connected steps across their separate files to one coherent slice where their shared context, scope, and permissions allow it. Keep tightly coupled investigation, implementation, and the owner's tests together. Do not create a worker for each file or role, recursive managers, or parallelism without a concrete benefit. Preserve required independent review.
+In the canonical package, record the executor/context map or link its maintained source.
+Use planned labels such as `W1`. These propose ownership; they are not actual agent IDs or start evidence.
+Group connected step files under one coherent slice where permitted by shared context, scope, and permissions.
+Keep tightly coupled investigation, implementation, and owner tests together. Keep required independent review.
+Do not make per-file workers, per-role workers, recursive managers, or parallel work without concrete benefit.
 
 ```text
 Planned owner / stable slice ID / connected step IDs:
@@ -17,19 +21,33 @@ Acceptance and artifact receipt: output location/identity + criteria + checks + 
 Start state: planned; actual agent ID/configuration/delivery route only after start
 ```
 
-Bind each step to its planned owner and model/effort recommendation; refer to the owner's unchanged assessment instead of repeating it. Include an overall model/effort recommendation. When a step needs a configuration change, name it. For test creation or change, include its recommendation explicitly. Use the router's current schema, effective rate reference, and whole-team cost basis, including handoffs and acceptance. Record unknown billing or forecasts as unknown; do not claim savings without measurements.
+Bind steps to planned owners and model/effort recommendations. Reference unchanged owner assessments instead of copying them.
+Include an overall recommendation. State configuration changes per step. Give explicit recommendations for test creation or changes.
+Use the router's current schema, effective rates, and whole-team forecast, including handoffs and acceptance.
+Mark unknown billing or forecasts unknown. Do not claim savings without measurements.
 
-Keep each owner assessment in one maintained location and reference it from the index and that owner's step files. Put detailed working material in artifacts and give the director short receipts and source bindings. The director reads the index plus needed steps; the worker reads its own step plus specifically named accepted dependency outputs and contracts. Pass critical global constraints, exact source paths, path bases, and revision/content bindings explicitly. Do not load all step files or full conversation history when a bounded assignment suffices. Confirm actual context inheritance and tools before dispatch; planned context is not a claim that the runtime transfers it.
+Store each owner assessment once; reference it from the index and owner steps.
+Keep detailed work in artifacts. Give the director short receipts and source bindings.
+The director reads the index and necessary steps. Workers read their steps and named accepted dependency outputs or contracts.
+Supply critical global constraints, exact source paths, path bases, and revision/content bindings.
+Use bounded assignments instead of all steps or full history where sufficient.
+Before dispatch, examine actual context inheritance and tools. Planned context does not prove runtime transfer.
 
-The primary owns overall decisions, canonical state, integration accountability, and final acceptance. In delegate mode, production work and integration belong to assigned workers. Director checks remain bounded to named gaps under the manager's rules; accountability does not grant implementation permission.
+The primary is responsible for overall decisions, canonical state, integration, and final acceptance.
+In delegate mode, assigned workers execute production, integration, and canonical-state writes.
+Director checks remain bounded to named gaps under manager rules. Responsibility grants no implementation permission.
 
 ## Assign only ready work
 
-Check preconditions before starting a worker. Do not occupy a worker while a required artifact, decision, permission, or dependency is missing. Dispatch ready tasks as dependencies clear; use waves only when their shared boundary helps coordination.
+Before a worker start, examine preconditions. Do not occupy workers while necessary artifacts, decisions, permissions, or dependencies are missing.
+Dispatch ready tasks as dependencies clear. Use waves only when their shared boundary helps coordination.
 
-Independent ready slices may run concurrently only with explicit resource/interface ownership and within actual runtime concurrency and budget limits. Different files do not prove independence: account for databases, ports, browser state, servers, the Git index, builds, and external systems. Serialize conflicting access. Do not invent equal-load scheduling, fixed worker quotas, or token thresholds.
+Run independent ready slices concurrently only with explicit resource/interface ownership and within actual concurrency and budget limits.
+Different files do not prove independence. Include databases, ports, browser state, servers, Git index, builds, and external systems.
+Serialize conflicting access. Do not invent equal-load scheduling, fixed worker quotas, or token thresholds.
 
-Inspect the actual agent API. Verify how context inheritance works and whether clean or inherited context is supported. Choose the supported form that fits the task. Explicitly pass critical constraints even when context is inherited. Do not assume a fork includes tools, runtime state, files, or permissions that its schema does not promise.
+Examine the actual agent API and context inheritance. Select a supported clean or inherited context appropriate for the task.
+Supply critical constraints even with inherited context. Do not assume undeclared tool, runtime-state, file, or permission inheritance.
 
 ## Assignment template
 
@@ -48,11 +66,14 @@ No recursive delegation unless explicitly authorized
 
 Use `task-model-router` for model and effort decisions when available, as routed by SKILL.md. Do not copy its algorithms or price tables into an assignment.
 
-At dispatch, validate the map against current inputs and the manager/router procedure. Record the actual agent binding only after a successful start. Continue an existing worker only within its original slice, role, scope, permissions, and result contract. A changed domain or independent review needs a new worker and bounded handoff, not repurposing an idle worker.
+At dispatch, validate the map against current inputs and manager/router rules. Record actual agent bindings only after successful starts.
+Continue workers only within original slice, role, scope, permissions, and result contract.
+For a changed domain or independent review, start a new worker with a bounded handoff. Do not repurpose idle workers.
 
 ## Receipts and review
 
-Require a result that connects the real artifact to its criterion and evidence. Accept that evidence at its actual scope. Do not repeat the worker's whole task. Inspect a named gap, changed dependency, or unsupported claim when needed.
+Get a result that connects the actual artifact, criterion, and evidence. Accept evidence only at its actual scope.
+Do not do the worker's whole task again. Examine named gaps, changed dependencies, or unsupported claims as necessary.
 
 ```text
 Task ID and completion/blocker claim for the status writer (not a second status tracker):
@@ -63,4 +84,6 @@ Decisions, limits, blockers, and next step:
 Shared resources released or still in use:
 ```
 
-Use independent review when required or when its expected benefit justifies its cost. Give the reviewer criteria, relevant artifacts, and adequate tools. Do not prescribe the desired verdict. Require concrete mismatches with evidence and their connection to acceptance. A reviewer receipt supports the primary's acceptance decision; it does not replace it.
+Use independent review when mandatory or when expected benefit justifies cost. Give the reviewer criteria, relevant artifacts, and sufficient tools.
+Do not prescribe the verdict. Get concrete mismatches with evidence and their relation to acceptance.
+A reviewer receipt informs the primary's acceptance decision; it does not replace it.

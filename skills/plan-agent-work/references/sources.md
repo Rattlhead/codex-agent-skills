@@ -4,9 +4,11 @@
 
 The user-supplied research describes 51 sources, 37 principles, and 10 tensions. It states an original check date of 2026-11-01. These numbers and that date describe the supplied research. They do not establish that this package independently checked each source.
 
-The full registry of 51 sources was not located. Do not invent entries, source titles, quotations, or a reconstructed registry. This skill is an engineering synthesis of the stated requirements and selected verified material. It is not a joint vendor standard or a certification.
+The full registry of 51 sources was not located. Do not invent entries, source titles, quotations, or a reconstructed registry.
+This skill combines the stated requirements and selected verified material. It is not a joint vendor standard or a certification.
 
-Directly fetched source facts are recorded separately below. A source can support a limited design choice without supporting the full method. Fetch status and content scope must remain explicit.
+Directly fetched source facts are recorded separately below. A source can support a limited design choice without supporting the full method.
+Keep fetch status and content scope explicit.
 
 ## Directly fetched facts
 
@@ -30,12 +32,12 @@ A bounded source refresh on 2026-11-02 checked [Anthropic: Effective context eng
 | Tension | Choose according to the task |
 | --- | --- |
 | Detailed or brief plan | Use an action and check for small work. Add explicit ownership and dependencies when work becomes long or coupled. |
-| Staged roles or one cycle | Separate roles when a handoff or independent judgment adds value. Keep a coherent owner when stages would only add transfers. |
-| Parallel or sequential | Parallelize ready independent work when benefit exceeds coordination cost. Serialize shared resources or coupled decisions. |
-| Full history or bounded contract | Pass the minimum sufficient context through the actual supported API. Carry critical constraints explicitly. |
-| New check or reuse | Reuse valid evidence for unchanged relevant conditions. Run a check for changed content, a named risk, or a mandatory requirement. |
+| Staged roles or one cycle | Separate roles when handoffs or independent judgment add value. Otherwise keep one coherent owner. |
+| Parallel or sequential | Run ready independent work concurrently when benefit exceeds coordination cost. Serialize shared resources or coupled decisions. |
+| Full history or bounded contract | Supply minimum sufficient context through the actual supported API. Include critical constraints explicitly. |
+| New check or reuse | Use valid evidence for unchanged relevant conditions. Run checks for changed content, named risks, or mandatory requirements. |
 | Waves or ready dispatch | Dispatch ready work as prerequisites clear. Use waves when a shared boundary provides a concrete coordination benefit. |
-| Mandatory TDD or project and risk checks | Follow the request and project rules. Select checks for actual risk and acceptance rather than imposing TDD on every artifact. |
-| Extra approval or existing authorization | Preserve existing authorization. Seek approval only for the relevant scope change or action beyond it. |
-| Upfront or rolling detail | Establish outcome and dependency structure first. Detail ready work as its inputs become known. |
+| Mandatory TDD or project and risk checks | Obey the request and project rules. Select checks for actual risk and acceptance; do not impose TDD on every artifact. |
+| Extra approval or existing authorization | Keep existing authorization. Obtain approval only for applicable scope changes or actions beyond it. |
+| Upfront or rolling detail | First define outcomes and dependencies. Add detail to ready work when inputs become known. |
 | Fixed recipe or reassessment | Reassess workflow, model, effort, and environment when evidence changes. Use current capabilities and available selection guidance. |

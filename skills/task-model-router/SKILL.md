@@ -1,14 +1,13 @@
 ---
 name: task-model-router
-description: Select a model and reasoning effort for a task or slice. Preserve the primary agent's director role and delegation default, with an explicit short whole-goal exception. Compare capability, workload, rates, and total cost through acceptance. Use for model, budget, or delegation decisions. Do not start agents for classification.
+description: Выбирай модель и уровень усилия для задачи или её части. Используй для выбора модели, бюджета или делегирования. Сравнивай возможности и полную стоимость до приёмки. Сохраняй роль руководителя, делегирование по умолчанию и исключение для короткой цели целиком. Не запускай субагентов только для оценки задачи.
 ---
 
 # Task Model Router
 
-Use this skill independently for each task or slice. Keep the user's explicit choices, quality requirements, and budget limits.
-If the user's specified model is unavailable, record that limitation. Do not silently select a different model.
-Without authorization, do not change global defaults, the account, credentials, or the tariff.
-A recommendation does not change the current chat's model.
+Use this skill independently for each task or slice. Keep explicit user choices, quality requirements, and budgets.
+If the requested model is unavailable, record the limitation. Do not silently substitute another model.
+Without authorization, do not change global defaults, account, credentials, or tariff. A recommendation does not change the current chat's model.
 
 ## Technical nouns
 
@@ -29,22 +28,24 @@ Exact model IDs, parameter names, payment units, and API names are technical nam
 
 ## Verified prices
 
-Read the saved [rate reference](references/rates.md) before a cost estimate.
-It gives the rates, speed multipliers, payment units, sources, and dates for checked groups.
+Before a cost estimate, read the saved [rate reference](references/rates.md).
+It contains rates, speed multipliers, payment units, sources, and group dates.
 A rate group identifies a model and payment mode. A multiplier group identifies a speed and payment mode.
-Use each required group without an online lookup while its own check date is no more than 30 days old.
-Throughout the assessment, check required groups that are missing, have no check date, or are more than 30 days old.
-Also check when the user reports a change.
-Check rates when an official source shows a rate change.
-Check rates when the payment mode changes.
-For a change trigger, check only the required groups that it affects.
-After a check, update `references/rates.md` with the checked values and their group dates.
-Date a group only after checking every value in it. Split the group if only some values were checked.
-Preserve the values and dates of unchecked groups.
-Use one effective rate reference for all model comparisons and assignments in this assessment.
-Do not check unchanged groups again for each subagent while they are current and no change trigger applies.
-If the skill directory is read-only, save one dated rate record for this assessment.
-Report that you could not update the saved reference.
+Without a change trigger, use each necessary group without online lookup.
+Its own check date must be no more than 30 days old.
+If a necessary group is missing, undated, or older than 30 days, get current values from official sources.
+Also get current values from official sources for affected necessary groups when any of these triggers applies:
+
+- The user reports a change.
+- An official source shows a rate change.
+- The payment mode changes.
+
+Update `references/rates.md` only with values validated against those sources and their actual group check dates.
+Assign a check date only after validation of every value in that group.
+Split partially validated groups. Keep other values and dates.
+Use one effective rate reference for all comparisons and assignments in this assessment.
+Do not refresh unchanged current groups per subagent without a change trigger.
+If the directory is read-only, save one dated assessment rate record. Report that the saved reference could not be updated.
 Use the environment's documentation rules for official sources.
 For API USD, use the applicable [official API rates](https://developers.openai.com/api/docs/pricing).
 Do not calculate API USD from credits.
@@ -53,7 +54,7 @@ Do not calculate API USD from credits.
 
 Observation date: **2026-10-27**. Source: this session's `collaboration.spawn_agent` schema.
 This observation is for this runtime only. It gives no assurance of availability for an account or another runtime.
-Before each assignment, examine the schema of the delegation tool that will be used. Use that schema if it differs from this table.
+Before each assignment, examine the actual delegation tool schema. If it differs from this table, use the schema.
 
 | Model | Model override | Supported reasoning effort |
 | --- | --- | --- |
@@ -64,8 +65,8 @@ Before each assignment, examine the schema of the delegation tool that will be u
 | gpt-6-astra | Available | low, medium, high, xhigh, max, ultra |
 
 If the actual schema lists permitted model IDs or efforts, keep those limits.
-If it does not list them, use other applicable evidence to confirm support in the actual tool and environment.
-A parameter with type `string` alone does not confirm support for a model ID or effort.
+If it does not list them, find other applicable evidence of support in the actual tool and environment.
+A parameter with type `string` alone does not prove support for a model ID or effort.
 A price table or chat picker does not show tool access or account access.
 User policy does not include older generations in automatic selection. This exclusion does not mean technical unavailability.
 For a subsequent explicit model request, keep the user's choice. Make sure that the requested model is available.
@@ -86,7 +87,7 @@ Use `S=U+C+R+V`.
 - **Light**: `S≤2` and no axis equals 2.
 - **Ordinary**: `S≤4` and `C,R<2`, except light work.
 - **Complex**: all other work.
-- **Exceptional**: concrete evidence shows that an otherwise adequate strong model cannot do the work satisfactorily.
+- **Exceptional**: concrete evidence shows that an otherwise sufficient strong model cannot do the work satisfactorily.
 
 A score alone cannot show that the exceptional class is necessary.
 Do not use file count, reviewer role, or roadmap length to select the class.
@@ -94,41 +95,52 @@ Missing facts, access, or verification are blockers or limitations. They do not 
 
 ## Select who does the work
 
-For the whole task, record `execution_mode=primary_only` or `execution_mode=delegate`.
-The primary agent is the director by default. Start from `delegate`; primary execution is an explicit exception for a confirmed short, self-contained whole goal.
-The primary agent must make one decision for the whole task in the current assessment.
-After a material change or a new requirement for independent review, reconsider this decision.
-Use task complexity to select a model and effort. Do not use it to select the number of agents.
-First assess whether the primary model and effort can meet the requirements for each required slice. Use task requirements, observed failures, and applicable capability evidence. Model name, raw price, or unknown facts alone do not establish inadequate capability. An established capability gap does not require a failed attempt first.
-If the primary configuration is inadequate for any required slice, select `execution_mode=delegate`. Select an adequate, available worker model and effort through this skill, then start the worker for that slice through the applicable delegation workflow. This requirement applies even to one coherent slice. A recommendation alone is insufficient. Do not choose `primary_only` to reduce cost when the primary configuration is known to be inadequate. Keep coordination and acceptance with the primary agent; do not add a manager layer.
-Keep explicit user model and delegation restrictions, permissions, and budget limits. If they prevent the required worker configuration or start, stop dependent work and record the blocker. Continue independent authorized work within the selected mode and role boundaries. Do not substitute inadequate primary execution, silently change the global model, or expand authorization to proceed.
-Next assess the anticipated primary context for the whole goal, even when the primary configuration is adequate. Select `execution_mode=delegate` for a series of substantive work stages, such as investigation, implementation, and integration, or when the expected research, artifacts, dependencies, or checks require substantial context. Make this decision before full research; do not wait for context overload. Describe the expected context burden qualitatively. Do not invent numerical thresholds. Calling a long connected chain one coherent slice does not permit `primary_only`; assign that chain to one worker when its scope and permissions permit.
-Choose `delegate` if one or more of these requirements apply:
+Record one whole-task decision: `execution_mode=primary_only` or `execution_mode=delegate`.
+The primary is the director by default. Start from `delegate`; primary execution needs the confirmed short-whole-goal exception below.
+Reassess after a material change or new independent-review requirement. Use complexity for configuration selection, not agent count.
 
-- The capability assessment above requires it.
-- The anticipated work stages or context burden require it.
-- A separate review is required.
-- The user requests agents.
+First, examine primary capability for every necessary slice against requirements, observed failures, and relevant capability evidence.
+Model names, raw prices, and unknown facts alone cannot prove insufficient capability.
+A known capability gap needs no failed attempt first.
+If any necessary slice exceeds primary capability, select `delegate`. Select and start a sufficient available worker through the applicable delegation workflow.
+This applies to a single coherent slice. A recommendation alone is insufficient; cost cannot justify known insufficient primary execution.
+Keep coordination and acceptance with the primary. Do not add a manager layer.
 
-Parallel slices alone do not require delegation.
-Use `primary_only` only after an affirmative assessment that the entire goal is short and self-contained, the primary configuration is adequate, the context is bounded, and there is no series of substantive work stages or other required delegation. Ordinary supporting inspection, a small patch, and a focused check within one short local correction do not themselves constitute such a series. Never extract a small pending substep from an already delegated larger goal to claim this exception. Do not count commands or create one worker per action.
-If whole-goal eligibility is uncertain, use only minimal bounded clarification or discovery needed to resolve it. Do not start an agent just for classification. Uncertainty does not authorize primary execution; retain `delegate` if the exception remains unconfirmed.
-Optimize cost only among configurations that satisfy these gates. Only after the short-task exception is established, compare optional delegation with primary-only work on total cost through acceptance. Price alone cannot establish the exception or make primary execution the default.
-If both modes meet these requirements, choose the lower-cost mode.
-If costs are unknown, use the available qualitative evidence and record the uncertainty and decision basis.
-Do not claim that either mode is cheaper without supporting evidence.
-If there is no supported cost advantage for optional delegation and the whole goal qualifies for `primary_only`, choose `primary_only`.
-Keep responsibility for the shared contract, integration coordination, and final acceptance with the primary agent.
-In `delegate` mode, assign execution of integration to workers. In `primary_only` mode, the primary agent performs the work and integration.
-Honor an explicit request to delegate unless tool access, permissions, or budget limits prevent it.
-Do not start an agent to classify the task or select models.
-Before an agent starts, resolve unknown facts needed to meet task requirements or mandatory budget limits.
-For other unknown facts, record their effect on the decision without inventing precise costs.
-Record the mode and its reason.
-For `primary_only`, record the primary model and its effort.
-For `delegate`, name each slice. Select a model and an effort level for each worker.
-Forecast the total cost through acceptance.
-Do not let a worker start another agent unless the primary agent assigns the role and slice.
+Next, examine expected whole-goal context, even if primary capability is sufficient.
+Select `delegate` for substantive stage sequences, such as investigation, implementation, and integration, or substantial research, artifact, dependency, or verification context.
+Decide before full research. Do not wait for context overload. Describe context burden qualitatively, without invented numerical thresholds.
+A long connected chain is not a short goal. Assign it to one worker where permitted by scope and permissions.
+Also select `delegate` for mandatory separate review or explicit user agent requests. Possible parallelism alone does not make delegation necessary.
+
+Use `primary_only` only after affirmative assessment of all these conditions:
+
+- The entire goal is short and self-contained.
+- Primary capability is sufficient.
+- Context is bounded.
+- There is no substantive stage sequence or other required delegation.
+
+Supporting inspection, a small patch, and focused verification within one short local correction do not themselves constitute substantive stages.
+Do not extract a pending substep from an already delegated larger goal to claim the exception.
+Do not count commands or assign one worker per action.
+If eligibility is uncertain, use minimal bounded clarification or discovery. Do not start a classification agent.
+Uncertainty grants no primary-execution permission. If the exception remains unconfirmed, keep `delegate`.
+
+Optimize cost only among eligible configurations. After validation of the exception, compare optional delegation with primary execution through acceptance.
+Price alone cannot validate the exception or make primary execution the default. If both modes qualify, select the lower-cost mode.
+For unknown costs, record uncertainty and qualitative evidence. Do not claim a cost advantage without evidence.
+If optional delegation has no supported cost advantage and the whole goal qualifies, select `primary_only`.
+
+Keep explicit user restrictions, permissions, and budgets. If they prevent a required worker configuration or start, record the blocker.
+Stop dependent work. Continue independent work within authorization, selected mode, and role.
+Do not substitute insufficient primary execution, change the global model, or expand authorization.
+The primary keeps responsibility for the shared contract, integration coordination, and final acceptance.
+In `delegate`, workers execute integration. In `primary_only`, the primary performs work and integration.
+
+Before a start, obtain facts necessary for task correctness or mandatory budget compliance.
+Record other unknowns and their decision effects without invented costs.
+Record the mode and basis, primary model and effort, and each delegated slice's worker model and effort.
+Forecast total cost through acceptance. Do not start an agent only for classification or model selection.
+Let workers delegate only when the primary assigns that role and slice.
 
 ## Find permitted configurations
 
@@ -144,9 +156,10 @@ For writing, visual understanding, or computer use, consider 6.1 Terra when the 
 Assign a model and effort to a subagent only after confirming that the delegation tool and environment support both.
 Use the current schema and, where it does not list permitted values, other applicable evidence as specified in `Subagent availability`.
 These candidates do not give a universal model ranking. Comparable accepted work can change the permitted candidates.
-[Official model information](https://learn.chatgpt.com/docs/models) describes Astra for the most demanding work, 6.1 Sol for complex cost-sensitive work, Terra for writing and visual or computer-use work, and Luna for focused repeatable tasks.
+[Official model information](https://learn.chatgpt.com/docs/models) describes Astra for the most demanding work and 6.1 Sol for complex cost-sensitive work.
+It describes Terra for writing, visual, or computer-use work, and Luna for focused repeatable tasks.
 Compare 6 Sol with rates and acceptance evidence from comparable tasks when the runtime offers it.
-Do not select a candidate that evidence already shows is inadequate.
+Do not select a candidate that evidence already shows is insufficient.
 Without evidence of insufficient capability, do not select Astra for unknown causes or missing fixtures.
 
 Select only an effort available in the applicable tool:
@@ -189,7 +202,7 @@ Calculate the team forecast from all runs through acceptance. Include incurred t
 If a count is unknown, keep that uncertainty in the total. Unknown cost is not zero.
 Compare forecast ranges for comparable permitted configurations. Keep the quality requirements.
 The lowest token rate alone does not show the lowest total cost.
-Select the least expensive adequate configuration within the budget.
+Select the least expensive sufficient configuration within the budget.
 If data are incomplete, record the qualitative basis and uncertainty. Do not claim an exact least-cost result.
 An output-length limit does not limit total spend. A numerical forecast is not an enforced cost limit.
 
@@ -201,7 +214,7 @@ Use the whole-team forecast as a condition for the start decision.
 After acceptance failure or cost beyond the forecast, make this decision again before further starts.
 Compare the remaining forecast with the budget and quality requirements.
 If the forecast has changed, record the cause and the revised basis.
-A forecast overrun alone does not create a user-approval requirement.
+A forecast overrun alone does not make user approval necessary.
 
 For a strict user cap, record the unit, accounting scope, reserve, and remaining budget.
 Before paid starts, make sure that shared accounting and enforcement can keep the work within that cap.
@@ -220,7 +233,10 @@ Do not start a classification agent or make a benchmark for each choice.
 
 After failure, find the cause: reasoning weakness, unclear contract, tool failure, test-system failure, or missing environment.
 For deeper analysis, increase effort. For insufficient capability, select a model with sufficient capability.
-When evidence shows that the selected model lacked required capability, revise the internal estimate and retry allocation as needed; a low initial estimate does not require repeating an inadequate configuration. Keep prior spend, remaining work, handoff, and acceptance in the revised total forecast, and continue the same slice under existing permissions. Do not increase without limit or jump to the most expensive model. An explicit user cap remains binding: if an adequate attempt cannot fit within it, stop dependent paid starts and ask only for the required cap change.
+If evidence shows insufficient capability, revise the estimate and retry allocation. A low initial estimate does not justify another insufficient attempt.
+Include prior spend, remaining work, handoff, and acceptance in the revised forecast. Continue the same slice within existing permissions.
+Do not increase without limit or jump to the most expensive model.
+If a sufficient attempt exceeds an explicit cap, stop dependent paid starts. Ask only for the necessary cap change.
 Usually, change one parameter at a time. Do not select candidates again if evidence already shows insufficient capability.
 Keep the least expensive configuration with an accepted result.
 After a material change to the assessment, use this skill again.
