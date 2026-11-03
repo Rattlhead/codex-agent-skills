@@ -1,0 +1,6 @@
+interface:
+  display_name: "Комплексный аудит"
+  short_description: "Проверка результата, связей и рисков по области"
+  default_prompt: "Используй $comprehensive-audit: проверь указанную область по требованиям и рискам, покажи доказательства, взаимодействия и пробелы покрытия; ничего не исправляй без разрешения."
+policy:
+  allow_implicit_invocation: true

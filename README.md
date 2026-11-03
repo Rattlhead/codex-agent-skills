@@ -1,18 +1,25 @@
 # Навыки и правила проектов для Codex
 
-Семь навыков помогают планировать работу, выбирать способ выполнения, проверять причины сбоев и улучшать инструкции. Они подходят для кода, документов, исследований, данных и графики. Условия запуска различаются: установка всех навыков не требует чтения или применения всех навыков в каждой задаче.
+Восемь навыков помогают планировать работу, выбирать способ выполнения, проводить аудит, проверять причины сбоев и улучшать инструкции. Они подходят для кода, документов, исследований, данных и графики. Условия запуска различаются: установка всех навыков не требует чтения или применения всех навыков в каждой задаче.
 
 | Навык | Когда применять | Результат и границы |
 | --- | --- | --- |
 | [`task-model-router`](skills/task-model-router/SKILL.md) | Нужен выбор модели, усилия, бюджета или способа выполнения | Оценка сложности и стоимости до приёмки; рекомендация не меняет модель чата |
-| [`subagent-manager`](skills/subagent-manager/SKILL.md) | Работа за пределами подтверждённой короткой самостоятельной цели или запрос координации | Основной агент по умолчанию руководит: делегирует выполнение, следит за качеством, ставит дополнительные задания и принимает результат |
+| [`subagent-manager`](skills/subagent-manager/SKILL.md) | Работа за пределами подтверждённой короткой самостоятельной цели или запрос координации | Agent Orchestrator: основной агент выбирает маршрут по цели, области и риску, делегирует выполнение и принимает доказательства; имя навыка сохранено |
 | [`plan-agent-work`](skills/plan-agent-work/SKILL.md) | Нужна сложная дорожная карта, её ревью или возобновление | Сохраняет краткий индекс со статусами и отдельный файл каждого шага; задаёт исполнителей, нужный контекст и приёмку; режим плана разрешает запись плана, но не реализацию |
 | [`autonomous-decision-agent`](skills/autonomous-decision-agent/SKILL.md) | Нетривиальный выбор внутри уже разрешённой длительной работы | Ограниченный совет исполнителя с правом чтения через текущего менеджера; не заменяет обязательное согласие пользователя |
 | [`root-cause-audit`](skills/root-cause-audit/SKILL.md) | Связанные симптомы, повторный сбой или аудит области системы | Причинные объяснения, альтернативы и покрытие ветвей с указанием доказательств; аудит не разрешает исправления |
+| [`comprehensive-audit`](skills/comprehensive-audit/SKILL.md) | Нужен комплексный аудит результата или связанной области | Покрытие требований, поведения, связей, удобства и структуры по риску и типу результата; аудит не разрешает исправления и правки тестов |
 | [`task-token-retrospective`](skills/task-token-retrospective/SKILL.md) | Завершена крупная задача или запрошен разбор потерь токенов | Проверенные причины лишней работы и предложения предотвращения; не выдумывает расход или экономию |
 | [`agent-instructions-audit`](skills/agent-instructions-audit/SKILL.md) | Нужен аудит инструкций или ревью их изменений | Подтверждённые дефекты и точный предлагаемый diff; изменение инструкций требует одобрения этой правки |
 
 Менеджеру нужен установленный `task-model-router`. Для исполнителя решений нужны менеджер, роутер и доступный инструмент субагентов. Остальные навыки подключают эти возможности только по необходимости. Установка сама по себе не предоставляет разрешений и не гарантирует доступность инструментов.
+
+Оркестратор использует существующие навыки по условиям задачи. Он не добавляет второй уровень менеджеров и не загружает весь набор сразу. Сложность, модель, усилие и стоимость оценивает роутер. Для сложной работы нужен план; для короткой задачи достаточно действия и проверки. Проверку программного кода выполняет доступный в среде `code-verification`; он не входит в этот репозиторий. Для других результатов применяются профильные проверки.
+
+Комплексный аудит выбирает применимые проверки по типу результата и риску. Он охватывает функции, интеграции, регрессии, UI/UX, статическое качество, архитектуру, потоки, границы и взаимодействия там, где это нужно. Для документов и графики используются соответствующие проверки содержимого и готового результата. Матрица покрытия показывает проверенные случаи и пробелы. Аудит по умолчанию не меняет состояние системы, исходники, тесты или инструменты наблюдения.
+
+Перед разрешённым исправлением нужно проверить причину через `root-cause-audit`. Общую причину нескольких симптомов нельзя предполагать. Для подтверждённой ошибки по умолчанию нужна регрессионная проверка: сбой до исправления и успех после него. Подходящий существующий тест можно использовать повторно. Если воспроизведение недоступно или исправление тривиально, нужно обоснованное исключение, обязательная точечная проверка и описание её ограничений. Правки тестов требуют разрешения, которое их охватывает. Временная мера не подтверждает устранение причины. Непроверенное поведение UI/UX остаётся пробелом даже при зелёных тестах.
 
 [Наглядное руководство по менеджеру](docs/subagent-manager-visual-guide.md) показывает в четырёх схемах Mermaid роли, выбор режима, приёмку результата и действия после сбоя.
 
@@ -30,9 +37,9 @@
 
 ## Установка навыков
 
-Можно попросить Codex: `$skill-installer Установи семь навыков из https://github.com/Rattlhead/codex-agent-skills по путям skills/task-model-router, skills/subagent-manager, skills/task-token-retrospective, skills/agent-instructions-audit, skills/root-cause-audit, skills/plan-agent-work и skills/autonomous-decision-agent`.
+Можно попросить Codex: `$skill-installer Установи восемь навыков из https://github.com/Rattlhead/codex-agent-skills по путям skills/task-model-router, skills/subagent-manager, skills/task-token-retrospective, skills/agent-instructions-audit, skills/root-cause-audit, skills/comprehensive-audit, skills/plan-agent-work и skills/autonomous-decision-agent`.
 
-Для ручной установки клонируйте репозиторий и скопируйте семь навыков. Команды остановятся, если любой навык уже установлен:
+Для ручной установки клонируйте репозиторий и скопируйте восемь навыков. Команды остановятся, если любой навык уже установлен:
 
 ```sh
 git clone https://github.com/Rattlhead/codex-agent-skills.git
@@ -40,14 +47,14 @@ cd codex-agent-skills
 (
 set -eu
 skill_root="${CODEX_HOME:-$HOME/.codex}/skills"
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit comprehensive-audit plan-agent-work autonomous-decision-agent; do
   if [ -e "$skill_root/$name" ] || [ -L "$skill_root/$name" ]; then
     echo "Уже существует: $skill_root/$name — остановка" >&2
     exit 1
   fi
 done
 mkdir -p "$skill_root"
-cp -R skills/task-model-router skills/subagent-manager skills/task-token-retrospective skills/agent-instructions-audit skills/root-cause-audit skills/plan-agent-work skills/autonomous-decision-agent "$skill_root/"
+cp -R skills/task-model-router skills/subagent-manager skills/task-token-retrospective skills/agent-instructions-audit skills/root-cause-audit skills/comprehensive-audit skills/plan-agent-work skills/autonomous-decision-agent "$skill_root/"
 )
 ```
 
@@ -67,7 +74,7 @@ set -eu
 git pull --ff-only
 skill_root="${CODEX_HOME:-$HOME/.codex}/skills"
 backup_dir="${CODEX_HOME:-$HOME/.codex}/skill-backups/$(date +%Y%m%d-%H%M%S)-$$"
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit comprehensive-audit plan-agent-work autonomous-decision-agent; do
   test -f "skills/$name/SKILL.md"
   test ! -L "$skill_root/$name"
   if [ -e "$skill_root/$name" ]; then
@@ -75,12 +82,12 @@ for name in task-model-router subagent-manager task-token-retrospective agent-in
   fi
 done
 mkdir -p "$backup_dir"
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit comprehensive-audit plan-agent-work autonomous-decision-agent; do
   if [ -d "$skill_root/$name" ]; then
     cp -R "$skill_root/$name" "$backup_dir/$name"
   fi
 done
-for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit plan-agent-work autonomous-decision-agent; do
+for name in task-model-router subagent-manager task-token-retrospective agent-instructions-audit root-cause-audit comprehensive-audit plan-agent-work autonomous-decision-agent; do
   mkdir -p "$skill_root/$name"
   rsync -a --checksum --delete "skills/$name/" "$skill_root/$name/"
 done
@@ -93,10 +100,12 @@ echo "Обновлено. Резервная копия: $backup_dir"
 ## Примеры
 
 - `$task-model-router Оцени задачу и порекомендуй модель и уровень усилия.`
-- `$subagent-manager Разбей эту задачу на независимые части и координируй их выполнение.`
+- `$subagent-manager Выбери маршрут этой задачи по цели, области и риску. Координируй выполнение и прими результат по доказательствам.`
 - `$plan-agent-work Составь дорожную карту обновления отчёта. Только план; реализацию и проверки не запускай.`
 - `$autonomous-decision-agent Разреши нетривиальный выбор формата внутри текущей разрешённой длительной задачи через существующего менеджера.`
 - `$root-cause-audit Проверь причины повторных сбоев и связанных симптомов в указанной области. Покажи доказательства и непроверенные ветви. Ничего не исправляй.`
+- `$comprehensive-audit Проведи комплексный аудит этой области. Проверь требования, потоки и взаимодействия по риску. Покажи матрицу покрытия и пробелы. Ничего не исправляй.`
+- `$comprehensive-audit Проверь этот документ по требованиям, структуре, ссылкам и готовому виду. Не применяй программные проверки без основания и не меняй файл.`
 - `$task-token-retrospective Кратко разбери потери токенов в завершённой задаче и предложи исправления правил.`
 - `$agent-instructions-audit Проверь AGENTS.md и связанные инструкции этого проекта. Покажи подтверждённые дефекты и предлагаемый diff без изменения файлов.`
 - `$agent-instructions-audit Проверь изменения инструкций относительно указанного коммита и затронутые зависимости. Не повторяй полный аудит без причины.`

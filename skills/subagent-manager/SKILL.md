@@ -1,17 +1,41 @@
 ---
 name: subagent-manager
-description: Direct work as the primary agent by default. Delegate execution, monitor quality, assign follow-up work, and accept evidence. Use for manager or delegation requests and work beyond a confirmed short standalone whole-goal exception.
+description: Orchestrate authorized work as the primary director. Route by intent and scope, delegate execution, coordinate audits and fixes, and accept evidence. Use for orchestration or delegation requests and work beyond a confirmed short standalone whole-goal exception.
 ---
 
-# Subagent Manager
+# Agent Orchestrator
+
+Keep the skill name `subagent-manager` and its existing manager role. Route the work through the skills below; do not create a second manager or a mandatory chain of specialists.
 
 The primary agent is the director by default. Use `delegate` mode unless the whole current user goal qualifies for the explicit short-task exception below.
-Before project operations or full implementation research, assess that whole goal and record the execution mode.
 In `delegate` mode, the manager directs scope, dependencies, assignments, blockers, and acceptance, monitors work and quality, assigns follow-up work, coordinates integration, and keeps brief status in the conversation.
 The primary agent remains responsible for the shared contract, integration coordination, and final acceptance. Assigned workers execute integration.
 Workers examine their slices, make their results, and do the necessary checks. Without a specified gap, do not repeat their research.
 Keep project rules, authorization, and environment limits.
 Do not use another project's paths or tools.
+
+## Route the current goal
+
+Before project operations or full research, record one compact routing decision in the existing brief or conversation: the requested intent, deliverable type, finite scope and revision, authorization, material risks, needed acceptance evidence, and `execution_mode=delegate` or `execution_mode=primary_only` with its basis. For `primary_only`, record the affirmative short-whole-goal assessment under the criteria below. Keep execution mode distinct from task and authorization modes such as `PLAN ONLY`, `AUDIT`, and `RESUME`; those labels do not establish who executes. For a resume, restore these facts from the canonical state and check changed inputs. Carry the compact execution mode and basis in the existing handoff when needed for continuation or acceptance. Do not create another tracker or checklist. Ask only for a missing fact that prevents safe or correct progress; continue independent authorized work.
+
+Distinguish an answer, plan, audit, diagnosis, implementation or fix, verification, and resume. Use the deliverable's domain to choose applicable checks. Risk sets depth and boundaries; it does not by itself authorize edits or require a full audit. Use `task-model-router` for complexity, model, effort, mode, and cost decisions. Do not add another scoring method here.
+
+Load only the selected skill and the sections needed for the current phase:
+
+| Need | Route and boundary |
+| --- | --- |
+| Execution mode, configuration, or budget | [$task-model-router](../task-model-router/SKILL.md); reuse a current assessment unless its inputs change. |
+| Complex plan, roadmap review, or resume | [$plan-agent-work](../plan-agent-work/SKILL.md); keep its plan-only and execution modes separate. A short task needs only an action and check. |
+| Comprehensive audit of a bounded result or system | [$comprehensive-audit](../comprehensive-audit/SKILL.md); select domain and risk coverage. A narrow question needs only its relevant check. |
+| Defect diagnosis, related symptoms, or cause before fixes | [$root-cause-audit](../root-cause-audit/SKILL.md); compare mechanisms and alternatives before grouping defects. |
+| Software review or verification | Discover the installed `code-verification` skill by its actual catalog name and path; use its relevant checks. Use the available domain verification skill for other artifacts. |
+| Nontrivial decision within authorized work | [$autonomous-decision-agent](../autonomous-decision-agent/SKILL.md), under the decision procedure below. |
+| Instruction audit or review of instruction changes | [$agent-instructions-audit](../agent-instructions-audit/SKILL.md); keep its approval boundary. |
+| Completed substantial work or requested token review | [$task-token-retrospective](../task-token-retrospective/SKILL.md), once the result and checks are available. |
+
+Use an available implementation skill when source changes are authorized. Discover external skills from the current catalog; do not guess their paths. If a selected dependency is missing, record the limit and continue only independent work that remains valid. Keep the router's required-dependency stop below. The table does not require all skills for every goal or promise universal automatic invocation.
+
+An audit or diagnosis alone grants no permission to fix, add tests, or add instrumentation. Preserve existing authorization when it covers those changes; do not add a redundant approval gate.
 
 ## Technical nouns
 
@@ -48,6 +72,7 @@ If the router is missing, stop mode selection and dependent project operations. 
 
 In `primary_only` mode, the primary agent may complete the eligible short whole goal and its necessary acceptance checks within the authorized scope.
 In `delegate` mode, the primary agent coordinates and accepts supplied evidence. Assign production work and integration to workers. The manager may read instructions, the router, rates, and tool schemas; assess models and budgets; use coordination tools; and keep brief status. It may also perform a bounded inspection or check for a named evidence gap, contradiction, or changed input. Use the smallest necessary scope, current permissions, and explicit ownership of the check and resources. Do not repeat full research or test suites, or replace a required independent reviewer. Publication still requires the applicable authorization.
+In `delegate` mode, writes to canonical project state, roadmaps, and file-based status belong to their assigned worker owner. The manager must not make those writes through its inspection or coordination permission. If no eligible owner is available, report the proposed update or blocked state write in the conversation. Do not create a child only for bookkeeping.
 Defaults in called skills, including the router, audit, and retrospective, do not override the selected execution mode. Their standalone modes are unchanged.
 User instructions, permissions, environment limits, and budget limits retain priority. This skill does not guarantee automatic invocation in every project.
 
@@ -186,6 +211,12 @@ Have the check owner start with the smallest failed or affected area.
 After integration, do the necessary overall check through its assigned owner.
 After a local change, have the assigned owner repeat it only for an affected dependency or a specified gap.
 
+### Accept defect corrections
+
+Route cause analysis before fixes to the relevant `root-cause-audit` guidance. Do not assume that related symptoms share a cause. When planning proposed corrections or executing authorized corrections, load only [remediation.md](../comprehensive-audit/references/remediation.md) for regression evidence, mitigation limits, adjacent checks, and acceptance. In a plan, carry these as future acceptance criteria and mark the checks `not run`; planning grants no permission to fix or execute checks. A focused bug fix does not require the comprehensive audit workflow or its coverage matrix.
+
+If that optional reference is unavailable, retain this manager's existing acceptance rules and causal route. Report the missing procedure and withhold dependent defect-correction acceptance until the necessary checks are specified. Continue unaffected authorized work; do not silently omit regression evidence.
+
 For material risk, disputed decisions, or explicit review requests, use independent review.
 Give the reviewer the criteria and artifacts. Do not tell the reviewer which conclusions to give.
 Without new changes or evidence gaps, do not duplicate review.
@@ -198,7 +229,7 @@ Before a material increase in effort or model capability, use the router.
 After acceptance failure or cost beyond the forecast, recheck remaining work and slice configurations before further starts.
 After a demonstrated correction, have the assigned owner repeat the affected acceptance check.
 
-Keep one accepted result per slice in the existing plan or status. In `delegate` mode, assign file-based updates to its worker owner.
+Keep one accepted result per slice in the existing plan or status.
 Do not create duplicate logs or dashboards.
 After integration, complete the overall user goal.
 Continue from the last handoff. Do not invent missing counters or close another agent's tasks.
