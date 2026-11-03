@@ -285,6 +285,10 @@ Useful boundaries include completed substantial work, important contract or arch
 Use value, not command, edit, or task counts. Routine small actions do not each need a commit.
 
 Select the checkpoint before assignment where practical, or at an accepted milestone.
+At each accepted significant milestone and before goal closure, resolve the checkpoint decision in the existing brief or status.
+Record no commit with its reason, or select a checkpoint under the rules below.
+For a selected checkpoint, issue the Git assignment to its authorized owner after acceptance; recording an owner or intent alone is insufficient.
+Before goal closure, obtain its commit receipt or record an explicit deferred or blocked outcome with its reason and remaining action.
 In the existing brief or status, record its owner, exact scope, trigger, required acceptance, and existing local-commit authority.
 Use an authorized existing executor or integration owner. In `delegate`, assign Git work; the manager does not commit.
 Do not start a bookkeeping worker. Serialize shared Git-index access. Do not request approval again for checkpoints already within authorization.
