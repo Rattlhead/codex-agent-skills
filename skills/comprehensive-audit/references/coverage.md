@@ -1,6 +1,9 @@
 # Applicable coverage and interactions
 
-Use this reference to build the finite audit boundary. Select dimensions from the deliverable, requirements, and risks. Mark a dimension `not applicable` with a reason rather than importing a software checklist into other work.
+Use this reference to set the finite audit boundary.
+Select dimensions from the deliverable, requirements, and risks.
+For a dimension that does not apply, use `not applicable` with a reason.
+Do not import a software checklist into other work.
 
 | Dimension | Software evidence | Other deliverable evidence |
 | --- | --- | --- |
@@ -14,16 +17,29 @@ Use this reference to build the finite audit boundary. Select dimensions from th
 | Boundaries | External input, persistence, permissions, environment, versions, failure and cancellation | Format, export, print, language, units, limits, recipient, and tool boundaries |
 | Interactions | Features, states, roles, modules, or events that share resources or affect each other | Content, formulas, layout, assets, sources, or exports that constrain each other |
 
-Use domain skills for concrete methods. Examples include spreadsheet recalculation, document rendering, illustration preflight, source verification, and browser interaction. A domain example is not a mandatory check for every artifact.
+Use domain skills for concrete methods.
+Examples include spreadsheet recalculation, document rendering, illustration preflight, source verification, and browser interaction.
+A domain example is not a mandatory check for every artifact.
 
 ## Build the interaction matrix
 
-Use the existing matrix or brief. Add only entries needed for the declared scope:
+Use the existing matrix or brief.
+Add only entries necessary for the declared scope:
 
 `entry or scenario -> interacting elements and shared boundary -> initial state/input -> action or change -> expected result/invariant -> evidence/check -> result and gap`
 
-Enumerate reachable states, transitions, actors, inputs, outputs, and relevant dependencies before claiming complete coverage. Add normal, boundary, error, retry, cancellation, concurrency, and recovery cases only where they affect the scope. Prioritize interactions that share data, callbacks, configuration, lifecycle, files, assets, or external contracts. Include an independent control or counterexample where it can distinguish a suspected mechanism.
+Before a statement of complete coverage, list reachable states, transitions, actors, inputs, outputs, and relevant dependencies.
+Add normal, boundary, error, retry, cancellation, concurrency, and recovery cases only where they affect the scope.
+Give priority to interactions that share data, callbacks, configuration, lifecycle, files, assets, or external contracts.
+Include an independent control or counterexample where it can distinguish a suspected mechanism.
 
-For each row, keep an owner if delegated and the exact artifact or runtime revision. Use `pass`, `fail`, `not run`, `blocked`, or `not applicable` with a reason. A finding's causal status can remain unresolved even when its observed failure is confirmed.
+For each row, keep the exact artifact or runtime revision.
+For delegated work, keep the owner for each row.
+Use `pass`, `fail`, `not run`, `blocked`, or `not applicable` with a reason.
+A finding's causal status can remain unresolved even when evidence confirms its observed failure.
 
-Expand the boundary only for a requirement, supported dependency, or material observation; record the reason. Report adjacent out-of-scope findings without silently turning them into an implementation assignment. Sampling, pairwise cases, and a selected list of flows must retain an explicit coverage limit.
+Expand the boundary only for a requirement, supported dependency, or material observation.
+Record the reason.
+Report adjacent findings outside scope.
+Do not silently make them an implementation assignment.
+For sampling, pairwise cases, and a selected list of flows, keep an explicit coverage limit.

@@ -1,6 +1,9 @@
 # Audit records
 
-Use only the sections that help the current task. Small audits can use a few paragraphs. Keep one canonical record. Link evidence instead of copying large logs or secrets.
+Use only the sections that help the current task.
+Small audits can use a few paragraphs.
+Keep one task record.
+Give evidence links. Do not copy large logs or secrets.
 
 ## Boundary and evidence identity
 
@@ -8,9 +11,9 @@ Use only the sections that help the current task. Small audits can use a few par
 - Included entry points, states, transitions, and sequence bounds:
 - Adjacent dependencies included and why:
 - Excluded paths, unknowns, and access or permission limits:
-- Source revision, relevant dirty changes, runtime artifact/build:
+- Source revision, relevant uncommitted changes, runtime artifact/build:
 - Environment, configuration/data identity, observation time:
-- Existing canonical record and evidence locations:
+- Existing task record and evidence locations:
 
 ## Branch matrix
 
@@ -18,7 +21,12 @@ Use only the sections that help the current task. Small audits can use a few par
 | --- | --- | --- | --- | --- | --- | --- |
 | B1 | | | | | | |
 
-Use precise coverage status: `observed`, `statically inspected`, `blocked`, `not run`, or `excluded`. For `observed`, state whether the result matched the expected behavior. Add a reason for blocked and excluded rows. Keep evidence level separate from pass/fail. List known inventory gaps outside the matrix; they are not covered rows.
+Use precise coverage status: `observed`, `statically inspected`, `blocked`, `not run`, or `excluded`.
+For `observed`, record whether the result matched the expected behavior.
+Give a reason for blocked and excluded rows.
+Keep evidence level separate from pass/fail.
+List known inventory gaps outside the matrix.
+These gaps are not covered rows.
 
 ## Causal claims
 
@@ -26,17 +34,21 @@ Use precise coverage status: `observed`, `statically inspected`, `blocked`, `not
 | --- | --- | --- | --- | --- | --- | --- |
 | C1 | | | | | | |
 
-Use `confirmed`, `supported`, `unresolved`, or `rejected`. Evidence references should identify the command or observation, relevant input, version/environment, result, and location. Note changed assumptions that invalidate earlier evidence.
+Use `confirmed`, `supported`, `unresolved`, or `rejected`.
+Give the command or observation, relevant input, version/environment, result, and location in evidence references.
+Record changed assumptions that make earlier evidence invalid.
 
 ## Final report
 
-Lead with what the evidence establishes and its practical effect. Then provide:
+Start with what the evidence shows and its practical effect.
+Then give:
 
 - Findings in impact order, with the causal chain and evidence status.
-- Shared-cause links that were established, plus alternatives still open.
+- Shared-cause links with proof, plus alternatives still open.
 - The assessed boundary, covered branches, failures, and material gaps.
 - Mitigations and proposed root fixes, clearly separated from work performed.
 - The next useful checks, their access needs, and prevention proposals.
-- The canonical location for durable verified findings, if an update is authorized.
+- The authoritative location for lasting verified findings, if an update is authorized.
 
-State overall completion as completion of the agreed audit scope, with evidence limits. Do not imply that unresolved causes, untested branches, or proposed repairs are complete.
+Report completion of the agreed audit scope with evidence limits.
+Do not imply completion of unresolved causes, untested branches, or proposed repairs.

@@ -1,25 +1,64 @@
 # Defect correction acceptance
 
-Use this procedure to plan proposed defect corrections or accept authorized corrections. For a proposal or plan, carry the relevant regression, exception, and affected-boundary requirements below as future acceptance criteria. Mark future checks `not run`; planning grants no permission to fix or execute checks. A focused fix needs neither a full comprehensive audit nor its coverage matrix. Use existing task state and acceptance criteria. This procedure grants no permission to edit source, tests, fixtures, instrumentation, configuration, data, or infrastructure.
+Use this procedure to plan proposed defect corrections or accept authorized corrections.
+For a proposal or plan, use the regression, exception, and affected-boundary requirements below as future acceptance criteria.
+Mark future checks `not run`.
+Planning gives no permission for fixes or check execution.
+A full comprehensive audit or its coverage matrix is not necessary for a focused fix.
+Use existing task state and acceptance criteria.
+This procedure gives no permission to edit source, tests, fixtures, instrumentation, configuration, data, or infrastructure.
 
 ## Diagnose before correcting
 
-Use the relevant `root-cause-audit` guidance to establish the trigger, mechanism, contributing conditions, and alternatives before fixes. Group defects only when evidence supports a shared mechanism. Assign one coherent correction for that mechanism where appropriate. Do not mask symptoms, add competing fixes, or duplicate a correction without technical grounds.
+Before fixes, use the relevant `root-cause-audit` guidance to find the trigger, mechanism, contributing conditions, and alternatives.
+Group defects only when evidence supports a shared mechanism.
+Where applicable, use one coherent correction for that mechanism.
+Do not mask symptoms, add competing fixes, or duplicate a correction without technical evidence.
 
-An explicitly authorized temporary mitigation must state its limits, unresolved cause, and follow-up check. Keep it separate from a final root fix. Do not report the root cause as resolved because the visible symptom is gone.
+For an explicitly authorized temporary mitigation, record its limits, unresolved cause, and follow-up check.
+Keep it separate from a final root fix.
+Do not report the root cause as resolved because the visible symptom is gone.
 
-## Establish regression evidence
+<a id="establish-regression-evidence"></a>
+## Regression evidence
 
-For a confirmed bug, default to a reproducible regression check that fails on the pre-fix version for the expected reason and passes on the corrected version. Reuse an existing test when it already detects the defect. Creating or changing tests or fixtures requires authorization that covers them; an audit request alone is insufficient. For non-code work, use a deterministic before/after comparison of the relevant behavior or artifact.
+For a confirmed bug, use a reproducible regression check by default.
+The check must fail on the version before the fix for the expected reason.
+It must pass on the corrected version.
+If an existing test finds the defect, use it again.
+Authorization that covers new or changed tests or fixtures is necessary.
+An audit request alone does not give that authorization.
+For work other than code, use a deterministic before/after comparison of the relevant behavior or artifact.
 
-If a prior version is inaccessible or cannot be safely recreated, reproduction is infeasible, or the correction is trivial, record the evidence-based exception. Run a mandatory focused acceptance check and state what it cannot establish. Do not fabricate a historical red result or weaken a check to obtain green. An existing observation can support a defect without proving that a new test failed before the fix.
+If the prior version is unavailable or unsafe to recreate, record the exception and its evidence.
+If reproduction is infeasible (impossible or impractical), record the exception and its evidence.
+If the correction is trivial, also record the exception and its evidence.
+For every exception, run a mandatory focused acceptance check.
+Record what that check cannot prove.
+Do not invent a historical failing result.
+Do not weaken a check to get a passing result.
+An existing observation can support a defect without proof that a new test failed before the fix.
 
-Preserve authorized software regression tests for future runs through the existing runner and CI when applicable. Use established test discovery and commands. Do not invent CI, require new infrastructure, or change it without authorization.
+Keep authorized software regression tests for future runs through the existing runner and CI where applicable.
+Use existing test discovery and commands.
+Do not invent CI.
+Do not make new infrastructure mandatory or change infrastructure without authorization.
 
-## Verify the affected boundary
+<a id="verify-the-affected-boundary"></a>
+## Examine the affected boundary
 
-Select adjacent and integration gates from the changed mechanism, contracts, shared state, and risk. Verify the original failure, corrected behavior, and affected neighboring flows on the identified final revision at the appropriate boundary. Keep root-cause findings, remediation status, and verification evidence distinct.
+Select adjacent and integration checks from the changed mechanism, contracts, shared state, and risk.
+On the exact final revision, test the original failure, corrected behavior, and affected adjacent flows at the applicable boundary.
+Keep root-cause findings, remediation status, and verification evidence distinct.
 
-UI/UX claims require observable evidence from the rendered artifact or running UI at the relevant views and sizes when the behavior can be exercised. Unit or static checks do not establish runtime or visual acceptance. If required UI/UX evidence is unavailable, report that acceptance as partial; green tests do not close the gap.
+If you can run the behavior, get observable UI/UX evidence from the rendered artifact or running UI.
+Use the relevant views and sizes.
+Unit or static checks do not prove runtime or visual acceptance.
+If necessary UI/UX evidence is unavailable, report that acceptance as partial.
+Passing tests do not remove the gap.
 
-Reuse valid evidence for unaffected inputs and dependencies. Repeat checks only for a changed dependency, failure, contradiction, or named gap. Do not rerun the full suite without such a reason. Report the accepted scope, final revision, checks, exceptions, and remaining limits without claiming broader coverage.
+Use valid evidence again for unchanged inputs and dependencies.
+Do checks again only for a changed dependency, failure, contradiction, or named gap.
+Without such a reason, do not do the full suite again.
+Report the accepted scope, final revision, checks, exceptions, and remaining limits.
+Do not give a statement of broader coverage.

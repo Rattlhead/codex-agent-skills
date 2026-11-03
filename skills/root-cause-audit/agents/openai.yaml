@@ -1,4 +1,4 @@
 interface:
-  display_name: "Root Cause Audit"
-  short_description: "Audit causal mechanisms and related behavior paths"
-  default_prompt: "Use $root-cause-audit to audit this area, test causal explanations, and report branch coverage and evidence limits."
+  display_name: "Аудит причин сбоев"
+  short_description: "Причины сбоев, связанные ветви и доказательства"
+  default_prompt: "Используй $root-cause-audit. Проверь причины сбоев в этой области и связанные ветви. Покажи доказательства, альтернативные объяснения и пробелы покрытия. Ничего не исправляй."
